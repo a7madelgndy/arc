@@ -11,14 +11,13 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0 : movieMockData.count
         default : movieMockData.count
         }
     }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        3
     }
     
     
@@ -48,9 +47,9 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier, for: indexPath) as! PopulerHeaderView
         
             switch indexPath.section {
-                case 0  :
-                    header.title = "Populer"
-               default : header.title = "Up Comming"
+                case 0  :header.title = "Populer"
+               case 1  : header.title = "Up Comming"
+               default : header.title = "Top Rated"
             
         }
         return header

@@ -39,6 +39,7 @@ class DiscoverViewController: UIViewController {
             
             switch sectionIndex {
             case 0: AppLayouts.shared.populerMoviesSction()
+            case 1: AppLayouts.shared.populerMoviesSction()
             default: AppLayouts.shared.populerMoviesSction()
             }
             
