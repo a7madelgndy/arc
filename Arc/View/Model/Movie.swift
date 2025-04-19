@@ -1,0 +1,16 @@
+//
+//  Movie.swift
+//  Arc
+//
+//  Created by Ahmed El Gndy on 19/04/2025.
+//
+
+import Foundation
+
+struct MovieResponse: Codable{
+   let  results:[Movie]
+}
+
+struct Movie: Codable {
+  let poster_path:String
+}

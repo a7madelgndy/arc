@@ -9,11 +9,11 @@ import UIKit
 
 class PopularCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "PopularCollectionViewCell"
-    var cellData : MovieMockModel? {
+    
+    var cellData : Movie? {
         didSet{
             guard let cellData else {return}
-            movieBannerView.image = UIImage(named: cellData.image)
-            movieTitle.text = cellData.title
+            print(cellData.poster_path)
         }
     }
     private lazy var movieBannerView: UIImageView = {
@@ -24,13 +24,6 @@ class PopularCollectionViewCell: UICollectionViewCell {
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 8
         return image
-    }()
-    
-    private lazy var movieTitle : UILabel = {
-        var title = UILabel()
-        title.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        title.textAlignment = .center
-        return title
     }()
     
     override init(frame: CGRect) {

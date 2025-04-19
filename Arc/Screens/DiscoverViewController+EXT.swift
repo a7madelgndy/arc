@@ -28,7 +28,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
                 fatalError("Unable deque cell...")
                 
             }
-            cell.cellData = movieMockData[indexPath.row]
+            cell.cellData = populerMovie?[indexPath.row]
             return cell
         
         default:
@@ -36,7 +36,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
                 fatalError("Unable deque cell...")
                 
             }
-            cell.cellData = movieMockData[indexPath.row]
+            cell.cellData = populerMovie?[indexPath.row]
             return cell
         }
     }

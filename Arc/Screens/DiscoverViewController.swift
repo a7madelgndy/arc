@@ -7,8 +7,9 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController {
-    
+class DiscoverViewController: DataLoadingVC {
+
+    var populerMovie: [Movie]?
     lazy var collectionView : UICollectionView = {
         var cv  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         cv.delegate = self
@@ -16,6 +17,7 @@ class DiscoverViewController: UIViewController {
         cv.register(PopularCollectionViewCell.self, forCellWithReuseIdentifier: PopularCollectionViewCell.cellIdentifier)
         
         cv.register(PopulerHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier)
+        
         return cv
     }()
     
@@ -25,6 +27,17 @@ class DiscoverViewController: UIViewController {
          configureConstrains()
          configureCompoitionalLayout()
         view.backgroundColor = .systemGray6
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task{
+            do {
+                showLoadingView()
+                populerMovie = try! await NetworkManager.shared.getMovies()
+            }
+            dismissLoadingView()
+        }
     }
     private func configureUI(){
         view.addSubview(collectionView)
