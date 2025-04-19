@@ -15,6 +15,8 @@
 		154376A82DB3D82B00A2B39B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376A72DB3D82B00A2B39B /* FavoritesViewController.swift */; };
 		154376AA2DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */; };
 		154376AE2DB3DCC300A2B39B /* UIView+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376AD2DB3DCC300A2B39B /* UIView+EXT.swift */; };
+		154376B32DB3DE2100A2B39B /* PopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376B22DB3DE2100A2B39B /* PopularCollectionViewCell.swift */; };
+		154376B62DB3E2CE00A2B39B /* MovieMockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376B52DB3E2CE00A2B39B /* MovieMockModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		154376A72DB3D82B00A2B39B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscoverViewController+EXT.swift"; sourceTree = "<group>"; };
 		154376AD2DB3DCC300A2B39B /* UIView+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EXT.swift"; sourceTree = "<group>"; };
+		154376B22DB3DE2100A2B39B /* PopularCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCollectionViewCell.swift; sourceTree = "<group>"; };
+		154376B52DB3E2CE00A2B39B /* MovieMockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMockModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		1543768D2DB3D1A100A2B39B /* Arc */ = {
 			isa = PBXGroup;
 			children = (
+				154376AF2DB3DDC400A2B39B /* View */,
 				154376AB2DB3DCA700A2B39B /* EXtensions */,
 				154376A62DB3D81300A2B39B /* Screens */,
 				154376A22DB3D43400A2B39B /* Custom Views */,
@@ -103,6 +108,31 @@
 				154376AD2DB3DCC300A2B39B /* UIView+EXT.swift */,
 			);
 			path = EXtensions;
+			sourceTree = "<group>";
+		};
+		154376AF2DB3DDC400A2B39B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				154376B42DB3E2A200A2B39B /* Model */,
+				154376B12DB3DDD100A2B39B /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		154376B12DB3DDD100A2B39B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				154376B22DB3DE2100A2B39B /* PopularCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		154376B42DB3E2A200A2B39B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				154376B52DB3E2CE00A2B39B /* MovieMockModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,8 +206,10 @@
 			files = (
 				154376932DB3D1A100A2B39B /* DiscoverViewController.swift in Sources */,
 				1543768F2DB3D1A100A2B39B /* AppDelegate.swift in Sources */,
+				154376B62DB3E2CE00A2B39B /* MovieMockModel.swift in Sources */,
 				154376AE2DB3DCC300A2B39B /* UIView+EXT.swift in Sources */,
 				154376A52DB3D49800A2B39B /* TabBarController.swift in Sources */,
+				154376B32DB3DE2100A2B39B /* PopularCollectionViewCell.swift in Sources */,
 				154376A82DB3D82B00A2B39B /* FavoritesViewController.swift in Sources */,
 				154376AA2DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift in Sources */,
 				154376912DB3D1A100A2B39B /* SceneDelegate.swift in Sources */,
