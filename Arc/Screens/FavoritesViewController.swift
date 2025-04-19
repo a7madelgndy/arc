@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FavoritesViewController.swift
 //  Arc
 //
 //  Created by Ahmed El Gndy on 19/04/2025.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        
+        view.backgroundColor = .white
+        
     }
-
-
+    
 }
-

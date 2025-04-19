@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
     
     
     func createDiscoverNC() -> UINavigationController {
-        let DiscoverViewController =  ViewController()
+        let DiscoverViewController =  DiscoverViewController()
         DiscoverViewController.title = "Discover"
         DiscoverViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 0)
         
@@ -27,10 +27,12 @@ class TabBarController: UITabBarController {
     
     
     func CreateFavoritesNC() ->UINavigationController {
-        let favoritsVC = ViewController()
+        let favoritsVC = FavoritesViewController()
         favoritsVC.title = "Favorites"
         favoritsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         
         return UINavigationController(rootViewController: favoritsVC)
     }
 }
+
+
