@@ -26,6 +26,10 @@ class AppLayouts {
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)) , elementKind: "Header" , alignment: .top)
         section.boundarySupplementaryItems = [header]
+        
+        let decorationItem = NSCollectionLayoutDecorationItem.background(elementKind: "SectionBackground")
+        section.decorationItems = [decorationItem]
+        
         return section
     }
 }

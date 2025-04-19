@@ -42,6 +42,9 @@ class DiscoverViewController: UIViewController {
             }
             
         }
+        layout.register(SectionDecorationView.self
+                        , forDecorationViewOfKind: "SectionBackground")
+        
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
 
