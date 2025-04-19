@@ -8,7 +8,7 @@
 import UIKit
 
 class PopularCollectionViewCell: UICollectionViewCell {
-    
+    static let cellIdentifier = "PopularCollectionViewCell"
     var cellData : MovieMockModel? {
         didSet{
             guard let cellData else {return}
@@ -44,7 +44,8 @@ class PopularCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         addSubview(movieBannerView)
-        movieBannerView.setConstrains(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor , height: 100 )
+        addSubview(movieTitle)
+        movieBannerView.setConstrains(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor , height: 200 )
         movieTitle.setConstrains(top: movieBannerView.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor, height: 30)
     }
     

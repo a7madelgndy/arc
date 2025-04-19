@@ -13,6 +13,7 @@ class DiscoverViewController: UIViewController {
         var cv  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         cv.delegate = self
         cv.dataSource = self
+        cv.register(PopularCollectionViewCell.self, forCellWithReuseIdentifier: PopularCollectionViewCell.cellIdentifier)
         return cv
     }()
     
@@ -20,6 +21,7 @@ class DiscoverViewController: UIViewController {
         super.viewDidLoad()
          configureUI()
          configureConstrains()
+         configureCompoitionalLayout()
         view.backgroundColor = .systemGray6
     }
     private func configureUI(){
@@ -30,8 +32,15 @@ class DiscoverViewController: UIViewController {
         collectionView.pinToEages(to: view)
     }
 
+    private func configureCompoitionalLayout() {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex , enviorment in
+            
+            switch sectionIndex {
+            default: AppLayouts.shared.populerMoviesSction()
+            }
+            
+        }
+        collectionView.setCollectionViewLayout(layout, animated: true)
+    }
 
-}
-#Preview{
-    TabBarController()
 }
