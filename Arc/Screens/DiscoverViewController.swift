@@ -38,6 +38,7 @@ class DiscoverViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout { sectionIndex , enviorment in
             
             switch sectionIndex {
+            case 0: AppLayouts.shared.populerMoviesSction()
             default: AppLayouts.shared.populerMoviesSction()
             }
             
@@ -50,6 +51,3 @@ class DiscoverViewController: UIViewController {
 
 }
 
-#Preview{
-    TabBarController()
-}

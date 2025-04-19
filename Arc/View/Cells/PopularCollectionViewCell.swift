@@ -44,9 +44,9 @@ class PopularCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         addSubview(movieBannerView)
-        addSubview(movieTitle)
-        movieBannerView.setConstrains(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor , height: 200 )
-        movieTitle.setConstrains(top: movieBannerView.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor, height: 30)
+        //addSubview(movieTitle)
+        movieBannerView.setConstrains(top: topAnchor , leading: leadingAnchor , bottom : bottomAnchor, trailing: trailingAnchor )
+  
     }
     
 

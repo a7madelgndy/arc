@@ -10,6 +10,12 @@ import UIKit
 class PopulerHeaderView: UICollectionReusableView {
     static let cellIdentifier = "PopulerHeaderView"
     
+    var title : String? {
+        didSet {
+            headerTitle.text = title
+        }
+    }
+    
     let headerTitle : UILabel = {
        var title = UILabel()
         title .text = "Populer"

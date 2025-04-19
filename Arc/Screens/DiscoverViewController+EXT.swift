@@ -11,18 +11,27 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
+        case 0 : movieMockData.count
         default : movieMockData.count
         }
     }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        2
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
+        case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.cellIdentifier, for: indexPath) as? PopularCollectionViewCell else {
+                fatalError("Unable deque cell...")
+                
+            }
+            cell.cellData = movieMockData[indexPath.row]
+            return cell
+        
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.cellIdentifier, for: indexPath) as? PopularCollectionViewCell else {
                 fatalError("Unable deque cell...")
@@ -36,12 +45,14 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-   
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier, for: indexPath) as! PopulerHeaderView
+        
             switch indexPath.section {
-                default :
-                    let header = collectionView.dequeueReusableSupplementaryView(ofKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier, for: indexPath) as! PopulerHeaderView
-                    return header
+                case 0  :
+                    header.title = "populer l"
+               default : header.title = "up comming"
             
         }
+        return header
     }
 }
