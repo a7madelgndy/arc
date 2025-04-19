@@ -49,8 +49,8 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
         
             switch indexPath.section {
                 case 0  :
-                    header.title = "populer l"
-               default : header.title = "up comming"
+                    header.title = "Populer"
+               default : header.title = "Up Comming"
             
         }
         return header
