@@ -14,6 +14,8 @@ class DiscoverViewController: UIViewController {
         cv.delegate = self
         cv.dataSource = self
         cv.register(PopularCollectionViewCell.self, forCellWithReuseIdentifier: PopularCollectionViewCell.cellIdentifier)
+        
+        cv.register(PopulerHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier)
         return cv
     }()
     
@@ -43,4 +45,8 @@ class DiscoverViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
 
+}
+
+#Preview{
+    TabBarController()
 }

@@ -24,9 +24,8 @@ class AppLayouts {
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 0)
         
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)) , elementKind: "Header" , alignment: .top)
+        section.boundarySupplementaryItems = [header]
         return section
     }
-}
-#Preview{
-    TabBarController()
 }
