@@ -21,7 +21,6 @@ class PopularCollectionViewCell: UICollectionViewCell {
                     let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
                     movieBannerView.image = image
                 }
-            print(cellData.poster_path)
         }
     }
     private lazy var movieBannerView: UIImageView = {

@@ -33,8 +33,14 @@ class DiscoverViewController: DataLoadingVC {
         Task{
             do {
                 showLoadingView()
-                populerMovie = try! await NetworkManager.shared.getMovies()
+                populerMovie = try await NetworkManager.shared.getMovies()
                 collectionView.reloadData()
+            }catch {
+                if let error = error  as? ErrorMassages {
+                    presentAler(title: "Bad Stuff Happend", message: error.rawValue, buttonTile: "ok")
+                }else  {
+                    presentDefaultError()
+                }
             }
             dismissLoadingView()
         }

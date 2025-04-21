@@ -29,6 +29,8 @@
 		157AC0DD2DB6A00D007409D4 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0DC2DB6A00D007409D4 /* ContainerView.swift */; };
 		157AC0DF2DB6A04E007409D4 /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0DE2DB6A04E007409D4 /* BodyLabel.swift */; };
 		157AC0E22DB6A0B0007409D4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E12DB6A0AF007409D4 /* Button.swift */; };
+		157AC0E52DB6A3C1007409D4 /* ErrorMassages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */; };
+		157AC0E72DB6A47A007409D4 /* UIViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		157AC0DC2DB6A00D007409D4 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		157AC0DE2DB6A04E007409D4 /* BodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
 		157AC0E12DB6A0AF007409D4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMassages.swift; sourceTree = "<group>"; };
+		157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+EXT.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,27 +92,18 @@
 		1543768D2DB3D1A100A2B39B /* Arc */ = {
 			isa = PBXGroup;
 			children = (
+				157AC0E32DB6A38F007409D4 /* UItilities */,
 				154376B42DB3E2A200A2B39B /* Model */,
 				154376C32DB4261800A2B39B /* Managers */,
-				157AC0D32DB69117007409D4 /* Enums */,
 				154376AF2DB3DDC400A2B39B /* Custom Vies */,
 				154376AB2DB3DCA700A2B39B /* EXtensions */,
 				154376A62DB3D81300A2B39B /* Screens */,
-				154376A22DB3D43400A2B39B /* Custom Views */,
 				1543768E2DB3D1A100A2B39B /* AppDelegate.swift */,
 				154376902DB3D1A100A2B39B /* SceneDelegate.swift */,
 				154376972DB3D1A300A2B39B /* Assets.xcassets */,
 				1543769C2DB3D1A300A2B39B /* Info.plist */,
 			);
 			path = Arc;
-			sourceTree = "<group>";
-		};
-		154376A22DB3D43400A2B39B /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				154376A32DB3D44200A2B39B /* TabBarConrollers */,
-			);
-			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		154376A32DB3D44200A2B39B /* TabBarConrollers */ = {
@@ -133,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				154376AD2DB3DCC300A2B39B /* UIView+EXT.swift */,
+				157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */,
 			);
 			path = EXtensions;
 			sourceTree = "<group>";
@@ -140,6 +136,7 @@
 		154376AF2DB3DDC400A2B39B /* Custom Vies */ = {
 			isa = PBXGroup;
 			children = (
+				154376A32DB3D44200A2B39B /* TabBarConrollers */,
 				157AC0E02DB6A09E007409D4 /* Buttons */,
 				157AC0DB2DB69FEB007409D4 /* Views */,
 				157AC0D82DB69F43007409D4 /* Labels */,
@@ -227,6 +224,15 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		157AC0E32DB6A38F007409D4 /* UItilities */ = {
+			isa = PBXGroup;
+			children = (
+				157AC0D32DB69117007409D4 /* Enums */,
+				157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */,
+			);
+			path = UItilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -304,6 +310,7 @@
 				154376B62DB3E2CE00A2B39B /* MovieMockModel.swift in Sources */,
 				154376AE2DB3DCC300A2B39B /* UIView+EXT.swift in Sources */,
 				157AC0E22DB6A0B0007409D4 /* Button.swift in Sources */,
+				157AC0E72DB6A47A007409D4 /* UIViewController+EXT.swift in Sources */,
 				154376A52DB3D49800A2B39B /* TabBarController.swift in Sources */,
 				154376B32DB3DE2100A2B39B /* PopularCollectionViewCell.swift in Sources */,
 				154376A82DB3D82B00A2B39B /* FavoritesViewController.swift in Sources */,
@@ -314,6 +321,7 @@
 				157AC0DD2DB6A00D007409D4 /* ContainerView.swift in Sources */,
 				154376C22DB424E400A2B39B /* NetworkManager.swift in Sources */,
 				154376C82DB434E900A2B39B /* DataloadingVcViewController.swift in Sources */,
+				157AC0E52DB6A3C1007409D4 /* ErrorMassages.swift in Sources */,
 				157AC0DA2DB69F58007409D4 /* TitleLabel.swift in Sources */,
 				154376912DB3D1A100A2B39B /* SceneDelegate.swift in Sources */,
 				154376B92DB3E95000A2B39B /* AppLayouts.swift in Sources */,
