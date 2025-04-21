@@ -5,7 +5,7 @@
 //  Created by Ahmed El Gndy on 19/04/2025.
 //
 
-import Foundation
+import UIKit
 
 struct NetworkManager {
      static let shared = NetworkManager()
@@ -36,6 +36,17 @@ struct NetworkManager {
             return movieResponse.results
         } catch {
             throw error
+        }
+    }
+    
+    func downloadImage(from urlString: String) async -> UIImage? {
+        guard let url = URL(string: urlString) else {return nil}
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            guard let image = UIImage(data: data) else {return nil}
+            return image
+        }catch {
+            return nil
         }
     }
 }

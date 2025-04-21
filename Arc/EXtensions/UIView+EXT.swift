@@ -8,6 +8,10 @@
 import UIKit
 
 extension UIView {
+    func addSubViews( _ Views :UIView...) {
+        for view in Views {addSubview(view)}
+    }
+    
     func pinToEages(to superView: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: superView.topAnchor).isActive = true

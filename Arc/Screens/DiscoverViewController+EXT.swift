@@ -11,7 +11,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        default : movieMockData.count
+        default : populerMovie?.count ?? 0
         }
     }
     

@@ -20,7 +20,7 @@ class PopulerHeaderView: UICollectionReusableView {
        var title = UILabel()
         title .text = "Populer"
         title.textAlignment = .left
-        title.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+        title.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         return title
     }()
     

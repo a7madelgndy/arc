@@ -13,6 +13,14 @@ class PopularCollectionViewCell: UICollectionViewCell {
     var cellData : Movie? {
         didSet{
             guard let cellData else {return}
+            
+            let imagePath:String = cellData.poster_path
+            let fullImageURL = "https://image.tmdb.org/t/p/w185\(imagePath)"
+            
+                Task{
+                    let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
+                    movieBannerView.image = image
+                }
             print(cellData.poster_path)
         }
     }
@@ -37,10 +45,15 @@ class PopularCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         addSubview(movieBannerView)
-        //addSubview(movieTitle)
-        movieBannerView.setConstrains(top: topAnchor , leading: leadingAnchor , bottom : bottomAnchor, trailing: trailingAnchor )
-  
+
+        movieBannerView.setConstrains(top: topAnchor ,
+                                      leading: leadingAnchor ,
+                                      bottom : bottomAnchor,
+                                      trailing: trailingAnchor ,
+                                      width: BannerSize.width,
+                                      height: BannerSize.height)
     }
     
+
 
 }

@@ -26,7 +26,6 @@ class DiscoverViewController: DataLoadingVC {
          configureUI()
          configureConstrains()
          configureCompoitionalLayout()
-        view.backgroundColor = .systemGray6
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +34,7 @@ class DiscoverViewController: DataLoadingVC {
             do {
                 showLoadingView()
                 populerMovie = try! await NetworkManager.shared.getMovies()
+                collectionView.reloadData()
             }
             dismissLoadingView()
         }
