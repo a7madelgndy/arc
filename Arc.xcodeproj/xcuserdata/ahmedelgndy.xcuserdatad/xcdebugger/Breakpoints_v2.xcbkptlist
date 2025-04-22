@@ -3,4 +3,84 @@
    uuid = "56BBB93F-0F3D-4FBE-A47A-2FD3C4622DAE"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DAD3FFC-5E31-4BF4-ACFF-33B4A7E092E5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Arc/Custom Vies/imageViews/SFSymbolImageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "configure()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2AB85FC-5763-4394-9BBC-D9FB2341EDE3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Arc/Custom Vies/imageViews/SFSymbolImageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "configure()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E4E95A2-3CF5-4339-ADF5-69F0C56075B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Arc/Custom Vies/imageViews/SFSymbolImageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2E4E95A2-3CF5-4339-ADF5-69F0C56075B7 - c6715deb756b9e3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Arc.SFSymbolImageView.init(frame: __C.CGRect) -&gt; Arc.SFSymbolImageView"
+                  moduleName = "Arc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedelgndy/Desktop/Arc/Arc/Custom%20Vies/imageViews/SFSymbolImageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19">
+               </Location>
+               <Location
+                  uuid = "2E4E95A2-3CF5-4339-ADF5-69F0C56075B7 - c6715deb756b9e78"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Arc.SFSymbolImageView.init(frame: __C.CGRect) -&gt; Arc.SFSymbolImageView"
+                  moduleName = "Arc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedelgndy/Desktop/Arc/Arc/Custom%20Vies/imageViews/SFSymbolImageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

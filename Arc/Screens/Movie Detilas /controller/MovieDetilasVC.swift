@@ -13,6 +13,8 @@ class MovieDetilasVC: UIViewController {
     var moviePosterView = MovieBoosterView()
     
     var movieHeaderView = MovieHeaderView()
+    
+    lazy var categroiesView: UIView = movieCategoriesView(rating: movieDetails?.vote_average ?? 3.4)
     //MovieTile
     var movieDetails: Movie?{
         didSet {
@@ -33,6 +35,7 @@ class MovieDetilasVC: UIViewController {
     func configure() {
         view.addSubview(moviePosterView)
         view.addSubview(movieHeaderView)
+        view.addSubview(categroiesView)
         
         moviePosterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -43,7 +46,11 @@ class MovieDetilasVC: UIViewController {
         ])
         
         movieHeaderView.setConstrains(top: moviePosterView.bottomAnchor , leading:  view.leadingAnchor , trailing: view.trailingAnchor ,paddingTop: 10, height: 50)
-        movieHeaderView.backgroundColor = .systemGray5
+   
+        
+        categroiesView.setConstrains(top:movieHeaderView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
+        categroiesView.layer.borderWidth = 2
+        
     }
 }
 
@@ -64,3 +71,5 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
     
     
 }
+
+

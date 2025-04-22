@@ -27,9 +27,9 @@ class TitleLabel: UILabel {
         self.font = UIFont.systemFont(ofSize: fontsize, weight: .bold )
     }
     
-    
+
     private func configure() {
-        textColor                                 = .label
+        textColor                                 = .red
         adjustsFontSizeToFitWidth                 = true
         minimumScaleFactor                        = 0.9
         lineBreakMode                             = .byWordWrapping
