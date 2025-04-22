@@ -41,6 +41,16 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        default :
+            let movie =  populerMovie?[indexPath.row]
+            let movieVc = MovieDetilasVC()
+            print(movie?.poster_path)
+            movieVc.movieDetails = movie
+            present(movieVc, animated: true)
+        }
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

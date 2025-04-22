@@ -31,6 +31,9 @@
 		157AC0E22DB6A0B0007409D4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E12DB6A0AF007409D4 /* Button.swift */; };
 		157AC0E52DB6A3C1007409D4 /* ErrorMassages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */; };
 		157AC0E72DB6A47A007409D4 /* UIViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */; };
+		157AC0ED2DB7CB43007409D4 /* MovieDetilasVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0EC2DB7CB43007409D4 /* MovieDetilasVC.swift */; };
+		157AC0EF2DB7CD36007409D4 /* MovieBoosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0EE2DB7CD36007409D4 /* MovieBoosterView.swift */; };
+		157AC0F12DB7D5E0007409D4 /* UImage+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0F02DB7D5E0007409D4 /* UImage+EXT.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		157AC0E12DB6A0AF007409D4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMassages.swift; sourceTree = "<group>"; };
 		157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+EXT.swift"; sourceTree = "<group>"; };
+		157AC0EC2DB7CB43007409D4 /* MovieDetilasVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetilasVC.swift; sourceTree = "<group>"; };
+		157AC0EE2DB7CD36007409D4 /* MovieBoosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBoosterView.swift; sourceTree = "<group>"; };
+		157AC0F02DB7D5E0007409D4 /* UImage+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImage+EXT.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,7 @@
 				154376922DB3D1A100A2B39B /* DiscoverViewController.swift */,
 				154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */,
 				154376A72DB3D82B00A2B39B /* FavoritesViewController.swift */,
+				157AC0EC2DB7CB43007409D4 /* MovieDetilasVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -129,6 +136,7 @@
 			children = (
 				154376AD2DB3DCC300A2B39B /* UIView+EXT.swift */,
 				157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */,
+				157AC0F02DB7D5E0007409D4 /* UImage+EXT.swift */,
 			);
 			path = EXtensions;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				157AC0DC2DB6A00D007409D4 /* ContainerView.swift */,
+				157AC0EE2DB7CD36007409D4 /* MovieBoosterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,14 +325,17 @@
 				154376A82DB3D82B00A2B39B /* FavoritesViewController.swift in Sources */,
 				154376BE2DB3FBE500A2B39B /* PopulerHeaderView.swift in Sources */,
 				157AC0D72DB69EEE007409D4 /* AlertVC.swift in Sources */,
+				157AC0EF2DB7CD36007409D4 /* MovieBoosterView.swift in Sources */,
 				157AC0DF2DB6A04E007409D4 /* BodyLabel.swift in Sources */,
 				154376AA2DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift in Sources */,
 				157AC0DD2DB6A00D007409D4 /* ContainerView.swift in Sources */,
 				154376C22DB424E400A2B39B /* NetworkManager.swift in Sources */,
+				157AC0F12DB7D5E0007409D4 /* UImage+EXT.swift in Sources */,
 				154376C82DB434E900A2B39B /* DataloadingVcViewController.swift in Sources */,
 				157AC0E52DB6A3C1007409D4 /* ErrorMassages.swift in Sources */,
 				157AC0DA2DB69F58007409D4 /* TitleLabel.swift in Sources */,
 				154376912DB3D1A100A2B39B /* SceneDelegate.swift in Sources */,
+				157AC0ED2DB7CB43007409D4 /* MovieDetilasVC.swift in Sources */,
 				154376B92DB3E95000A2B39B /* AppLayouts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
