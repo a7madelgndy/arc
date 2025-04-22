@@ -11,21 +11,28 @@ class MovieDetilasVC: UIViewController {
     
     //Movieposter
     var moviePosterView = MovieBoosterView()
+    
+    var movieHeaderView = MovieHeaderView()
+    //MovieTile
     var movieDetails: Movie?{
         didSet {
             guard let movieDetails else {return}
             moviePosterView.cellData = movieDetails.poster_path
+            movieHeaderView.viewData = movieDetails.title
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         configure()
     
     }
     
     func configure() {
         view.addSubview(moviePosterView)
+        view.addSubview(movieHeaderView)
+        
         moviePosterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             moviePosterView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -33,7 +40,9 @@ class MovieDetilasVC: UIViewController {
             moviePosterView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             moviePosterView.heightAnchor.constraint(equalToConstant: 300)
         ])
-        moviePosterView.backgroundColor = .gray
+        
+        movieHeaderView.setConstrains(top: moviePosterView.bottomAnchor , leading:  view.leadingAnchor , trailing: view.trailingAnchor ,paddingTop: 10, height: 50)
+        movieHeaderView.backgroundColor = .systemGray5
     }
 }
 

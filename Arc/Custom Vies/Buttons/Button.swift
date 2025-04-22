@@ -44,6 +44,6 @@ final class Button: UIButton {
 }
 
 #Preview {
-    let but = Button(color: .systemBlue, title: "hi", systemNameImage: "person")
+    let but = Button(color: .systemBrown, title: "", systemNameImage: "person")
     return but
 }

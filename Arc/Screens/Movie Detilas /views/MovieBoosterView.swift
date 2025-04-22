@@ -18,7 +18,7 @@ class MovieBoosterView: UIView {
             Task {
                 let fullImageURL = "https://image.tmdb.org/t/p/w500\(cellData)"
                let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
-                let bulrImage = image?.blur(radius: 4)
+                let bulrImage = image?.blur(radius: 0)
                 backgroundMovieBooster.image = bulrImage
                // mainMovieBooster.image = image
             }
