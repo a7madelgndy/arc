@@ -6,11 +6,15 @@
 //
 
 import UIKit
-
+protocol FavoriteButtonDelegate:AnyObject {
+    func didtapedFavoriteButton()
+}
 class MovieHeaderView: UIView {
     private var headerTitle = TitleLabel(textAlignment: .left, fontsize: 20)
     
     private var favoriteButton = Button(color: .systemBlue, title: "", systemNameImage: "heart")
+    
+    weak  var delegage : FavoriteButtonDelegate?
     var viewData: String? {
         didSet{
             guard let viewData else {return}
@@ -48,7 +52,13 @@ class MovieHeaderView: UIView {
             favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -20)
         ])
         favoriteButton.setConstrains(trailing:trailingAnchor , paddingLeft: 30)
+        
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
 
+    }
+    @objc func favoriteButtonTapped() {
+        favoriteButton = Button(color: .systemRed, title: "", systemNameImage: "heart.fill")
+        delegage?.didtapedFavoriteButton()
     }
 }
 

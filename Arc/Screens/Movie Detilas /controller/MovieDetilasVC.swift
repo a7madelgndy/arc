@@ -19,6 +19,7 @@ class MovieDetilasVC: UIViewController {
             guard let movieDetails else {return}
             moviePosterView.cellData = movieDetails.poster_path
             movieHeaderView.viewData = movieDetails.title
+            movieHeaderView.delegage = self
         }
     }
 
@@ -55,3 +56,11 @@ class MovieDetilasVC: UIViewController {
 // dicription ........ViewMore
 
 //caste collection View
+
+extension MovieDetilasVC:FavoriteButtonDelegate {
+    func didtapedFavoriteButton() {
+        print("favorite Button Tapped")
+    }
+    
+    
+}
