@@ -15,8 +15,12 @@ class MovieDetilasVC: DataLoadingVC {
     var headerView = MovieHeaderView()
     var categroiesView : movieCategoriesView?
     var playTailerView = TrailerPlayerView()
-    
     var movieOverview = BodyLabel()
+    
+    var movieCastView = CastView()
+    
+    var castMembers:[CastMember]?
+    
     var movieDetails: Movie?{
         didSet {
             guard let movieDetails else {return}
@@ -25,6 +29,17 @@ class MovieDetilasVC: DataLoadingVC {
             categroiesView = movieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
             headerView.delegage = self
             
+            Task{
+                do {
+                    castMembers = try await NetworkManager.shared.getMovieCast(movieId: String(movieDetails.id))
+                    print(castMembers ??  [])
+                  
+                
+                }catch {
+                  print("could fint cast ")
+                }
+                movieCastView.actors = self.castMembers
+            }
         }
     }
 
@@ -40,7 +55,7 @@ class MovieDetilasVC: DataLoadingVC {
         view.addSubview(headerView)
         view.addSubview(playTailerView)
         view.addSubview(movieOverview)
-        
+        view.addSubview(movieCastView)
         guard let categroiesView else {return}
         view.addSubview(categroiesView)
         
@@ -64,18 +79,16 @@ class MovieDetilasVC: DataLoadingVC {
         movieOverview.text = movieDetails?.overview
   
         
+        movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 100)
+    }
+    
+    func getMovieCast() -> [Actor] {
+        
+        return []
     }
 }
 
-//movieposter
 
-//movie name  save button share
-
-//play Button
-
-// dicription ........ViewMore
-
-//caste collection View
 
 extension MovieDetilasVC:FavoriteButtonDelegate {
     func didtapedFavoriteButton() {

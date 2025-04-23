@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CastCell: UICollectionViewCell {
+class ActorCell: UICollectionViewCell {
     static  let reuseIdentifier = "CastCell"
     
     lazy private var actorImageView = ActorImageView(frame: .zero)
@@ -15,14 +15,16 @@ class CastCell: UICollectionViewCell {
     
     private var actorNameLable : UILabel = {
        let l = UILabel()
-       l.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+       l.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+       l.numberOfLines = 2
        l.translatesAutoresizingMaskIntoConstraints = false
        return l
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        
+        layer.borderWidth = 4
     }
     
     
@@ -30,20 +32,25 @@ class CastCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func configureUI() {
-        addSubview(actorImageView)
-        addSubview(actorNameLable)
-        
+        contentView.addSubview(actorImageView)
+        contentView.addSubview(actorNameLable)
+
         
         actorImageView.setConstrains(leading: leadingAnchor)
-        actorImageView.setCenterX(inView: self)
-        actorImageView.setDimensions(height: 30, width: 30)
+        actorImageView.setCenterY(inView: self)
+        actorImageView.setDimensions(height: 50, width: 50)
         
         actorNameLable.setConstrains(leading: actorImageView.trailingAnchor , paddingLeft: 10)
-        actorNameLable.setCenterX(inView: self)
-        
+        actorNameLable.setWidth(width: 50)
+        actorNameLable.setCenterY(inView: self)
+
     }
     
-    func set(with actor : Actor) {
-        actorImageView.downloadImage(fromUrl: actor.profile_path)
+    func set(with actor : CastMember) {
+        guard let path = actor.profile_path else {return}
+        actorImageView.downloadImage(fromUrl: path)
+        actorNameLable.text = actor.name
     }
+    
+
 }

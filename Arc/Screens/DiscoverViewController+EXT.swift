@@ -46,7 +46,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
         default :
             let movie =  populerMovie?[indexPath.row]
             let movieVc = MovieDetilasVC()
-            print(movie?.poster_path)
+
             movieVc.movieDetails = movie
             present(movieVc, animated: true)
         }

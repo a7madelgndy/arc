@@ -8,11 +8,11 @@
 import UIKit
 
 struct NetworkManager {
-     let cache = NSCache<NSString, UIImage>()
-     static let shared = NetworkManager()
-     private init() {}
+    let cache = NSCache<NSString, UIImage>()
+    static let shared = NetworkManager()
+    private init() {}
     
-      
+    
     func getMovies() async throws -> [Movie]{
         
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing") else {
@@ -64,4 +64,30 @@ struct NetworkManager {
             return nil
         }
     }
-}
+    
+    func getMovieCast(movieId: String)async throws -> [CastMember]?{
+        let enpoint = "https://api.themoviedb.org/3/movie/\(movieId)/credits"
+        guard let url = URL(string: enpoint) else {return nil}
+        
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 10
+        request.allHTTPHeaderFields = [
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYzg0M2IwMjI0ZTU5YzU2MWZjNDQ4ODMyZTM3OGY2NSIsIm5iZiI6MTcyNzk2ODUwMS4xNzEsInN1YiI6IjY2ZmViNGY1ZTQ4MDE0OTE0Njg0ZThmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zBQxSGAcEWWvucxQGXOk8RH2AsV48K_HaIJcsOz9Y44"
+        ]
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decoder = JSONDecoder()
+        do {
+            let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
+    
+            return castResponse.cast
+        }catch{
+            
+            print("coudn't decode")
+            return []
+        }
+        
+    }}

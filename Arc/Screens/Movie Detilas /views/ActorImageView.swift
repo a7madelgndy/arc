@@ -23,6 +23,7 @@ class ActorImageView: UIImageView {
     private func configure() {
         layer.cornerRadius = 10
         clipsToBounds      =  true
+        //contentMode = .scaleAspectFit
         translatesAutoresizingMaskIntoConstraints = false
     }
     
