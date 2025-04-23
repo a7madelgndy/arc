@@ -38,6 +38,7 @@
 		157AC0F82DB7F121007409D4 /* movieCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0F72DB7F121007409D4 /* movieCategoriesView.swift */; };
 		157AC0FE2DB849E6007409D4 /* SFSymbolImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0FD2DB849E6007409D4 /* SFSymbolImageView.swift */; };
 		157AC1002DB866C6007409D4 /* borderTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0FF2DB866C6007409D4 /* borderTitleLabel.swift */; };
+		157AC1062DB86F60007409D4 /* TrailerPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC1052DB86F60007409D4 /* TrailerPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		157AC0F72DB7F121007409D4 /* movieCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieCategoriesView.swift; sourceTree = "<group>"; };
 		157AC0FD2DB849E6007409D4 /* SFSymbolImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolImageView.swift; sourceTree = "<group>"; };
 		157AC0FF2DB866C6007409D4 /* borderTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = borderTitleLabel.swift; sourceTree = "<group>"; };
+		157AC1052DB86F60007409D4 /* TrailerPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 				157AC0EE2DB7CD36007409D4 /* MovieBoosterView.swift */,
 				157AC0F52DB7E59D007409D4 /* MovieHeaderView.swift */,
 				157AC0F72DB7F121007409D4 /* movieCategoriesView.swift */,
+				157AC1052DB86F60007409D4 /* TrailerPlayerView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				154376BE2DB3FBE500A2B39B /* PopulerHeaderView.swift in Sources */,
 				157AC0F62DB7E59D007409D4 /* MovieHeaderView.swift in Sources */,
 				157AC0D72DB69EEE007409D4 /* AlertVC.swift in Sources */,
+				157AC1062DB86F60007409D4 /* TrailerPlayerView.swift in Sources */,
 				157AC0EF2DB7CD36007409D4 /* MovieBoosterView.swift in Sources */,
 				157AC0DF2DB6A04E007409D4 /* BodyLabel.swift in Sources */,
 				154376AA2DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift in Sources */,

@@ -6,16 +6,15 @@
 //
 
 import UIKit
+import AVKit
 
 class MovieDetilasVC: UIViewController {
     
     //Movieposter
     var moviePosterView = MovieBoosterView()
-    
     var movieHeaderView = MovieHeaderView()
-    
     var categroiesView : movieCategoriesView?
-    //MovieTile
+    var playTailerView = TrailerPlayerView()
     var movieDetails: Movie?{
         didSet {
             guard let movieDetails else {return}
@@ -36,6 +35,7 @@ class MovieDetilasVC: UIViewController {
     func configure() {
         view.addSubview(moviePosterView)
         view.addSubview(movieHeaderView)
+        view.addSubview(playTailerView)
         
         guard let categroiesView else {return}
         view.addSubview(categroiesView)
@@ -52,6 +52,9 @@ class MovieDetilasVC: UIViewController {
    
         
         categroiesView.setConstrains(top:movieHeaderView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
+        
+        playTailerView.setConstrains(top:categroiesView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 , height: 40)
+        playTailerView.delegate = self
   
         
     }
@@ -71,8 +74,14 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
     func didtapedFavoriteButton() {
         print("favorite Button Tapped")
     }
+  
+}
+
+extension MovieDetilasVC:playTrailerDelegte {
+    func didTappedPlayButton() {
+
+    }
     
     
 }
-
 
