@@ -8,23 +8,17 @@
 import UIKit
 
 class SFSymbolImageView: UIImageView {
-    
-    
-    private var systemImage :String?
+    private var systemImageName :String?
     private var  forGroundcolor : UIColor?
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
- 
-
     }
     
     convenience  init(systemImage: String , tintColor :UIColor) {
         self.init(frame: .zero)
-
-        self.systemImage = systemImage
-        self.forGroundcolor = tintColor
+        systemImageName = systemImage
+        forGroundcolor = tintColor
         configure()
     }
     
@@ -33,8 +27,8 @@ class SFSymbolImageView: UIImageView {
     }
     
     private func configure() {
-        guard let systemImage =   systemImage, let forGroundcolor = forGroundcolor else {return}
-        image = UIImage(systemName: systemImage)
+        guard let systemImage =   systemImageName, let forGroundcolor = forGroundcolor else {return}
+        image = UIImage(systemName: systemImageName ?? "person.crop.circle.badge.exclamationmark.fill")
         contentMode = .scaleAspectFit
         tintColor = forGroundcolor
         translatesAutoresizingMaskIntoConstraints = false

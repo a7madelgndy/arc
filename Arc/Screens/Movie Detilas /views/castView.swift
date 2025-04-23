@@ -7,9 +7,7 @@
 
 import UIKit
 
-class CastView: UIView, UICollectionViewDelegate {
-    
-    
+class MovieCastView: UIView, UICollectionViewDelegate {
     var actors :[CastMember]? {
         didSet {
             collectionView.reloadData()
@@ -21,7 +19,6 @@ class CastView: UIView, UICollectionViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCollectoinView()
-        layer.borderWidth = 2
     }
     
     required init?(coder: NSCoder) {
@@ -32,16 +29,16 @@ class CastView: UIView, UICollectionViewDelegate {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UIHelper.createFourColumnFlowLayout(in: self))
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(ActorCell.self , forCellWithReuseIdentifier: ActorCell.reuseIdentifier)
         
         addSubview(collectionView)
         collectionView.pinToEages(to: self)
-
-
     }
 }
-extension CastView: UICollectionViewDataSource {
+
+
+extension MovieCastView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }

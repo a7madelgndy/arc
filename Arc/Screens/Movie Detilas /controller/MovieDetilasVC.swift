@@ -11,13 +11,13 @@ import UIKit
 class MovieDetilasVC: DataLoadingVC {
     
     //Movieposter
-    var posterView = MovieBoosterView()
+    var posterView = BoosterView()
     var headerView = MovieHeaderView()
-    var categroiesView : movieCategoriesView?
+    var categroiesView : MovieCategoriesView?
     var playTailerView = TrailerPlayerView()
     var movieOverview = BodyLabel()
     
-    var movieCastView = CastView()
+    var movieCastView = MovieCastView()
     
     var castMembers:[CastMember]?
     
@@ -26,7 +26,7 @@ class MovieDetilasVC: DataLoadingVC {
             guard let movieDetails else {return}
             posterView.cellData = movieDetails.poster_path
             headerView.viewData = movieDetails.title
-            categroiesView = movieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
+            categroiesView = MovieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
             headerView.delegage = self
             
             Task{
@@ -51,11 +51,7 @@ class MovieDetilasVC: DataLoadingVC {
     }
     
     func configure() {
-        view.addSubview(posterView)
-        view.addSubview(headerView)
-        view.addSubview(playTailerView)
-        view.addSubview(movieOverview)
-        view.addSubview(movieCastView)
+        view.addSubViews(posterView, headerView, playTailerView, movieOverview, movieCastView)
         guard let categroiesView else {return}
         view.addSubview(categroiesView)
         
@@ -79,7 +75,7 @@ class MovieDetilasVC: DataLoadingVC {
         movieOverview.text = movieDetails?.overview
   
         
-        movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 100)
+        movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 60)
     }
     
     func getMovieCast() -> [Actor] {
@@ -111,7 +107,6 @@ extension MovieDetilasVC:playTrailerDelegte {
         pressenSafrieVC(with: url)
 
     }
-    
-    
 }
+
 

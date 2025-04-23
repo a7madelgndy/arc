@@ -7,7 +7,7 @@
 
 import UIKit
 
-class movieCategoriesView: UIView {
+class MovieCategoriesView: UIView {
     lazy var emptyView =  UIView ()
     
     lazy var stackView : UIStackView = {
@@ -18,7 +18,7 @@ class movieCategoriesView: UIView {
         return sv
     }()
     
-     var ratingSFsymbolImage  =  SFSymbolImageView(systemImage: "star.fill", tintColor: .systemPurple)
+    var ratingSFsymbolImage  =  SFSymbolImageView(systemImage: "star.fill", tintColor: .systemPurple)
     var arrowSFsymbolImage = SFSymbolImageView(systemImage: "arrow.right", tintColor: .systemPurple)
     var ratingTitle = BodyLabel()
     var releaseDate = BodyLabel()
@@ -28,8 +28,8 @@ class movieCategoriesView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurerStackView()
-    
     }
+    
     convenience init(rating:Float , language :  String , releadeData: String , isAdult: Bool) {
         self.init(frame:.zero)
         ratingTitle.text = String(rating)
@@ -41,34 +41,20 @@ class movieCategoriesView: UIView {
         }else {
             allowedAge.text = "+18"
         }
-        
     }
-
-    func configurerStackView() {
-        stackView.addArrangedSubview(ratingSFsymbolImage)
-        stackView.addArrangedSubview(ratingTitle)
-        stackView.addArrangedSubview(arrowSFsymbolImage)
-        stackView.addArrangedSubview(releaseDate)
-        stackView.addArrangedSubview(languageTitle)
-        stackView.addArrangedSubview(allowedAge)
-        stackView.addArrangedSubview(emptyView)
-
     
+    
+    func configurerStackView() {
+        let views = [ratingSFsymbolImage, ratingTitle, arrowSFsymbolImage, releaseDate, languageTitle, allowedAge, emptyView]
+        for view in views {
+            stackView.addArrangedSubview(view)
+        }
         addSubview(stackView)
         stackView.pinToEages(to: self)
-        
     }
-    
-
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
-    
-}
-
-#Preview {
-    MovieDetilasVC()
 }

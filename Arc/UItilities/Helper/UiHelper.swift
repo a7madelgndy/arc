@@ -12,19 +12,18 @@ import UIKit
 struct UIHelper {
     
     static func createFourColumnFlowLayout(in view : UIView) -> UICollectionViewFlowLayout {
-        let width  = view.bounds.width
-        let padding: CGFloat = 10
+        let width  = UIScreen.main.bounds.width
+        let padding: CGFloat = 0
         let minimumItemSpacing: CGFloat = 10
         
-        let itemCountPerRow: CGFloat = 4
+        let itemCountPerRow: CGFloat = 3
         let totalSpacing = (padding * 2) + (minimumItemSpacing * (itemCountPerRow - 1))
-        let itemWidth = (view.bounds.width - totalSpacing) / itemCountPerRow
+        let itemWidth = (width - totalSpacing) / itemCountPerRow
         
         let flowlayout                  = UICollectionViewFlowLayout()
         flowlayout.sectionInset         = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowlayout.itemSize             = CGSize(width: 120, height: 100 )
+        flowlayout.itemSize             = CGSize(width: itemWidth, height: itemWidth+40 )
         flowlayout.scrollDirection      = .horizontal
-    
         return flowlayout
     }
 }

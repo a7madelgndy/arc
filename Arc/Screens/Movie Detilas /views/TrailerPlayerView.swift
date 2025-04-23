@@ -12,10 +12,10 @@ protocol playTrailerDelegte:AnyObject {
 }
 
 class TrailerPlayerView: UIView {
-    
-    private var playButton = Button(color: .systemPurple, title: "play", systemNameImage: "play.circle.fill")
+    private var playButton = MainButton(color: .systemPurple, title: "play", systemNameImage: "play.circle.fill")
     
     weak var delegate : playTrailerDelegte?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
          configurPlayButon()
@@ -33,6 +33,6 @@ class TrailerPlayerView: UIView {
     
      @objc private func playButtonTapped() {
         print("tapped")
-         delegate?.didTappedPlayButton()
+        delegate?.didTappedPlayButton()
     }
 }

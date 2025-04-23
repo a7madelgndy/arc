@@ -29,7 +29,7 @@ class TitleLabel: UILabel {
     
 
     private func configure() {
-        textColor                                 = .red
+        textColor                                 = .label
         adjustsFontSizeToFitWidth                 = true
         minimumScaleFactor                        = 0.9
         lineBreakMode                             = .byWordWrapping

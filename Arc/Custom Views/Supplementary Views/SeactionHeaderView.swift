@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopulerHeaderView: UICollectionReusableView {
+class SeactionHeaderView: UICollectionReusableView {
     static let cellIdentifier = "PopulerHeaderView"
     
     var title : String? {

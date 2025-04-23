@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopularCollectionViewCell: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "PopularCollectionViewCell"
     
     var cellData : Movie? {
@@ -23,6 +23,7 @@ class PopularCollectionViewCell: UICollectionViewCell {
                 }
         }
     }
+    
     private lazy var movieBannerView: UIImageView = {
         let image =  UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +53,4 @@ class PopularCollectionViewCell: UICollectionViewCell {
                                       width: BannerSize.width,
                                       height: BannerSize.height)
     }
-    
-
-
 }

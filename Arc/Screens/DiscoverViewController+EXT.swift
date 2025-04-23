@@ -24,7 +24,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.cellIdentifier, for: indexPath) as? PopularCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.cellIdentifier, for: indexPath) as? MovieCollectionViewCell else {
                 fatalError("Unable deque cell...")
                 
             }
@@ -32,7 +32,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
             return cell
         
         default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.cellIdentifier, for: indexPath) as? PopularCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.cellIdentifier, for: indexPath) as? MovieCollectionViewCell else {
                 fatalError("Unable deque cell...")
                 
             }
@@ -54,7 +54,7 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier, for: indexPath) as! PopulerHeaderView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: "Header", withReuseIdentifier: SeactionHeaderView.cellIdentifier, for: indexPath) as! SeactionHeaderView
         
             switch indexPath.section {
                 case 0  :header.title = "Populer"

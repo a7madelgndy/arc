@@ -8,18 +8,19 @@
 import UIKit
 
 class DiscoverViewController: DataLoadingVC {
-
     var populerMovie: [Movie]?
+    
     lazy var collectionView : UICollectionView = {
         var cv  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         cv.delegate = self
         cv.dataSource = self
-        cv.register(PopularCollectionViewCell.self, forCellWithReuseIdentifier: PopularCollectionViewCell.cellIdentifier)
+        cv.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.cellIdentifier)
         
-        cv.register(PopulerHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: PopulerHeaderView.cellIdentifier)
-        
+        cv.register(SeactionHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: SeactionHeaderView.cellIdentifier)
+     
         return cv
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class DiscoverViewController: DataLoadingVC {
          configureConstrains()
          configureCompoitionalLayout()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,9 +47,13 @@ class DiscoverViewController: DataLoadingVC {
             dismissLoadingView()
         }
     }
+    
+    
     private func configureUI(){
         view.addSubview(collectionView)
     }
+    
+    
     private func configureConstrains() {
         view.addSubview(collectionView)
         collectionView.pinToEages(to: view)
@@ -70,4 +76,3 @@ class DiscoverViewController: DataLoadingVC {
     }
 
 }
-

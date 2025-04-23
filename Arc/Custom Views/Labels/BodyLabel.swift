@@ -12,7 +12,6 @@ class BodyLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-
     }
     
     
@@ -24,19 +23,16 @@ class BodyLabel: UILabel {
     convenience init(textAlignment : NSTextAlignment = .left){
         self.init(frame: .zero)
         self.textAlignment = textAlignment
-        configure()
     }
 
     private func configure() {
-        textColor                         = .systemPurple
+        textColor                         = .label
         font                              = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth         = true
         minimumScaleFactor                = 0.75
         numberOfLines                      = 5
         translatesAutoresizingMaskIntoConstraints = false
-      
-
     }
 
 

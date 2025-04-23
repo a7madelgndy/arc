@@ -24,7 +24,6 @@ class ActorCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        layer.borderWidth = 4
     }
     
     

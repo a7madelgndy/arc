@@ -6,20 +6,18 @@
 //
 
 import UIKit
+enum APIEndPoint {
+    static let pupuler = "https://api.themoviedb.org/3/movie/now_playing"
+    
+    static func getCast(movieId : String) -> String {
+        return "https://api.themoviedb.org/3/movie/\(movieId)/credits"
+    }
+}
 
-struct NetworkManager {
-    let cache = NSCache<NSString, UIImage>()
-    static let shared = NetworkManager()
-    private init() {}
-    
-    
-    func getMovies() async throws -> [Movie]{
-        
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing") else {
-            throw ErrorMassages.defulatErrorMassage
-        }
-        
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+struct APIComponet {
+
+   static func makeRequest(withUrl : URL) -> URLRequest {
+        var components = URLComponents(url: withUrl, resolvingAgainstBaseURL: true)!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "language", value: "en-US"),
             URLQueryItem(name: "page", value: "1"),
@@ -33,7 +31,24 @@ struct NetworkManager {
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYzg0M2IwMjI0ZTU5YzU2MWZjNDQ4ODMyZTM3OGY2NSIsIm5iZiI6MTcyNzk2ODUwMS4xNzEsInN1YiI6IjY2ZmViNGY1ZTQ4MDE0OTE0Njg0ZThmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zBQxSGAcEWWvucxQGXOk8RH2AsV48K_HaIJcsOz9Y44"
         ]
+        return request
+    }
+}
+
+struct NetworkManager {
+    let cache = NSCache<NSString, UIImage>()
+    static let shared = NetworkManager()
+    private init() {}
+    
+    
+    func getMovies() async throws -> [Movie]{
         
+        guard let url = URL(string:APIEndPoint.pupuler) else {
+            throw ErrorMassages.defulatErrorMassage
+        }
+        
+        var request = APIComponet.makeRequest(withUrl: url)
+  
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response =  response as? HTTPURLResponse , response.statusCode == 200 else {
             throw ErrorMassages.invalidResponse
@@ -66,18 +81,11 @@ struct NetworkManager {
     }
     
     func getMovieCast(movieId: String)async throws -> [CastMember]?{
-        let enpoint = "https://api.themoviedb.org/3/movie/\(movieId)/credits"
+        let enpoint = APIEndPoint.getCast(movieId: movieId)
         guard let url = URL(string: enpoint) else {return nil}
         
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        var request = URLRequest(url: components.url!)
-        request.httpMethod = "GET"
-        request.timeoutInterval = 10
-        request.allHTTPHeaderFields = [
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYzg0M2IwMjI0ZTU5YzU2MWZjNDQ4ODMyZTM3OGY2NSIsIm5iZiI6MTcyNzk2ODUwMS4xNzEsInN1YiI6IjY2ZmViNGY1ZTQ4MDE0OTE0Njg0ZThmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zBQxSGAcEWWvucxQGXOk8RH2AsV48K_HaIJcsOz9Y44"
-        ]
-        
+        var request =  APIComponet.makeRequest(withUrl: url)
+     
         let (data, _) = try await URLSession.shared.data(for: request)
         let decoder = JSONDecoder()
         do {
@@ -86,7 +94,6 @@ struct NetworkManager {
             return castResponse.cast
         }catch{
             
-            print("coudn't decode")
             return []
         }
         

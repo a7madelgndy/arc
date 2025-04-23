@@ -16,7 +16,7 @@ class SectionDecorationView: UICollectionReusableView {
     
     
     private func configure(){
-        self.backgroundColor = .systemGray6
+        self.backgroundColor = .clear
         layer.cornerRadius = 20
     }
     

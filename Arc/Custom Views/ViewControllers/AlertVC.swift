@@ -12,7 +12,7 @@ class AlertVC: UIViewController {
     let containerView = ContainerView()
     let titleLabel    = TitleLabel(textAlignment: .center, fontsize: 20)
     let messageLabel  = BodyLabel(textAlignment: .center)
-    let actionButton  = Button(color: .systemPink, title: "OK", systemNameImage: "checkmark.circle")
+    let actionButton  = MainButton(color: .systemPink, title: "OK", systemNameImage: "checkmark.circle")
     
     var alerTitle : String?
     var message: String?

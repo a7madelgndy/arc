@@ -8,9 +8,6 @@
 import UIKit
 
 class ActorImageView: UIImageView {
-    //var cache            = NetworkManager.cache
-    //var placeHolderImage = Images.placeHolderImage
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

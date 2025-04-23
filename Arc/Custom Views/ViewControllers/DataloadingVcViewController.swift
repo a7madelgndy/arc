@@ -42,9 +42,6 @@ class DataLoadingVC: UIViewController {
         safariVc.preferredControlTintColor = .systemPurple
         present(safariVc, animated: true)
     }
-    
-
-
 }
 
 

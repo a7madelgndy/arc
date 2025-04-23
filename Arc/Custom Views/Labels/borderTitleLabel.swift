@@ -24,7 +24,6 @@ class borderTitleLabel: UILabel {
     convenience init(borderColor : UIColor){
         self.init(frame: .zero)
         self.borderColor = borderColor
-       
     }
     
     //This is where the label actually draws the text.
