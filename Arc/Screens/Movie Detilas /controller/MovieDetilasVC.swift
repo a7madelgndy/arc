@@ -30,7 +30,9 @@ class MovieDetilasVC: DataLoadingVC {
             headerView.delegage = self
             
             Task{
+                showLoadingView()
                 do {
+                    
                     castMembers = try await NetworkManager.shared.getMovieCast(movieId: String(movieDetails.id))
                     print(castMembers ??  [])
                   
@@ -39,6 +41,7 @@ class MovieDetilasVC: DataLoadingVC {
                   print("could fint cast ")
                 }
                 movieCastView.actors = self.castMembers
+                dismissLoadingView()
             }
         }
     }
