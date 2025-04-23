@@ -11,18 +11,19 @@ import UIKit
 class MovieDetilasVC: DataLoadingVC {
     
     //Movieposter
-    var moviePosterView = MovieBoosterView()
-    var movieHeaderView = MovieHeaderView()
+    var posterView = MovieBoosterView()
+    var headerView = MovieHeaderView()
     var categroiesView : movieCategoriesView?
     var playTailerView = TrailerPlayerView()
     
+    var movieOverview = BodyLabel()
     var movieDetails: Movie?{
         didSet {
             guard let movieDetails else {return}
-            moviePosterView.cellData = movieDetails.poster_path
-            movieHeaderView.viewData = movieDetails.title
+            posterView.cellData = movieDetails.poster_path
+            headerView.viewData = movieDetails.title
             categroiesView = movieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
-            movieHeaderView.delegage = self
+            headerView.delegage = self
             
         }
     }
@@ -35,28 +36,32 @@ class MovieDetilasVC: DataLoadingVC {
     }
     
     func configure() {
-        view.addSubview(moviePosterView)
-        view.addSubview(movieHeaderView)
+        view.addSubview(posterView)
+        view.addSubview(headerView)
         view.addSubview(playTailerView)
+        view.addSubview(movieOverview)
         
         guard let categroiesView else {return}
         view.addSubview(categroiesView)
         
-        moviePosterView.translatesAutoresizingMaskIntoConstraints = false
+        posterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            moviePosterView.topAnchor.constraint(equalTo: view.topAnchor),
-            moviePosterView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            moviePosterView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            moviePosterView.heightAnchor.constraint(equalToConstant: 300)
+            posterView.topAnchor.constraint(equalTo: view.topAnchor),
+            posterView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            posterView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            posterView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
-        movieHeaderView.setConstrains(top: moviePosterView.bottomAnchor , leading:  view.leadingAnchor , trailing: view.trailingAnchor ,paddingTop: 10, height: 50)
+        headerView.setConstrains(top: posterView.bottomAnchor , leading:  view.leadingAnchor , trailing: view.trailingAnchor ,paddingTop: 10, height: 50)
    
         
-        categroiesView.setConstrains(top:movieHeaderView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
+        categroiesView.setConstrains(top:headerView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
         
         playTailerView.setConstrains(top:categroiesView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 , height: 40)
         playTailerView.delegate = self
+        
+        movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20 , height: 100)
+        movieOverview.text = movieDetails?.overview
   
         
     }

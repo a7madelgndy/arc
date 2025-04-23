@@ -19,4 +19,5 @@ struct Movie: Codable {
     let original_language:String
     let adult : Bool
     let id : Int
+    let overview:String
 }

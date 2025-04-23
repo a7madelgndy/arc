@@ -11,6 +11,7 @@ class BodyLabel: UILabel {
    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
 
     }
     
@@ -32,7 +33,7 @@ class BodyLabel: UILabel {
         adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth         = true
         minimumScaleFactor                = 0.75
-        lineBreakMode                     = .byWordWrapping
+        numberOfLines                      = 5
         translatesAutoresizingMaskIntoConstraints = false
       
 
