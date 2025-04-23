@@ -8,7 +8,7 @@
 import UIKit
 
 struct NetworkManager {
-     private let cache = NSCache<NSString, UIImage>()
+     let cache = NSCache<NSString, UIImage>()
      static let shared = NetworkManager()
      private init() {}
     

@@ -34,8 +34,6 @@ class SFSymbolImageView: UIImageView {
     
     private func configure() {
         guard let systemImage =   systemImage, let forGroundcolor = forGroundcolor else {return}
-        print(systemImage)
-        print(forGroundcolor)
         image = UIImage(systemName: systemImage)
         contentMode = .scaleAspectFit
         tintColor = forGroundcolor
