@@ -6,15 +6,16 @@
 //
 
 import UIKit
-import AVKit
 
-class MovieDetilasVC: UIViewController {
+
+class MovieDetilasVC: DataLoadingVC {
     
     //Movieposter
     var moviePosterView = MovieBoosterView()
     var movieHeaderView = MovieHeaderView()
     var categroiesView : movieCategoriesView?
     var playTailerView = TrailerPlayerView()
+    
     var movieDetails: Movie?{
         didSet {
             guard let movieDetails else {return}
@@ -22,6 +23,7 @@ class MovieDetilasVC: UIViewController {
             movieHeaderView.viewData = movieDetails.title
             categroiesView = movieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
             movieHeaderView.delegage = self
+            
         }
     }
 
@@ -79,6 +81,16 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
 
 extension MovieDetilasVC:playTrailerDelegte {
     func didTappedPlayButton() {
+        guard let movieId = movieDetails?.id else {return}
+        
+        let entpoint = "https://api.themoviedb.org/3/movie/\(movieId)/videos"
+        
+        guard let url = URL(string: entpoint) else {
+            presentAler(
+                title: "Invalid URL", message: "There is no Video For this movie", buttonTile: "ok")
+            return
+        }
+        pressenSafrieVC(with: url)
 
     }
     

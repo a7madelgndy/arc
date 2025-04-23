@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SafariServices
 class DataLoadingVC: UIViewController {
     
     private var containerView : UIView!
@@ -37,7 +37,11 @@ class DataLoadingVC: UIViewController {
         }
     }
     
-    
+    func pressenSafrieVC(with url : URL){
+        let safariVc = SFSafariViewController(url: url)
+        safariVc.preferredControlTintColor = .systemPurple
+        present(safariVc, animated: true)
+    }
     
 
 
