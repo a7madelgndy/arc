@@ -14,13 +14,14 @@ class MovieDetilasVC: UIViewController {
     
     var movieHeaderView = MovieHeaderView()
     
-    lazy var categroiesView: UIView = movieCategoriesView(rating: movieDetails?.vote_average ?? 3.4)
+    var categroiesView : movieCategoriesView?
     //MovieTile
     var movieDetails: Movie?{
         didSet {
             guard let movieDetails else {return}
             moviePosterView.cellData = movieDetails.poster_path
             movieHeaderView.viewData = movieDetails.title
+            categroiesView = movieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
             movieHeaderView.delegage = self
         }
     }
@@ -35,6 +36,8 @@ class MovieDetilasVC: UIViewController {
     func configure() {
         view.addSubview(moviePosterView)
         view.addSubview(movieHeaderView)
+        
+        guard let categroiesView else {return}
         view.addSubview(categroiesView)
         
         moviePosterView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +52,7 @@ class MovieDetilasVC: UIViewController {
    
         
         categroiesView.setConstrains(top:movieHeaderView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
-        categroiesView.layer.borderWidth = 2
+  
         
     }
 }

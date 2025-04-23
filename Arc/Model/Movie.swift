@@ -16,5 +16,7 @@ struct Movie: Codable {
   let title:String
   let release_date:String
   let vote_average:Float
+  let original_language:String
+  let adult : Bool
     
 }

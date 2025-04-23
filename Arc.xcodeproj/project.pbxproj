@@ -37,6 +37,7 @@
 		157AC0F62DB7E59D007409D4 /* MovieHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0F52DB7E59D007409D4 /* MovieHeaderView.swift */; };
 		157AC0F82DB7F121007409D4 /* movieCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0F72DB7F121007409D4 /* movieCategoriesView.swift */; };
 		157AC0FE2DB849E6007409D4 /* SFSymbolImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0FD2DB849E6007409D4 /* SFSymbolImageView.swift */; };
+		157AC1002DB866C6007409D4 /* borderTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0FF2DB866C6007409D4 /* borderTitleLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		157AC0F52DB7E59D007409D4 /* MovieHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderView.swift; sourceTree = "<group>"; };
 		157AC0F72DB7F121007409D4 /* movieCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieCategoriesView.swift; sourceTree = "<group>"; };
 		157AC0FD2DB849E6007409D4 /* SFSymbolImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolImageView.swift; sourceTree = "<group>"; };
+		157AC0FF2DB866C6007409D4 /* borderTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = borderTitleLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			children = (
 				157AC0D92DB69F58007409D4 /* TitleLabel.swift */,
 				157AC0DE2DB6A04E007409D4 /* BodyLabel.swift */,
+				157AC0FF2DB866C6007409D4 /* borderTitleLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				154376932DB3D1A100A2B39B /* DiscoverViewController.swift in Sources */,
 				1543768F2DB3D1A100A2B39B /* AppDelegate.swift in Sources */,
 				154376C02DB4020800A2B39B /* SectionDecorationView.swift in Sources */,
+				157AC1002DB866C6007409D4 /* borderTitleLabel.swift in Sources */,
 				154376B62DB3E2CE00A2B39B /* MovieMockModel.swift in Sources */,
 				154376AE2DB3DCC300A2B39B /* UIView+EXT.swift in Sources */,
 				157AC0E22DB6A0B0007409D4 /* Button.swift in Sources */,

@@ -9,68 +9,39 @@ import UIKit
 
 class movieCategoriesView: UIView {
     lazy var emptyView =  UIView ()
+    
     lazy var stackView : UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
         sv.alignment = .center
-        sv.spacing = 8
+        sv.spacing = 14
         return sv
     }()
     
      var ratingSFsymbolImage  =  SFSymbolImageView(systemImage: "star.fill", tintColor: .systemPurple)
- 
     var arrowSFsymbolImage = SFSymbolImageView(systemImage: "arrow.right", tintColor: .systemPurple)
-   
-    
-    
-    lazy var ratingTitle : UILabel = {
-        let l = UILabel()
-        l.textColor = .systemPurple
-        l.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        l.translatesAutoresizingMaskIntoConstraints = false
-
-        return l
-    }()
-    
-    var releaseDate = BodyLabel(textAlignment: .left)
-    
-    
-    lazy var languageTitle : UILabel = {
-        let l = UILabel()
-        l.textAlignment = .left
-        l.layer.borderWidth = 2
-        l.layer.borderColor = UIColor.systemPurple.cgColor
-        l.textColor = .black
-        l.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.setConstrains(paddingTop: 20)
-        l.text = "Enlish"
-        l.textColor = .systemPurple
-        return l
-    }()
-    
-    lazy var forAge: UILabel = {
-        let l = UILabel()
-        l.textAlignment = .left
-        l.layer.borderWidth = 2
-        l.layer.borderColor = UIColor.systemPurple.cgColor
-
-        l.textColor = .black
-        l.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.text = "+13"
-        l.textColor = .systemPurple
-        return l
-    }()
+    var ratingTitle = BodyLabel()
+    var releaseDate = BodyLabel()
+    var languageTitle = borderTitleLabel()
+    var allowedAge = borderTitleLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurerStackView()
     
     }
-    convenience init(rating:Float) {
+    convenience init(rating:Float , language :  String , releadeData: String , isAdult: Bool) {
         self.init(frame:.zero)
         ratingTitle.text = String(rating)
+        releaseDate.text = String(releadeData.prefix(4))
+        languageTitle.text = language
+        ratingTitle.text =   String(format: "%.1f", rating)
+        if isAdult {
+            allowedAge.text = "+13"
+        }else {
+            allowedAge.text = "+18"
+        }
+        
     }
 
     func configurerStackView() {
@@ -79,10 +50,10 @@ class movieCategoriesView: UIView {
         stackView.addArrangedSubview(arrowSFsymbolImage)
         stackView.addArrangedSubview(releaseDate)
         stackView.addArrangedSubview(languageTitle)
-        stackView.addArrangedSubview(forAge)
+        stackView.addArrangedSubview(allowedAge)
         stackView.addArrangedSubview(emptyView)
 
-        releaseDate.text = "2336"
+    
         addSubview(stackView)
         stackView.pinToEages(to: self)
         
