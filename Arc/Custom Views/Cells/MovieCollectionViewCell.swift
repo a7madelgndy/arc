@@ -15,6 +15,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             guard let cellData else {return}
             
             let imagePath:String = cellData.poster_path
+            //w185
             let fullImageURL = "https://image.tmdb.org/t/p/w185\(imagePath)"
             
                 Task{
@@ -52,5 +53,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
                                       trailing: trailingAnchor ,
                                       width: BannerSize.width,
                                       height: BannerSize.height)
+        movieBannerView.backgroundColor = .systemGray3
     }
 }
