@@ -8,7 +8,10 @@
 import UIKit
 
 class DiscoverViewController: DataLoadingVC {
-    var populerMovie: [Movie]?
+    var populerMovie: [Movie] = []
+  
+    
+    var page :Int = 1
     
     lazy var collectionView : UICollectionView = {
         var cv  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
@@ -32,22 +35,33 @@ class DiscoverViewController: DataLoadingVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Task{
-            do {
-                showLoadingView()
-                populerMovie = try await NetworkManager.shared.getMovies()
-                collectionView.reloadData()
-            }catch {
-                if let error = error  as? ErrorMassages {
-                    presentAler(title: "Bad Stuff Happend", message: error.rawValue, buttonTile: "ok")
-                }else  {
-                    presentDefaultError()
-                }
-            }
-            dismissLoadingView()
-        }
+        getMovies(page: 1)
     }
     
+     func getMovies(page:Int){
+        showLoadingView()
+         Task{
+             do {
+                 let movies  =  try await NetworkManager.shared.getMovies(pageNumber: page)
+                 updateUI(with:movies)
+             }catch {
+                 if let error = error  as? ErrorMassages {
+                     presentAler(title: "Bad Stuff Happend", message: error.rawValue, buttonTile: "ok")
+                 }else {
+                     presentDefaultError()
+                 }
+             }
+             dismissLoadingView()
+         }
+    }
+    
+    func updateUI(with movies :[Movie]) {
+        print(movies)
+        self.populerMovie.append(contentsOf: movies)
+        print("\n\n\n\n\n\n\n")
+        print(self.populerMovie)
+        collectionView.reloadData()
+    }
     
     private func configureUI(){
         view.addSubview(collectionView)

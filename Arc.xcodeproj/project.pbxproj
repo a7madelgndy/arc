@@ -99,6 +99,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		154285DF2DBA81D100457B9C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				1543768E2DB3D1A100A2B39B /* AppDelegate.swift */,
+				154376902DB3D1A100A2B39B /* SceneDelegate.swift */,
+				154376972DB3D1A300A2B39B /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		154285E02DBA825000457B9C /* Discover Screen */ = {
+			isa = PBXGroup;
+			children = (
+				154376922DB3D1A100A2B39B /* DiscoverViewController.swift */,
+				154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */,
+			);
+			path = "Discover Screen";
+			sourceTree = "<group>";
+		};
+		154285E12DBA826500457B9C /* Favorite Screen */ = {
+			isa = PBXGroup;
+			children = (
+				154376A72DB3D82B00A2B39B /* FavoritesViewController.swift */,
+			);
+			path = "Favorite Screen";
+			sourceTree = "<group>";
+		};
 		154376822DB3D1A100A2B39B = {
 			isa = PBXGroup;
 			children = (
@@ -118,15 +145,13 @@
 		1543768D2DB3D1A100A2B39B /* Arc */ = {
 			isa = PBXGroup;
 			children = (
+				154376AB2DB3DCA700A2B39B /* EXtensions */,
 				157AC0E32DB6A38F007409D4 /* UItilities */,
 				154376B42DB3E2A200A2B39B /* Model */,
 				154376C32DB4261800A2B39B /* Managers */,
 				154376AF2DB3DDC400A2B39B /* Custom Views */,
-				154376AB2DB3DCA700A2B39B /* EXtensions */,
 				154376A62DB3D81300A2B39B /* Screens */,
-				1543768E2DB3D1A100A2B39B /* AppDelegate.swift */,
-				154376902DB3D1A100A2B39B /* SceneDelegate.swift */,
-				154376972DB3D1A300A2B39B /* Assets.xcassets */,
+				154285DF2DBA81D100457B9C /* Support */,
 				1543769C2DB3D1A300A2B39B /* Info.plist */,
 			);
 			path = Arc;
@@ -143,10 +168,9 @@
 		154376A62DB3D81300A2B39B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				157AC0F22DB7E462007409D4 /* Movie Detilas  */,
-				154376922DB3D1A100A2B39B /* DiscoverViewController.swift */,
-				154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */,
-				154376A72DB3D82B00A2B39B /* FavoritesViewController.swift */,
+				154285E12DBA826500457B9C /* Favorite Screen */,
+				154285E02DBA825000457B9C /* Discover Screen */,
+				157AC0F22DB7E462007409D4 /* Movie Detilas  Screen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -265,13 +289,13 @@
 			path = UItilities;
 			sourceTree = "<group>";
 		};
-		157AC0F22DB7E462007409D4 /* Movie Detilas  */ = {
+		157AC0F22DB7E462007409D4 /* Movie Detilas  Screen */ = {
 			isa = PBXGroup;
 			children = (
 				157AC0F42DB7E476007409D4 /* views */,
 				157AC0F32DB7E470007409D4 /* controller */,
 			);
-			path = "Movie Detilas ";
+			path = "Movie Detilas  Screen";
 			sourceTree = "<group>";
 		};
 		157AC0F32DB7E470007409D4 /* controller */ = {
@@ -554,8 +578,8 @@
 				INFOPLIST_FILE = Arc/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,8 +609,8 @@
 				INFOPLIST_FILE = Arc/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

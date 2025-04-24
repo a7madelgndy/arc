@@ -38,7 +38,7 @@ class MovieDetilasVC: DataLoadingVC {
                   
                 
                 }catch {
-                  print("could fint cast ")
+                   presentDefaultError()
                 }
                 movieCastView.actors = self.castMembers
                 dismissLoadingView()

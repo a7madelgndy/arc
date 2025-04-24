@@ -6,12 +6,30 @@
 //
 
 import UIKit
+extension DiscoverViewController : UICollectionViewDelegate {
+    //OrthogonalScrollView
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+       
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offestY = scrollView.contentOffset.y
+        let contentWidth = scrollView.contentSize.width
+        let width = scrollView.frame.size.width
+        print("offestY \(offestY) \n contentWidth \(contentWidth) \n width \(width)")
+        if offestY > contentWidth - width {
+            page += 1
+            getMovies(page: page)
+        }
+    }
 
-extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataSource {
-    
+}
+
+
+extension DiscoverViewController: UICollectionViewDataSource {
+ 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        default : populerMovie?.count ?? 0
+        default : populerMovie.count
         }
     }
     
@@ -28,7 +46,12 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
                 fatalError("Unable deque cell...")
                 
             }
-            cell.cellData = populerMovie?[indexPath.row]
+            cell.cellData = populerMovie[indexPath.row]
+            
+            if (populerMovie.count) - 1 == indexPath.item {
+                page += 1
+                getMovies(page: page)
+            }
             return cell
         
         default:
@@ -36,15 +59,16 @@ extension DiscoverViewController: UICollectionViewDelegate,UICollectionViewDataS
                 fatalError("Unable deque cell...")
                 
             }
-            cell.cellData = populerMovie?[indexPath.row]
+            cell.cellData = populerMovie[indexPath.row]
             return cell
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         default :
-            let movie =  populerMovie?[indexPath.row]
+            let movie =  populerMovie[indexPath.row]
             let movieVc = MovieDetilasVC()
 
             movieVc.movieDetails = movie
