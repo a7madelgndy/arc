@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		154285E42DBA9F9D00457B9C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285E32DBA9F9D00457B9C /* FavoriteCell.swift */; };
+		154285EB2DBAEB9600457B9C /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 154285E92DBAEB9600457B9C /* arc.xcdatamodeld */; };
+		154285EE2DBAEBE200457B9C /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */; };
+		154285EF2DBAEBE200457B9C /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */; };
+		154285F12DBAED1700457B9C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285F02DBAED1700457B9C /* CoreDataManager.swift */; };
 		1543768F2DB3D1A100A2B39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1543768E2DB3D1A100A2B39B /* AppDelegate.swift */; };
 		154376912DB3D1A100A2B39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376902DB3D1A100A2B39B /* SceneDelegate.swift */; };
 		154376932DB3D1A100A2B39B /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154376922DB3D1A100A2B39B /* DiscoverViewController.swift */; };
@@ -49,6 +53,10 @@
 
 /* Begin PBXFileReference section */
 		154285E32DBA9F9D00457B9C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		154285EA2DBAEB9600457B9C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
+		154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		154285F02DBAED1700457B9C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1543768B2DB3D1A100A2B39B /* Arc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1543768E2DB3D1A100A2B39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154376902DB3D1A100A2B39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +180,9 @@
 				154376A62DB3D81300A2B39B /* Screens */,
 				154285DF2DBA81D100457B9C /* Support */,
 				1543769C2DB3D1A300A2B39B /* Info.plist */,
+				154285E92DBAEB9600457B9C /* arc.xcdatamodeld */,
+				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
+				154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */,
 			);
 			path = Arc;
 			sourceTree = "<group>";
@@ -251,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				154376C12DB424E400A2B39B /* NetworkManager.swift */,
+				154285F02DBAED1700457B9C /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -426,6 +438,8 @@
 			files = (
 				157AC10C2DB929CF007409D4 /* MovieCastResponse.swift in Sources */,
 				154376C52DB4264100A2B39B /* Movie.swift in Sources */,
+				154285EE2DBAEBE200457B9C /* Movie+CoreDataClass.swift in Sources */,
+				154285EF2DBAEBE200457B9C /* Movie+CoreDataProperties.swift in Sources */,
 				157AC0D52DB69141007409D4 /* MovieBannerSize.swift in Sources */,
 				157AC1112DB937DD007409D4 /* UiHelper.swift in Sources */,
 				154376932DB3D1A100A2B39B /* DiscoverViewController.swift in Sources */,
@@ -441,9 +455,11 @@
 				154376B32DB3DE2100A2B39B /* MovieCollectionViewCell.swift in Sources */,
 				154376A82DB3D82B00A2B39B /* FavoritesViewController.swift in Sources */,
 				154376BE2DB3FBE500A2B39B /* SeactionHeaderView.swift in Sources */,
+				154285EB2DBAEB9600457B9C /* arc.xcdatamodeld in Sources */,
 				157AC1082DB927EF007409D4 /* castView.swift in Sources */,
 				157AC10A2DB928F4007409D4 /* ActorCell.swift in Sources */,
 				157AC0F62DB7E59D007409D4 /* MovieHeaderView.swift in Sources */,
+				154285F12DBAED1700457B9C /* CoreDataManager.swift in Sources */,
 				157AC0D72DB69EEE007409D4 /* AlertVC.swift in Sources */,
 				157AC1062DB86F60007409D4 /* TrailerPlayerView.swift in Sources */,
 				157AC0EF2DB7CD36007409D4 /* BoosterView.swift in Sources */,
@@ -670,6 +686,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		154285E92DBAEB9600457B9C /* arc.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				154285EA2DBAEB9600457B9C /* Model.xcdatamodel */,
+			);
+			currentVersion = 154285EA2DBAEB9600457B9C /* Model.xcdatamodel */;
+			path = arc.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 154376832DB3D1A100A2B39B /* Project object */;
 }
