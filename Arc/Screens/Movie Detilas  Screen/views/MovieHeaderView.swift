@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteButtonDelegate:AnyObject {
-    func didtapedFavoriteButton(movieTitle : String)
+    func didtapedFavoriteButton(for movie : Movie?)
 }
 
 class MovieHeaderView: UIView {
@@ -17,19 +17,12 @@ class MovieHeaderView: UIView {
     
     weak  var delegage : FavoriteButtonDelegate?
     
-    var viewData: String? {
-        didSet{
-            guard let viewData else {return}
-            Task {
-                headerTitle.text = viewData
-            }
-        }
-    }
+    private var movie :Movie?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-         configureUI()
-         configureButton()
+        configureUI()
+        configureButton()
     }
     
     required init?(coder: NSCoder) {
@@ -54,14 +47,16 @@ class MovieHeaderView: UIView {
         favoriteButton.setConstrains(trailing:trailingAnchor , paddingLeft: 30)
         
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-
+        
     }
     
-    
-    @objc func favoriteButtonTapped() {
-        favoriteButton = MainButton(color: .systemRed, title: "", systemNameImage: "heart.fill")
-        delegage?.didtapedFavoriteButton(movieTitle: viewData ?? "no movie")
+    func setheaderVeiw(with movie : Movie){
+        self.movie = movie
+        headerTitle.text =  movie.title
     }
+    
+    @objc private func favoriteButtonTapped() {
+        delegage?.didtapedFavoriteButton(for: movie)
+    }
+    
 }
-
-

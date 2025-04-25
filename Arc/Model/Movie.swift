@@ -25,7 +25,6 @@ struct Movie: Codable {
         var movies : [Movie] = []
         for movie in favoriteMovies{
             var title = movie.value(forKey: "title") as? String
-            print(type(of: title))
             mockDataMovie.title = title ??  "love"
             movies.append(mockDataMovie)
         }

@@ -43,7 +43,6 @@ extension MovieCastView: UICollectionViewDataSource {
         1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print( actors?.count ?? 0)
         return actors?.count ?? 0
     }
     

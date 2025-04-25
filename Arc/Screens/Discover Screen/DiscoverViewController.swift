@@ -56,10 +56,7 @@ class DiscoverViewController: DataLoadingVC {
     }
     
     func updateUI(with movies :[Movie]) {
-        print(movies)
         self.populerMovie.append(contentsOf: movies)
-        print("\n\n\n\n\n\n\n")
-        print(self.populerMovie)
         collectionView.reloadData()
     }
     

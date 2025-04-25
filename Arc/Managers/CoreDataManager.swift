@@ -21,10 +21,11 @@ class CoredataManager{
     }
     
     
-        func save(movieTitle : String ) {
+        func save(with Favoritemovie : Movie ) {
         
         let movie = FavoriteMovie(context: context)
-        movie.title = movieTitle
+            movie.title = Favoritemovie.title
+            movie.id = Int32(Favoritemovie.id)
         
         do {
             try context.save()
@@ -47,29 +48,34 @@ class CoredataManager{
 
     }
     
-    func getMovies(title:String? = nil)-> [NSManagedObject]{
+    func MovieInCoreData(with id: Int ) -> Bool?{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
-        let predicate = NSPredicate(format:"title == \(String(describing: title))")
+        print(id)
+        let predicate = NSPredicate(format:"id == \(String(id))" )
         fetchRequest.predicate = predicate
         do {
   
-            return  try context.fetch(fetchRequest)
-            
+            let movie =   try context.fetch(fetchRequest)
+            if movie.isEmpty {
+                return false
+            }else {
+                return true
+            }
         }catch {
-            print(error)
-            
-            return []
+            return nil
         }
+ 
     }
     
     
     func deleteData(MovieTitle : String) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
-        let predicate = NSPredicate(format:"title == \(MovieTitle)")
+        let predicate = NSPredicate(format:"title == %@" , MovieTitle)
         fetchRequest.predicate = predicate
         
         do {
             let movies =  try context.fetch(fetchRequest)
+    
             for movie in movies {
                 context.delete(movie)
             }

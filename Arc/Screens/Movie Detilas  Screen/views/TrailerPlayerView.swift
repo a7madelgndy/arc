@@ -32,7 +32,6 @@ class TrailerPlayerView: UIView {
     }
     
      @objc private func playButtonTapped() {
-        print("tapped")
         delegate?.didTappedPlayButton()
     }
 }

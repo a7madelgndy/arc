@@ -25,7 +25,7 @@ class MovieDetilasVC: DataLoadingVC {
         didSet {
             guard let movieDetails else {return}
             posterView.cellData = movieDetails.poster_path
-            headerView.viewData = movieDetails.title
+            headerView.setheaderVeiw(with: movieDetails)
             categroiesView = MovieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
             headerView.delegage = self
             
@@ -34,7 +34,6 @@ class MovieDetilasVC: DataLoadingVC {
                 do {
                     
                     castMembers = try await NetworkManager.shared.getMovieCast(movieId: String(movieDetails.id))
-                    print(castMembers ??  [])
                   
                 
                 }catch {
@@ -90,13 +89,18 @@ class MovieDetilasVC: DataLoadingVC {
 
 
 extension MovieDetilasVC:FavoriteButtonDelegate {
-    func didtapedFavoriteButton(movieTitle: String) {
-        CoredataManager.shared.save(movieTitle: movieTitle)
-        print(movieTitle)
+    func didtapedFavoriteButton(for movie: Movie?) {
+        guard let movie else {return}
+        guard let isInCoreData = CoredataManager.shared.MovieInCoreData(with: movie.id ) else {return}
+        if !isInCoreData {
+            CoredataManager.shared.save(with: movie)
+        }else {
+            print("Aready in the core Data")
+        }
     }
     
 
-  
+
 }
 
 extension MovieDetilasVC:playTrailerDelegte {
