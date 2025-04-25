@@ -24,9 +24,11 @@ struct Movie: Codable {
    static func convertNSManagedObjectToMovie(favoriteMovies :[NSManagedObject])-> [Movie] {
         var movies : [Movie] = []
         for movie in favoriteMovies{
-            var title = movie.value(forKey: "title") as? String
-            mockDataMovie.title = title ??  "love"
-            movies.append(mockDataMovie)
+            let title = movie.value(forKey: "title") as? String
+            let id = movie.value(forKey: "id") as? Int
+            
+            let convertedmovie = Movie(poster_path: " ", title:  title ?? "no", release_date: "", vote_average: 84.4, original_language: "", adult: false, id: id ?? 0, overview: "")
+            movies.append(convertedmovie)
         }
         return movies 
     }

@@ -69,20 +69,22 @@ class CoredataManager{
     }
     
     
-    func deleteData(MovieTitle : String) {
+    func deleteMovie(withID : Int) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
-        let predicate = NSPredicate(format:"title == %@" , MovieTitle)
+        let predicate = NSPredicate(format:"id == \(String(Int32(withID)))" )
         fetchRequest.predicate = predicate
         
         do {
             let movies =  try context.fetch(fetchRequest)
-            
+            print(movies.count)
+      
             for movie in movies {
                 context.delete(movie)
+                print("deleted")
             }
             try context.save()
         }catch {
-            
+            print("condent delete")
         }
         
     }

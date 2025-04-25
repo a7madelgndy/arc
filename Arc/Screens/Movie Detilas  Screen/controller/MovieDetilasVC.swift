@@ -49,7 +49,24 @@ class MovieDetilasVC: DataLoadingVC {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configure()
+        configuerButton()
     
+    }
+    func configuerButton() {
+        guard let movieDetails ,  let isMovieINcoreData = checkIsIncordate(movieId: movieDetails.id)  else {return}
+        
+        if isMovieINcoreData {
+            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
+        }else {
+            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart")
+
+        }
+    }
+    
+    func checkIsIncordate(movieId : Int)-> Bool? {
+        guard let isInCoreData = CoredataManager.shared.checkForMovie(with: movieId ) else {return nil}
+        print(isInCoreData)
+        return isInCoreData
     }
     
     func configure() {
@@ -89,15 +106,18 @@ class MovieDetilasVC: DataLoadingVC {
 
 
 extension MovieDetilasVC:FavoriteButtonDelegate {
+    
     func didtapedFavoriteButton(for movie: Movie?) {
         guard let movie else {return}
         guard let isInCoreData = CoredataManager.shared.checkForMovie(with: movie.id ) else {return}
+        print(isInCoreData)
         if !isInCoreData {
             CoredataManager.shared.save(with: movie)
-            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
+
         }else {
-            print("Aready in the core Data")
+            CoredataManager.shared.deleteMovie(withID: movie.id)
         }
+        configuerButton()
     }
     
 

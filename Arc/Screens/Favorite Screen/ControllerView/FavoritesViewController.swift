@@ -60,10 +60,10 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
 
+     
         
-        let movie = favoriteMovies?[indexPath.row]
-        
-        CoredataManager.shared.deleteData(MovieTitle: movie?.title ?? " ")
+        coreData.deleteMovie(withID: favoriteMovies?[indexPath.row].id ?? 3)
+   
         favoriteMovies?.remove(at: indexPath.row)
         setNeedsUpdateContentUnavailableConfiguration()
         tableView.reloadData()
