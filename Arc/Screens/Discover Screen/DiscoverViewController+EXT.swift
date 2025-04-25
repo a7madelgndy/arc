@@ -58,7 +58,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             let movie =  movies[indexPath.row]
             let movieVc = MovieDetilasVC()
 
-            movieVc.movieDetails = movie
+            movieVc.set(with: movie)
             present(movieVc, animated: true)
         }
     }

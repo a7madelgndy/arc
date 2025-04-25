@@ -24,7 +24,7 @@ class FavoritesVC: DataLoadingVC {
         do {
             favoriteMovies = try coreData.getAllMovies()
         }catch{
-            presentAler(title: "SomeThing Went Wrong", message: error.localizedDescription, buttonTile: <#String#> )
+            presentAler(title: .defualtOne , message: error.localizedDescription )
         }
         
         setNeedsUpdateContentUnavailableConfiguration()
@@ -61,7 +61,7 @@ extension FavoritesVC: UITableViewDelegate {
             try coreData.deleteMovie(withID: favoriteMovies?[indexPath.row].id ?? 3)
         }catch{
             if let error = error as? ErrorMassages {
-                presentAler(title: "Some Thing Went Wrong", message: error.rawValue)
+                presentAler(title: .defualtOne , message: error.rawValue)
             }
         }
    

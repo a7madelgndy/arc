@@ -15,7 +15,7 @@ class BoosterView: UIView {
         didSet{
             guard let cellData else {return}
             Task {
-                let fullImageURL = "https://image.tmdb.org/t/p/w500\(cellData)"
+               let fullImageURL = "https://image.tmdb.org/t/p/w500\(cellData)"
                let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
                 movieBooster.image = image
             }
@@ -32,6 +32,7 @@ class BoosterView: UIView {
     }
     
     private func configureUI() {
+        translatesAutoresizingMaskIntoConstraints = false
         addSubview(movieBooster)
         movieBooster.pinToEages(to: self)
 

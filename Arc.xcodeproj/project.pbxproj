@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15024A4F2DBC37EC009D0760 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A4E2DBC37EC009D0760 /* Constants.swift */; };
+		15024A532DBC47A4009D0760 /* AllertTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A522DBC47A4009D0760 /* AllertTitles.swift */; };
 		154285E42DBA9F9D00457B9C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285E32DBA9F9D00457B9C /* FavoriteCell.swift */; };
 		154285EB2DBAEB9600457B9C /* arc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 154285E92DBAEB9600457B9C /* arc.xcdatamodeld */; };
 		154285EE2DBAEBE200457B9C /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		15024A4E2DBC37EC009D0760 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		15024A522DBC47A4009D0760 /* AllertTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllertTitles.swift; sourceTree = "<group>"; };
 		154285E32DBA9F9D00457B9C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		154285EA2DBAEB9600457B9C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -278,7 +280,9 @@
 		157AC0D32DB69117007409D4 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */,
 				157AC0D42DB69141007409D4 /* MovieBannerSize.swift */,
+				15024A522DBC47A4009D0760 /* AllertTitles.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -314,7 +318,6 @@
 			children = (
 				157AC10F2DB937C4007409D4 /* Helper */,
 				157AC0D32DB69117007409D4 /* Enums */,
-				157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */,
 				15024A4E2DBC37EC009D0760 /* Constants.swift */,
 			);
 			path = UItilities;
@@ -476,6 +479,7 @@
 				157AC0F82DB7F121007409D4 /* MovieCategoriesView.swift in Sources */,
 				157AC0ED2DB7CB43007409D4 /* MovieDetilasVC.swift in Sources */,
 				157AC10E2DB933C2007409D4 /* ActorImageView.swift in Sources */,
+				15024A532DBC47A4009D0760 /* AllertTitles.swift in Sources */,
 				154376B92DB3E95000A2B39B /* AppLayouts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

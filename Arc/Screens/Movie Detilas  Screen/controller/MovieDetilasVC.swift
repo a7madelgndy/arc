@@ -9,86 +9,81 @@ import UIKit
 
 
 class MovieDetilasVC: DataLoadingVC {
-    
-    //Movieposter
     var posterView = BoosterView()
     var headerView = MovieHeaderView()
-    var categroiesView : MovieCategoriesView?
+    var categroiesView = MovieCategoriesView()
     var playTailerView = TrailerPlayerView()
     var movieOverview = BodyLabel()
-    
     var movieCastView = MovieCastView()
     
     var castMembers:[CastMember]?
     
-    var movieDetails: Movie?{
+    var movie:Movie? {
         didSet {
-            guard let movieDetails else {return}
-            posterView.cellData = movieDetails.poster_path
-            headerView.setheaderVeiw(with: movieDetails)
-            categroiesView = MovieCategoriesView(rating: movieDetails.vote_average, language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
-            headerView.delegage = self
-            
-            Task{
-                showLoadingView()
-                do {
-                    
-                    castMembers = try await NetworkManager.shared.getMovieCast(movieId: String(movieDetails.id))
-                  
-                
-                }catch {
-                   presentDefaultError()
-                }
-                movieCastView.actors = self.castMembers
-                dismissLoadingView()
-            }
+            assignDataToViews()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configure()
+        configureConstrains()
         configuerButton()
-    
     }
-    func configuerButton() {
-        guard let movieDetails ,  let isMovieINcoreData = checkIsIncordate(movieId: movieDetails.id)  else {return}
+    
+    func set(with movie: Movie){
+        self.movie = movie
+    }
+
+    private func getCastMemberData(with movieID : Int) {
+        Task{
+            #warning("please make the activty indicator in the image itself ")
+            showLoadingView()
+            do {
+                
+                castMembers = try await NetworkManager.shared.getMovieCast(movieId: String(movieID))
+                
+                
+            }catch {
+                presentDefaultError()
+            }
+            movieCastView.actors = self.castMembers
+            dismissLoadingView()
+        }
+    }
+    
+
+    private func configuerButton() {
+        guard let movie ,  let isMovieINcoreData = checkIsMovieIncordate(movieId: movie.id)  else {return}
         
         if isMovieINcoreData {
             headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
         }else {
             headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart")
-
+            
         }
     }
     
-    func checkIsIncordate(movieId : Int)-> Bool? {
+    
+     private func checkIsMovieIncordate(movieId : Int)-> Bool? {
         do{
-          let  isInCoreData = try CoredataManager.shared.checkForMovie(with: movieId )
+            let  isInCoreData = try CoredataManager.shared.checkForMovie(with: movieId )
             return isInCoreData
         }catch {
-            presentAler(title: "Something Went Wrong", message: error.localizedDescription, buttonTile: "ok")
+            presentAler(title: .defualtOne , message: error.localizedDescription )
         }
-      
-      return nil
+        
+        return nil
     }
     
-    func configure() {
-        view.addSubViews(posterView, headerView, playTailerView, movieOverview, movieCastView)
-        guard let categroiesView else {return}
-        view.addSubview(categroiesView)
-        
-        posterView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            posterView.topAnchor.constraint(equalTo: view.topAnchor),
-            posterView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            posterView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            posterView.heightAnchor.constraint(equalToConstant: 300)
-        ])
+    
+    private func configureConstrains() {
+        view.addSubViews(posterView, headerView, playTailerView, movieOverview, movieCastView,categroiesView)
+
+        posterView.setConstrains(top: view.topAnchor , leading: view.leadingAnchor, trailing:  view.trailingAnchor , height: 300)
         
         headerView.setConstrains(top: posterView.bottomAnchor , leading:  view.leadingAnchor , trailing: view.trailingAnchor ,paddingTop: 10, height: 50)
-   
+        
         
         categroiesView.setConstrains(top:headerView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
         
@@ -96,66 +91,81 @@ class MovieDetilasVC: DataLoadingVC {
         playTailerView.delegate = self
         
         movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20 , height: 100)
-        movieOverview.text = movieDetails?.overview
-  
+        
         
         movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 60)
     }
     
-    func getMovieCast() -> [Actor] {
+    
+    private func assignDataToViews() {
+        guard let movie else {return}
         
-        return []
+        posterView.cellData = movie.poster_path
+        
+        headerView.setheaderVeiw(with: movie)
+        headerView.delegage = self
+        
+        categroiesView = MovieCategoriesView(rating: movie.vote_average,
+                                             language: movie.original_language,
+                                             releadeData: movie.release_date,
+                                             isAdult: movie.adult)
+
+        getCastMemberData(with: movie.id)
+        
+        movieOverview.text = movie.overview
     }
+    
 }
 
 
-
 extension MovieDetilasVC:FavoriteButtonDelegate {
-    
     func didtapedFavoriteButton(for movie: Movie?) {
         guard let movie else {return}
         
         do {
-          let isInCoreData = try CoredataManager.shared.checkForMovie(with: movie.id )
+            let isInCoreData = try CoredataManager.shared.checkForMovie(with: movie.id )
             if !isInCoreData {
                 do {
-                   try CoredataManager.shared.save(with: movie)
+                    try CoredataManager.shared.save(with: movie)
                 }catch {
-                    presentAler(title: "Something Went Wrong ", message: error.localizedDescription, buttonTile: "ok")
+                    if let error = error as? ErrorMassages {
+                        presentAler(title: .defualtOne, message: error.rawValue)
+                    }
                 }
             }else {
                 do {
-                   try CoredataManager.shared.deleteMovie(withID: movie.id)
+                    try CoredataManager.shared.deleteMovie(withID: movie.id)
                 }catch {
-                    presentAler(title: "something Went Wrong", message: error.localizedDescription, buttonTile: "ok")
+                    if let error = error as? ErrorMassages {
+                        presentAler(title: .defualtOne, message: error.rawValue)
+                    }
                 }
-               
+                
             }
         }catch {
-            presentAler(title: "Somwthing Went Wrong", message: error.localizedDescription, buttonTile: "okay")
-        }
+            if let error = error as? ErrorMassages {
+                presentAler(title: .defualtOne, message: error.rawValue)
+            }        }
         
- 
+        
         configuerButton()
     }
-    
-
-
 }
+
 
 extension MovieDetilasVC:playTrailerDelegte {
     func didTappedPlayButton() {
-        guard let movieId = movieDetails?.id else {return}
+        guard let movieId = movie?.id else {return}
         
         let entpoint = "https://api.themoviedb.org/3/movie/\(movieId)/videos"
         
         guard let url = URL(string: entpoint) else {
             presentAler(
-                title: "Invalid URL", message: "There is no Video For this movie", buttonTile: "ok")
+                title:.defualtOne, message: "No trailer For this movie")
             return
         }
         pressenSafrieVC(with: url)
-
+        
     }
 }
 

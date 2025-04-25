@@ -46,7 +46,7 @@ class DiscoverViewController: DataLoadingVC {
                  updateUI(with:movies)
              }catch {
                  if let error = error  as? ErrorMassages {
-                     presentAler(title: "Bad Stuff Happend", message: error.rawValue)
+                     presentAler(title: .defualtOne , message: error.rawValue)
                  }else {
                      presentDefaultError()
                  }
