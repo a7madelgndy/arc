@@ -9,15 +9,19 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     private var tableView = UITableView()
+    private var coreData = CoredataManager.shared
     
+    private var FavoriteMovies: [Movie]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTableView()
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        FavoriteMovies = coreData.getAllMovies()
+    }
     func configureTableView() {
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.id)
         view.addSubview(tableView)
@@ -29,7 +33,8 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        return FavoriteMovies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,7 +42,8 @@ extension FavoritesViewController : UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.id) as! FavoriteCell? else {
             fatalError("unable to deque")
         }
-        cell.textLabel?.text = "test"
+        var movietitle = FavoriteMovies?[indexPath.row].title
+        cell.textLabel?.text = movietitle
        return cell
         
     }

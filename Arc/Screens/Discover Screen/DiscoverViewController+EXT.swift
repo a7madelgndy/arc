@@ -7,20 +7,7 @@
 
 import UIKit
 extension DiscoverViewController : UICollectionViewDelegate {
-    //OrthogonalScrollView
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-       
-    }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offestY = scrollView.contentOffset.y
-        let contentWidth = scrollView.contentSize.width
-        let width = scrollView.frame.size.width
-        print("offestY \(offestY) \n contentWidth \(contentWidth) \n width \(width)")
-        if offestY > contentWidth - width {
-            page += 1
-            getMovies(page: page)
-        }
-    }
+
 
 }
 

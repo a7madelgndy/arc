@@ -21,7 +21,7 @@ class CoredataManager{
     }
     
     
-    func save(movieTitle : String ) {
+        func save(movieTitle : String ) {
         
         let movie = FavoriteMovie(context: context)
         movie.title = movieTitle
@@ -34,6 +34,18 @@ class CoredataManager{
         }
     }
     
+    func getAllMovies()-> [Movie] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
+        do {
+            let movies = try context.fetch(fetchRequest) as? [FavoriteMovie] ?? []
+            let movie = Movie.convertNSManagedObjectToMovie(favoriteMovies: movies)
+            
+           return movie
+        }catch{
+              return []
+        }
+
+    }
     
     func getMovies(title:String? = nil)-> [NSManagedObject]{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")

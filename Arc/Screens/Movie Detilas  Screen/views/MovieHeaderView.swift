@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteButtonDelegate:AnyObject {
-    func didtapedFavoriteButton()
+    func didtapedFavoriteButton(movieTitle : String)
 }
 
 class MovieHeaderView: UIView {
@@ -60,7 +60,7 @@ class MovieHeaderView: UIView {
     
     @objc func favoriteButtonTapped() {
         favoriteButton = MainButton(color: .systemRed, title: "", systemNameImage: "heart.fill")
-        delegage?.didtapedFavoriteButton()
+        delegage?.didtapedFavoriteButton(movieTitle: viewData ?? "no movie")
     }
 }
 

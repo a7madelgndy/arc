@@ -90,9 +90,12 @@ class MovieDetilasVC: DataLoadingVC {
 
 
 extension MovieDetilasVC:FavoriteButtonDelegate {
-    func didtapedFavoriteButton() {
-        print("favorite Button Tapped")
+    func didtapedFavoriteButton(movieTitle: String) {
+        CoredataManager.shared.save(movieTitle: movieTitle)
+        print(movieTitle)
     }
+    
+
   
 }
 

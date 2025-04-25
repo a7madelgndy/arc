@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Movie)
+@objc(FavoriteMovie)
 public class FavoriteMovie: NSManagedObject {
 
 }
