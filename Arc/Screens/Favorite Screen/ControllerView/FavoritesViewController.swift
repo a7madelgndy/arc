@@ -21,33 +21,58 @@ class FavoritesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         favoriteMovies = coreData.getAllMovies()
+        setNeedsUpdateContentUnavailableConfiguration()
         tableView.reloadData()
     }
+    
+    
     func configureTableView() {
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.id)
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.pinToEages(to: view)
-        tableView.backgroundColor = .red
+
+    }
+    
+    
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        guard let favoriteMovies else {return}
+        if favoriteMovies.isEmpty {
+            var config = UIContentUnavailableConfiguration.empty()
+            config.image = .init(systemName: "heart.slash")
+            config.imageProperties.tintColor = .systemRed
+            
+            config.text = "No Favorites Movies"
+            config.secondaryText = "Go Add some Favorites Form Discover Screen"
+            config.textProperties.color = .systemRed
+            contentUnavailableConfiguration = config
+        }else {
+            contentUnavailableConfiguration = nil
+        }
     }
 }
 
+
 extension FavoritesViewController: UITableViewDelegate {
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
 
         
         let movie = favoriteMovies?[indexPath.row]
-
+        
         CoredataManager.shared.deleteData(MovieTitle: movie?.title ?? " ")
         favoriteMovies?.remove(at: indexPath.row)
+        setNeedsUpdateContentUnavailableConfiguration()
         tableView.reloadData()
     }
 }
+
+
 extension FavoritesViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return favoriteMovies?.count ?? 0
     }
     
