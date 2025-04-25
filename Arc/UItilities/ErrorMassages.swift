@@ -17,4 +17,10 @@ enum ErrorMassages: String, Error {
     case unabelToFavorie     = "There was an error favoriting this user. Please try again"
     case alreadyInFavorite   = "this user is already in Favorites "
     case defulatErrorMassage  = "SomeThing Went Wrong" //used
+    
+    //Core Data Error massages 
+    case unableToGetFavortiMovies = "Unable to Get Favorite Movies"
+    case unabletoSaveMovie = "Unable to save to Favorite Movies"
+    case unableToCheckForAMovie = "unable to Check for a Movie"
+    case unableToDeleteMovie = "unable to delete Movie"
 }

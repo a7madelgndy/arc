@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesVC: DataLoadingVC {
     private var tableView = UITableView()
     private var coreData = CoredataManager.shared
     
@@ -19,8 +19,14 @@ class FavoritesViewController: UIViewController {
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
-        favoriteMovies = coreData.getAllMovies()
+        do {
+            favoriteMovies = try coreData.getAllMovies()
+        }catch{
+            presentAler(title: "SomeThing Went Wrong", message: error.localizedDescription, buttonTile: <#String#> )
+        }
+        
         setNeedsUpdateContentUnavailableConfiguration()
         tableView.reloadData()
     }
@@ -39,14 +45,7 @@ class FavoritesViewController: UIViewController {
     override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
         guard let favoriteMovies else {return}
         if favoriteMovies.isEmpty {
-            var config = UIContentUnavailableConfiguration.empty()
-            config.image = .init(systemName: "heart.slash")
-            config.imageProperties.tintColor = .systemRed
-            
-            config.text = "No Favorites Movies"
-            config.secondaryText = "Go Add some Favorites Form Discover Screen"
-            config.textProperties.color = .systemRed
-            contentUnavailableConfiguration = config
+            contentUnavailableConfiguration = UIHelper.createEmptyStateView()
         }else {
             contentUnavailableConfiguration = nil
         }
@@ -54,15 +53,17 @@ class FavoritesViewController: UIViewController {
 }
 
 
-extension FavoritesViewController: UITableViewDelegate {
-    
-    
+extension FavoritesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
 
-     
-        
-        coreData.deleteMovie(withID: favoriteMovies?[indexPath.row].id ?? 3)
+        do {
+            try coreData.deleteMovie(withID: favoriteMovies?[indexPath.row].id ?? 3)
+        }catch{
+            if let error = error as? ErrorMassages {
+                presentAler(title: "Some Thing Went Wrong", message: error.rawValue)
+            }
+        }
    
         favoriteMovies?.remove(at: indexPath.row)
         setNeedsUpdateContentUnavailableConfiguration()
@@ -71,22 +72,22 @@ extension FavoritesViewController: UITableViewDelegate {
 }
 
 
-extension FavoritesViewController : UITableViewDataSource {
+extension FavoritesVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteMovies?.count ?? 0
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.id) as! FavoriteCell? else {
             fatalError("unable to deque")
         }
+        
         let movietitle = favoriteMovies?[indexPath.row].title
         cell.textLabel?.text = movietitle
+        
        return cell
         
-    }
-    
-    
+    }  
 }
 

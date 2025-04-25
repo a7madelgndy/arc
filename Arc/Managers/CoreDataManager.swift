@@ -8,6 +8,11 @@
 import UIKit
 import CoreData
 
+enum Enities {
+    static let FavoriteMovieEntity  = "FavoriteMovie"
+    
+}
+
 
 class CoredataManager{
     static let shared = CoredataManager()
@@ -21,41 +26,39 @@ class CoredataManager{
     }
     
     
-    func save(with Favoritemovie : Movie ) {
-        
+    func save(with Favoritemovie : Movie ) throws{
         let movie = FavoriteMovie(context: context)
+        
         movie.title = Favoritemovie.title
         movie.id = Int32(Favoritemovie.id)
         
         do {
             try context.save()
-            print("saved successfully")
         }catch {
-            print("save error : ", error)
+           throw ErrorMassages.unabletoSaveMovie
         }
     }
     
-    func getAllMovies()-> [Movie] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
+    func getAllMovies() throws->[Movie]  {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Enities.FavoriteMovieEntity)
         do {
             let movies = try context.fetch(fetchRequest) as? [FavoriteMovie] ?? []
             let movie = Movie.convertNSManagedObjectToMovie(favoriteMovies: movies)
-            
             return movie
+            
         }catch{
-            return []
+             throw ErrorMassages.unableToGetFavortiMovies
         }
-        
     }
     
     //Check is the movie in CoreData or Note
-    func checkForMovie(with id: Int ) -> Bool?{
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
-        print(id)
+    func checkForMovie(with id: Int ) throws -> Bool {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Enities.FavoriteMovieEntity)
+        
         let predicate = NSPredicate(format:"id == \(String(id))" )
         fetchRequest.predicate = predicate
+        
         do {
-            
             let movie =   try context.fetch(fetchRequest)
             if movie.isEmpty {
                 return false
@@ -63,29 +66,26 @@ class CoredataManager{
                 return true
             }
         }catch {
-            return nil
+            throw ErrorMassages.unableToCheckForAMovie
         }
-        
     }
     
     
-    func deleteMovie(withID : Int) {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
+    func deleteMovie(withID : Int)throws{
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Enities.FavoriteMovieEntity)
+        
         let predicate = NSPredicate(format:"id == \(String(Int32(withID)))" )
         fetchRequest.predicate = predicate
         
         do {
             let movies =  try context.fetch(fetchRequest)
-            print(movies.count)
-      
             for movie in movies {
                 context.delete(movie)
-                print("deleted")
             }
             try context.save()
+
         }catch {
-            print("condent delete")
+            throw ErrorMassages.unableToDeleteMovie
         }
-        
     }
 }

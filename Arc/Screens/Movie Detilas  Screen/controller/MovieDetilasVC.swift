@@ -64,9 +64,14 @@ class MovieDetilasVC: DataLoadingVC {
     }
     
     func checkIsIncordate(movieId : Int)-> Bool? {
-        guard let isInCoreData = CoredataManager.shared.checkForMovie(with: movieId ) else {return nil}
-        print(isInCoreData)
-        return isInCoreData
+        do{
+          let  isInCoreData = try CoredataManager.shared.checkForMovie(with: movieId )
+            return isInCoreData
+        }catch {
+            presentAler(title: "Something Went Wrong", message: error.localizedDescription, buttonTile: "ok")
+        }
+      
+      return nil
     }
     
     func configure() {
@@ -109,14 +114,28 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
     
     func didtapedFavoriteButton(for movie: Movie?) {
         guard let movie else {return}
-        guard let isInCoreData = CoredataManager.shared.checkForMovie(with: movie.id ) else {return}
-        print(isInCoreData)
-        if !isInCoreData {
-            CoredataManager.shared.save(with: movie)
-
-        }else {
-            CoredataManager.shared.deleteMovie(withID: movie.id)
+        
+        do {
+          let isInCoreData = try CoredataManager.shared.checkForMovie(with: movie.id )
+            if !isInCoreData {
+                do {
+                   try CoredataManager.shared.save(with: movie)
+                }catch {
+                    presentAler(title: "Something Went Wrong ", message: error.localizedDescription, buttonTile: "ok")
+                }
+            }else {
+                do {
+                   try CoredataManager.shared.deleteMovie(withID: movie.id)
+                }catch {
+                    presentAler(title: "something Went Wrong", message: error.localizedDescription, buttonTile: "ok")
+                }
+               
+            }
+        }catch {
+            presentAler(title: "Somwthing Went Wrong", message: error.localizedDescription, buttonTile: "okay")
         }
+        
+ 
         configuerButton()
     }
     

@@ -16,15 +16,15 @@ class AlertVC: UIViewController {
     
     var alerTitle : String?
     var message: String?
-    var buttonTile : String?
+    var buttonTitle : String?
     
     let padding : CGFloat = 20
     
-    init(title: String? = nil, message: String? = nil, buttonTile: String? = nil) {
+    init(title: String? = nil, message: String? = nil, buttonTitle: String? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.alerTitle = title
         self.message = message
-        self.buttonTile = buttonTile
+        self.buttonTitle = buttonTitle
     }
     
     
@@ -69,7 +69,7 @@ class AlertVC: UIViewController {
     
     
     func configerActionButton() {
-        actionButton.setTitle(buttonTile ?? "ok", for: .normal)
+        actionButton.setTitle(buttonTitle ?? "ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate(

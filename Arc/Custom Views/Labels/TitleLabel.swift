@@ -33,6 +33,9 @@ class TitleLabel: UILabel {
         adjustsFontSizeToFitWidth                 = true
         minimumScaleFactor                        = 0.9
         lineBreakMode                             = .byWordWrapping
+        adjustsFontForContentSizeCategory         = true
+        adjustsFontSizeToFitWidth                 = true
+        minimumScaleFactor                        = 0.75
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

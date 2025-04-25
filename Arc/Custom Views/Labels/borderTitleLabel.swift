@@ -8,19 +8,22 @@
 import UIKit
 
 class borderTitleLabel: UILabel {
-
-    var  borderColor : UIColor = .systemPurple
-     var textInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
     
-     override init(frame: CGRect) {
+    var  borderColor : UIColor = .systemPurple
+    var textInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+    
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
-         configure()
+        configure()
     }
-
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    
     convenience init(borderColor : UIColor){
         self.init(frame: .zero)
         self.borderColor = borderColor
@@ -51,12 +54,11 @@ class borderTitleLabel: UILabel {
         lineBreakMode                     = .byWordWrapping
         textAlignment   = .center
         translatesAutoresizingMaskIntoConstraints = false
-      
+        
         layer.cornerRadius = 5
         layer.borderColor = borderColor.cgColor
         layer.borderWidth = 2
         
     }
-
 
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 extension DiscoverViewController : UICollectionViewDelegate {
 
 
@@ -13,10 +14,9 @@ extension DiscoverViewController : UICollectionViewDelegate {
 
 
 extension DiscoverViewController: UICollectionViewDataSource {
- 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        default : populerMovie.count
+        default : movies.count
         }
     }
     
@@ -33,9 +33,9 @@ extension DiscoverViewController: UICollectionViewDataSource {
                 fatalError("Unable deque cell...")
                 
             }
-            cell.cellData = populerMovie[indexPath.row]
+            cell.cellData = movies[indexPath.row]
             
-            if (populerMovie.count) - 1 == indexPath.item {
+            if (movies.count) - 1 == indexPath.item {
                 page += 1
                 getMovies(page: page)
             }
@@ -46,7 +46,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
                 fatalError("Unable deque cell...")
                 
             }
-            cell.cellData = populerMovie[indexPath.row]
+            cell.cellData = movies[indexPath.row]
             return cell
         }
     }
@@ -55,7 +55,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         default :
-            let movie =  populerMovie[indexPath.row]
+            let movie =  movies[indexPath.row]
             let movieVc = MovieDetilasVC()
 
             movieVc.movieDetails = movie

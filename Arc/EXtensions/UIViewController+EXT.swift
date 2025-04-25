@@ -9,8 +9,8 @@ import UIKit
 
 extension UIViewController {
 
-    func presentAler(title: String, message: String , buttonTile : String) {
-        let alertVC = AlertVC(title: title , message: message , buttonTile: buttonTile)
+    func presentAler(title: String, message: String , buttonTile : String = "ok") {
+        let alertVC = AlertVC(title: title , message: message , buttonTitle: buttonTile)
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .crossDissolve
         present(alertVC , animated: true)
@@ -19,7 +19,7 @@ extension UIViewController {
     func presentDefaultError() {
         let alertVC = AlertVC(title: "Something Went Wrong" ,
                                 message: "we were Unable to Complete your task at this time , please try again" ,
-                                buttonTile: "okay")
+                              buttonTitle: "okay")
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .crossDissolve
         present(alertVC , animated: true)

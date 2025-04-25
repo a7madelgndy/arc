@@ -8,9 +8,8 @@
 import UIKit
 
 class DiscoverViewController: DataLoadingVC {
-    var populerMovie: [Movie] = []
-  
-    
+    var movies: [Movie] = []
+
     var page :Int = 1
     
     lazy var collectionView : UICollectionView = {
@@ -38,6 +37,7 @@ class DiscoverViewController: DataLoadingVC {
         getMovies(page: 1)
     }
     
+    
      func getMovies(page:Int){
         showLoadingView()
          Task{
@@ -46,7 +46,7 @@ class DiscoverViewController: DataLoadingVC {
                  updateUI(with:movies)
              }catch {
                  if let error = error  as? ErrorMassages {
-                     presentAler(title: "Bad Stuff Happend", message: error.rawValue, buttonTile: "ok")
+                     presentAler(title: "Bad Stuff Happend", message: error.rawValue)
                  }else {
                      presentDefaultError()
                  }
@@ -55,10 +55,12 @@ class DiscoverViewController: DataLoadingVC {
          }
     }
     
+    
     func updateUI(with movies :[Movie]) {
-        self.populerMovie.append(contentsOf: movies)
+        self.movies.append(contentsOf: movies)
         collectionView.reloadData()
     }
+    
     
     private func configureUI(){
         view.addSubview(collectionView)
@@ -70,6 +72,7 @@ class DiscoverViewController: DataLoadingVC {
         collectionView.pinToEages(to: view)
     }
 
+    
     private func configureCompoitionalLayout() {
         let layout = UICollectionViewCompositionalLayout { sectionIndex , enviorment in
             

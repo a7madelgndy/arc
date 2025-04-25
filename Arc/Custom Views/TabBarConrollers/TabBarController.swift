@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     
     
     func CreateFavoritesNC() ->UINavigationController {
-        let favoritsVC = FavoritesViewController()
+        let favoritsVC = FavoritesVC()
         favoritsVC.title = "Favorites"
         favoritsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         

@@ -25,6 +25,7 @@ class BodyLabel: UILabel {
         self.textAlignment = textAlignment
     }
 
+    
     private func configure() {
         textColor                         = .label
         font                              = UIFont.preferredFont(forTextStyle: .body)
@@ -34,6 +35,4 @@ class BodyLabel: UILabel {
         numberOfLines                      = 5
         translatesAutoresizingMaskIntoConstraints = false
     }
-
-
 }
