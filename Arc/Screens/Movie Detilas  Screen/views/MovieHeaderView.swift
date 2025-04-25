@@ -13,7 +13,7 @@ protocol FavoriteButtonDelegate:AnyObject {
 
 class MovieHeaderView: UIView {
     private var headerTitle = TitleLabel(textAlignment: .left, fontsize: 20)
-    private var favoriteButton = MainButton(color: .systemPurple, title: "", systemNameImage: "heart")
+    var favoriteButton = MainButton(color: .systemPurple, title: "", systemNameImage: "heart")
     
     weak  var delegage : FavoriteButtonDelegate?
     
@@ -25,9 +25,11 @@ class MovieHeaderView: UIView {
         configureButton()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     private func configureUI() {
         addSubview(headerTitle)
@@ -50,10 +52,12 @@ class MovieHeaderView: UIView {
         
     }
     
+    
     func setheaderVeiw(with movie : Movie){
         self.movie = movie
         headerTitle.text =  movie.title
     }
+    
     
     @objc private func favoriteButtonTapped() {
         delegage?.didtapedFavoriteButton(for: movie)

@@ -21,11 +21,11 @@ class CoredataManager{
     }
     
     
-        func save(with Favoritemovie : Movie ) {
+    func save(with Favoritemovie : Movie ) {
         
         let movie = FavoriteMovie(context: context)
-            movie.title = Favoritemovie.title
-            movie.id = Int32(Favoritemovie.id)
+        movie.title = Favoritemovie.title
+        movie.id = Int32(Favoritemovie.id)
         
         do {
             try context.save()
@@ -41,20 +41,21 @@ class CoredataManager{
             let movies = try context.fetch(fetchRequest) as? [FavoriteMovie] ?? []
             let movie = Movie.convertNSManagedObjectToMovie(favoriteMovies: movies)
             
-           return movie
+            return movie
         }catch{
-              return []
+            return []
         }
-
+        
     }
     
-    func MovieInCoreData(with id: Int ) -> Bool?{
+    //Check is the movie in CoreData or Note
+    func checkForMovie(with id: Int ) -> Bool?{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
         print(id)
         let predicate = NSPredicate(format:"id == \(String(id))" )
         fetchRequest.predicate = predicate
         do {
-  
+            
             let movie =   try context.fetch(fetchRequest)
             if movie.isEmpty {
                 return false
@@ -64,7 +65,7 @@ class CoredataManager{
         }catch {
             return nil
         }
- 
+        
     }
     
     
@@ -75,7 +76,7 @@ class CoredataManager{
         
         do {
             let movies =  try context.fetch(fetchRequest)
-    
+            
             for movie in movies {
                 context.delete(movie)
             }

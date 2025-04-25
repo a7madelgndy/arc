@@ -91,9 +91,10 @@ class MovieDetilasVC: DataLoadingVC {
 extension MovieDetilasVC:FavoriteButtonDelegate {
     func didtapedFavoriteButton(for movie: Movie?) {
         guard let movie else {return}
-        guard let isInCoreData = CoredataManager.shared.MovieInCoreData(with: movie.id ) else {return}
+        guard let isInCoreData = CoredataManager.shared.checkForMovie(with: movie.id ) else {return}
         if !isInCoreData {
             CoredataManager.shared.save(with: movie)
+            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
         }else {
             print("Aready in the core Data")
         }
