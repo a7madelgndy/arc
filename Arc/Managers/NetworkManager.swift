@@ -46,7 +46,7 @@ struct NetworkManager {
             throw ErrorMassages.defulatErrorMassage
         }
         
-        var request = APIComponet.makeRequest(withUrl: url, pageNumber: pageNumber)
+        let request = APIComponet.makeRequest(withUrl: url, pageNumber: pageNumber)
   
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response =  response as? HTTPURLResponse , response.statusCode == 200 else {

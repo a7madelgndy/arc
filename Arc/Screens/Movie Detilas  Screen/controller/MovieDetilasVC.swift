@@ -126,7 +126,8 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
             let isInCoreData = try CoredataManager.shared.checkForMovie(with: movie.id )
             if !isInCoreData {
                 do {
-                    try CoredataManager.shared.save(with: movie)
+                    guard let image = posterView.movieBooster.image else{return}
+                    try CoredataManager.shared.save(withMovie: movie, posterImage: image )
                 }catch {
                     if let error = error as? ErrorMassages {
                         presentAler(title: .defualtOne, message: error.rawValue)

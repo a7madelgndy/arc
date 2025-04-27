@@ -26,11 +26,19 @@ class CoredataManager{
     }
     
     
-    func save(with Favoritemovie : Movie ) throws{
+    func save(withMovie favoritemovie : Movie ,posterImage : UIImage) throws{
         let movie = FavoriteMovie(context: context)
         
-        movie.title = Favoritemovie.title
-        movie.id = Int32(Favoritemovie.id)
+        movie.title = favoritemovie.title
+        movie.id = Int32(favoritemovie.id)
+        movie.adult = favoritemovie.adult
+        movie.originalLanguage = favoritemovie.original_language
+        movie.releaseData = favoritemovie.release_date
+        movie.voteAverage = favoritemovie.vote_average
+        movie.posterImage = posterImage
+        movie.overview = favoritemovie.overview
+        
+    
         
         do {
             try context.save()
@@ -39,11 +47,11 @@ class CoredataManager{
         }
     }
     
-    func getAllMovies() throws->[Movie]  {
+    func getAllMovies() throws->[FavoriteMovieModel]  {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Enities.FavoriteMovieEntity)
         do {
             let movies = try context.fetch(fetchRequest) as? [FavoriteMovie] ?? []
-            let movie = Movie.convertNSManagedObjectToMovie(favoriteMovies: movies)
+            let movie = FavoriteMovieModel.convertNSManagedObjectToMovie(favoriteMovies: movies)
             return movie
             
         }catch{

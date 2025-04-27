@@ -11,7 +11,7 @@ class FavoritesVC: DataLoadingVC {
     private var tableView = UITableView()
     private var coreData = CoredataManager.shared
     
-    private var favoriteMovies: [Movie]?
+    private var favoriteMovies: [FavoriteMovieModel]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class FavoritesVC: DataLoadingVC {
     override func viewWillAppear(_ animated: Bool) {
         do {
             favoriteMovies = try coreData.getAllMovies()
-        }catch{
-            presentAler(title: .defualtOne , message: error.localizedDescription )
+        }catch {
+            print("erro")
         }
         
         setNeedsUpdateContentUnavailableConfiguration()
@@ -84,8 +84,13 @@ extension FavoritesVC : UITableViewDataSource {
         }
         
         guard let  movietitle = favoriteMovies?[indexPath.row].title else { fatalError("unable to guard the Movie ") }
+        
+        guard let  moviePosterImage = favoriteMovies?[indexPath.row].posterImage else { fatalError("unable to guard the Movie ") }
+        
+        
 
-        cell.configure(Title: movietitle, image: UIImage(systemName: "heart")!)
+
+        cell.configure(Title: movietitle, image: moviePosterImage)
         
        return cell
         

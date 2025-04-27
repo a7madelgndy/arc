@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteButtonDelegate:AnyObject {
-    func didtapedFavoriteButton(for movie : Movie?)
+    func didtapedFavoriteButton(for movie : Movie? )
 }
 
 class MovieHeaderView: UIView {
