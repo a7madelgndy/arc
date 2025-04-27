@@ -8,18 +8,41 @@
 import UIKit
 
 class FavoriteCell: UITableViewCell {
-
-    static let  id:String = "FavoriteCell"
+    static let  reusableidentifier:String = "FavoriteCell"
+    
+    private var movieTitle = UILabel()
+    private var movieImage = UIImageView()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-
+    
+    
+    private func configureUI() {
+        addSubViews(movieImage, movieTitle)
+        
+        movieTitle.translatesAutoresizingMaskIntoConstraints = false
+        movieImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        movieImage.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom:  bottomAnchor)
+        movieImage.setWidth(width: 100)
+        
+        movieTitle.setConstrains(leading: movieImage.trailingAnchor)
+        movieTitle.setCenterX(inView: self)
+    }
+    
+    
+    func configure(Title:String ,image:UIImage) {
+        movieImage.image = image
+        movieTitle.text  = Title
+    }
 }
