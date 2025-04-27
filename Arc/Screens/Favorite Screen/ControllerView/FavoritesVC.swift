@@ -83,17 +83,16 @@ extension FavoritesVC : UITableViewDataSource {
             fatalError("unable to deque")
         }
         
-        guard let  movietitle = favoriteMovies?[indexPath.row].title else { fatalError("unable to guard the Movie ") }
-        
-        guard let  moviePosterImage = favoriteMovies?[indexPath.row].posterImage else { fatalError("unable to guard the Movie ") }
-        
-        
-
-
-        cell.configure(Title: movietitle, image: moviePosterImage)
+        guard let movie = favoriteMovies?[indexPath.row] else {fatalError("unable to guard the Movie ")}
+    
+        cell.configure(with: movie)
         
        return cell
         
     }  
 }
 
+#Preview
+{
+    FavoritesVC()
+}

@@ -10,45 +10,35 @@ import UIKit
 class FavoriteCell: UITableViewCell {
     static let  reusableidentifier:String = "FavoriteCell"
     
-    private var movieTitle = UILabel()
-    private var movieImage = UIImageView()
+    private var movieDetilesView = MovieDetilesView()
+    private var movieImage = CornerImageView(frame: .zero)
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-       
-    }
-
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
         configureUI()
     }
     
     
     private func configureUI() {
-        addSubViews(movieImage, movieTitle)
+        addSubViews(movieImage, movieDetilesView)
         
-        movieTitle.translatesAutoresizingMaskIntoConstraints = false
-        movieImage.translatesAutoresizingMaskIntoConstraints = false
         
-        movieImage.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom:  bottomAnchor)
+        movieImage.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom:  bottomAnchor,paddingLeft: 10 ,paddingBottom: 10,paddingRight: 10 )
+        
         movieImage.setWidth(width: 100)
-        movieImage.setHeight(height: 100)
+        movieImage.setHeight(height: 100*(3/2))
         
-        movieImage.layer.borderWidth = 3
         
-        movieTitle.setConstrains(leading: movieImage.trailingAnchor)
-        movieTitle.setCenterY(inView: self)
+        movieDetilesView.setConstrains(leading: movieImage.trailingAnchor, trailing: trailingAnchor ,paddingLeft: 10)
         
-        movieTitle.layer.borderWidth = 3
+        movieDetilesView.setCenterY(inView: self)
+        
     }
     
     
-    func configure(Title:String ,image:UIImage) {
-        movieImage.image = image
-        movieTitle.text  = Title
+    func configure(with movie: FavoriteMovieModel) {
+        movieImage.image = movie.posterImage
+        movieDetilesView.configureData(with: movie)
     }
 }

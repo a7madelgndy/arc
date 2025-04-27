@@ -36,9 +36,9 @@ struct FavoriteMovieModel {
              
          guard let adult = movie.value(forKey: "adult") as? Bool else {fatalError("coundn't find MovieTitle  in CoreData")}
              
-            guard let overview = movie.value(forKey: "overview") as? String else {fatalError("coundn't find MovieTitle  in CoreData")}
+        guard let overview = movie.value(forKey: "overview") as? String else {fatalError("coundn't find MovieTitle  in CoreData")}
              
-             guard let release_date = movie.value(forKey: "releaseData") as? String else {fatalError("coundn't find MovieTitle  in CoreData")}
+          guard let release_date = movie.value(forKey: "releaseData") as? String else {fatalError("coundn't find MovieTitle  in CoreData")}
              
              let convertedmovie = FavoriteMovieModel(posterImage: posterImage
                                                      ,title: moviTitle
