@@ -16,7 +16,7 @@ class FavoriteCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
     }
 
     
@@ -24,6 +24,7 @@ class FavoriteCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        configureUI()
     }
     
     
@@ -35,9 +36,14 @@ class FavoriteCell: UITableViewCell {
         
         movieImage.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom:  bottomAnchor)
         movieImage.setWidth(width: 100)
+        movieImage.setHeight(height: 100)
+        
+        movieImage.layer.borderWidth = 3
         
         movieTitle.setConstrains(leading: movieImage.trailingAnchor)
-        movieTitle.setCenterX(inView: self)
+        movieTitle.setCenterY(inView: self)
+        
+        movieTitle.layer.borderWidth = 3
     }
     
     

@@ -33,7 +33,7 @@ class FavoritesVC: DataLoadingVC {
     
     
     func configureTableView() {
-        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.id)
+        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reusableidentifier)
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
@@ -79,12 +79,13 @@ extension FavoritesVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.id) as! FavoriteCell? else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reusableidentifier) as! FavoriteCell? else {
             fatalError("unable to deque")
         }
         
-        let movietitle = favoriteMovies?[indexPath.row].title
-        cell.textLabel?.text = movietitle
+        guard let  movietitle = favoriteMovies?[indexPath.row].title else { fatalError("unable to guard the Movie ") }
+
+        cell.configure(Title: movietitle, image: UIImage(systemName: "heart")!)
         
        return cell
         
