@@ -13,11 +13,13 @@ class BoosterView: UIView {
     
     var cellData: String? {
         didSet{
-            guard let cellData else {return}
-            Task {
-               let fullImageURL = "https://image.tmdb.org/t/p/w500\(cellData)"
-               let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
-                movieBooster.image = image
+            if movieBooster.image == nil {
+                guard let cellData else {return}
+                Task {
+                    let fullImageURL = "https://image.tmdb.org/t/p/w500\(cellData)"
+                    let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
+                    movieBooster.image = image
+                }
             }
         }
     }

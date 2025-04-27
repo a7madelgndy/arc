@@ -37,6 +37,8 @@ class FavoritesVC: DataLoadingVC {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.separatorStyle = .none
         tableView.pinToEages(to: view)
 
     }
@@ -90,6 +92,23 @@ extension FavoritesVC : UITableViewDataSource {
        return cell
         
     }  
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let FavoriteMovie = favoriteMovies?[indexPath.row] else {fatalError("Counden't guard the favorite movie")}
+        let movie = Movie(poster_path: " ",
+                          title: FavoriteMovie.title,
+                          release_date: FavoriteMovie.release_date,
+                          vote_average: FavoriteMovie.vote_average,
+                          original_language: FavoriteMovie.original_language,
+                          adult: FavoriteMovie.adult,
+                          id: FavoriteMovie.id
+                          , overview: FavoriteMovie.overview)
+        
+        let favoriteMovieVC = MovieDetilasVC()
+        favoriteMovieVC.movie = movie
+        favoriteMovieVC.posterView.movieBooster.image = FavoriteMovie.posterImage
+        present(favoriteMovieVC, animated: true)
+    }
 }
 
 #Preview

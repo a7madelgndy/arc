@@ -23,6 +23,7 @@ class MovieDetilasVC: DataLoadingVC {
             assignDataToViews()
         }
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +101,9 @@ class MovieDetilasVC: DataLoadingVC {
     private func assignDataToViews() {
         guard let movie else {return}
         
-        posterView.cellData = movie.poster_path
+        if movie.poster_path != " " {
+            posterView.cellData = movie.poster_path
+        }
         
         headerView.setheaderVeiw(with: movie)
         headerView.delegage = self

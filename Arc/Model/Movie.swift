@@ -13,6 +13,7 @@ struct MovieResponse: Codable{
 }
 
 struct Movie: Codable {
+    
     let poster_path:String
     var title:String
     let release_date:String
