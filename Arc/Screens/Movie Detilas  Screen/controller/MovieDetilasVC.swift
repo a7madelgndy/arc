@@ -160,18 +160,18 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
 
 extension MovieDetilasVC:playTrailerDelegte {
     func didTappedPlayButton(movieID: Int) {
-        print("in the delegate")
         Task {
+            showLoadingView()
             do{
-                
                 guard let youtubeLink = try await NetworkManager.shared.getMovieTrailerURL(movieID: movieID) else {return }
-                print(youtubeLink)
-                print("here")
                 pressenSafrieVC(with: youtubeLink)
 
             }catch {
-                print("error")
+                if let error = error as? ErrorMassages {
+                    presentAler(title: .defualtOne , message: error.rawValue)
+                }
             }
+            dismissLoadingView()
         }
     
    

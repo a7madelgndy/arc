@@ -6,16 +6,24 @@
 //
 
 import UIKit
+
 enum APIEndPoint {
-    static let pupuler = "https://api.themoviedb.org/3/movie/now_playing"
-    static func getCast(movieId : String) -> String {
-        return "https://api.themoviedb.org/3/movie/\(movieId)/credits"
+    static let endPoint = "https://api.themoviedb.org/3/"
+    
+    static let populerMovies = URL(string:endPoint + "movie/popular")!
+    
+
+    static func getCast(movieID:String) -> URL {
+        return URL(string: endPoint + "\(movieID)/credits")!
     }
     
-    static func movieDetails(movieID : Int)-> String {
-        return  "https://api.themoviedb.org/3/movie/\(movieID)/videos"
+    static func movieVedios(movieID: Int)-> URL {
+        let url = endPoint + "/movie/\(movieID)/videos"
+        return URL(string:url)!
     }
+
 }
+
 
 struct APIComponet {
 
@@ -39,20 +47,15 @@ struct APIComponet {
 }
 
 struct NetworkManager {
-    let cache = NSCache<NSString, UIImage>()
+    private let cache = NSCache<NSString, UIImage>()
     static let shared = NetworkManager()
     
     private init() {}
     
-    let decoder = JSONDecoder()
+    private let decoder = JSONDecoder()
 
     func getMovies(pageNumber: Int) async throws -> [Movie]{
-        
-        guard let url = URL(string:APIEndPoint.pupuler) else {
-            throw ErrorMassages.defulatErrorMassage
-        }
-        
-        let request = APIComponet.makeRequest(withUrl: url, pageNumber: pageNumber)
+        let request = APIComponet.makeRequest(withUrl: APIEndPoint.populerMovies , pageNumber: pageNumber)
   
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response =  response as? HTTPURLResponse , response.statusCode == 200 else {
@@ -69,11 +72,7 @@ struct NetworkManager {
     
     
     func getMovieTrailerURL(movieID : Int) async throws -> URL?{
-        guard let url = URL(string:APIEndPoint.movieDetails(movieID: movieID)) else {
-            throw ErrorMassages.unableToFindThisLink
-        }
-
-        let request = APIComponet.makeRequest(withUrl: url)
+        let request = APIComponet.makeRequest(withUrl: APIEndPoint.movieVedios(movieID: movieID))
         
         let (data, _) = try await URLSession.shared.data(for: request)
     
@@ -86,7 +85,6 @@ struct NetworkManager {
         }catch {
             throw ErrorMassages.unableToDecodeVideoData
         }
-        return nil
     }
     
     
@@ -107,11 +105,10 @@ struct NetworkManager {
         }
     }
     
+    
     func getMovieCast(movieId: String)async throws -> [CastMember]?{
-        let enpoint = APIEndPoint.getCast(movieId: movieId)
-        guard let url = URL(string: enpoint) else {return nil}
-        
-        let request =  APIComponet.makeRequest(withUrl: url, pageNumber: 1)
+        let enpoint = APIEndPoint.getCast(movieID: movieId)
+        let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber: 1)
      
         let (data, _) = try await URLSession.shared.data(for: request)
 
