@@ -18,6 +18,9 @@ class MovieDetilasVC: DataLoadingVC {
     
     var castMembers:[CastMember]?
     
+    let moviUrl = URL(string: "MovieUrl")
+    lazy var sharSheet = UIActivityViewController(activityItems: [moviUrl],applicationActivities:  nil)
+
     var movie:Movie? {
         didSet {
             assignDataToViews()
@@ -119,10 +122,18 @@ class MovieDetilasVC: DataLoadingVC {
         movieOverview.text = movie.overview
     }
     
+
+    
 }
 
 
 extension MovieDetilasVC:FavoriteButtonDelegate {
+    func shareSheetTaped() {
+        //sharSheet.copy()
+
+]        present(sharSheet , animated: true)
+    }
+    
     func didtapedFavoriteButton(for movie: Movie?) {
         guard let movie else {return}
         

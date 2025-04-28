@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: API End Point
-enum APIEndPoint {
+fileprivate enum APIEndPoint {
     static let endPoint = "https://api.themoviedb.org/3/"
     
     static let populerMovies = URL(string:endPoint + "movie/popular")!
@@ -26,7 +26,7 @@ enum APIEndPoint {
 }
 
 
-struct APIComponet {
+fileprivate struct APIComponet {
 
     static func makeRequest(withUrl : URL ,pageNumber:Int=1) -> URLRequest {
         var components = URLComponents(url: withUrl, resolvingAgainstBaseURL: true)!
@@ -55,15 +55,15 @@ struct NetworkManager {
     private init() {}
     
     private let decoder = JSONDecoder()
-
+    
     func getMovies(pageNumber: Int) async throws -> [Movie]{
         let request = APIComponet.makeRequest(withUrl: APIEndPoint.populerMovies , pageNumber: pageNumber)
-  
+        
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response =  response as? HTTPURLResponse , response.statusCode == 200 else {
             throw ErrorMassages.invalidResponse
         }
-
+        
         do {
             let movieResponse = try decoder.decode(MovieResponse.self, from: data)
             return movieResponse.results
@@ -77,7 +77,7 @@ struct NetworkManager {
         let request = APIComponet.makeRequest(withUrl: APIEndPoint.movieVedios(movieID: movieID))
         
         let (data, _) = try await URLSession.shared.data(for: request)
-    
+        
         do {
             let vediosRespons = try decoder.decode(videosResponse.self, from: data)
             let youtubeKey = vediosRespons.results[0].key
@@ -112,7 +112,7 @@ struct NetworkManager {
         let enpoint = APIEndPoint.getCast(movieID: movieId)
         print(enpoint)
         let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber:    1)
-     
+        
         let (data, _) = try await URLSession.shared.data(for: request)
         print(data)
         do {
@@ -124,4 +124,5 @@ struct NetworkManager {
             return []
         }
         
-    }}
+    }
+}

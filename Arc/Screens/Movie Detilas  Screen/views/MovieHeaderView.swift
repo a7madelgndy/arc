@@ -9,12 +9,16 @@ import UIKit
 
 protocol FavoriteButtonDelegate:AnyObject {
     func didtapedFavoriteButton(for movie : Movie? )
+    func shareSheetTaped()
 }
+
 
 class MovieHeaderView: UIView {
     private var headerTitle = TitleLabel(textAlignment: .left, fontsize: 20)
-    var favoriteButton = MainButton(color: .systemPurple, title: "", systemNameImage: "heart")
     
+    var favoriteButton = MainButton(color: .systemPurple, title: "", systemNameImage: "heart")
+    var shareSheetButton = MainButton(color: .systemRed, title: "", systemNameImage: "square.and.arrow.up")
+
     weak  var delegage : FavoriteButtonDelegate?
     
     private var movie :Movie?
@@ -38,7 +42,8 @@ class MovieHeaderView: UIView {
     
     private func configureFavoriteButton() {
         addSubview(favoriteButton)
-
+        addSubview(shareSheetButton)
+        
         NSLayoutConstraint.activate([
             favoriteButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             favoriteButton.widthAnchor.constraint(equalToConstant: 40),
@@ -48,16 +53,27 @@ class MovieHeaderView: UIView {
         
         favoriteButton.setConstrains(trailing:trailingAnchor , paddingLeft: 30)
         
+        shareSheetButton.setCenterY(inView: self)
+        shareSheetButton.setConstrains(trailing: favoriteButton.leadingAnchor)
+        shareSheetButton.setDimensions(height: 40, width: 40)
+        
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
+        shareSheetButton.addTarget(self, action: #selector(showActivityViewController), for:.touchUpInside)
     }
     
     
     func setheaderVeiw(with movie : Movie){
         self.movie = movie
         headerTitle.text =  movie.title
+
     }
     
     //MARK: Selectors
+    @objc private func showActivityViewController() {
+        delegage?.shareSheetTaped()
+    }
+    
+    
     @objc private func favoriteButtonTapped() {
         delegage?.didtapedFavoriteButton(for: movie)
     }

@@ -8,9 +8,8 @@
 import UIKit
 import CoreData
 
-enum Enities {
+fileprivate enum Enities {
     static let FavoriteMovieEntity  = "FavoriteMovie"
-    
 }
 
 
