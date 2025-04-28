@@ -15,11 +15,11 @@ enum APIEndPoint {
     
 
     static func getCast(movieID:String) -> URL {
-        return URL(string: endPoint + "\(movieID)/credits")!
+        return URL(string: endPoint + "movie/\(movieID)/credits")!
     }
     
     static func movieVedios(movieID: Int)-> URL {
-        let url = endPoint + "/movie/\(movieID)/videos"
+        let url = endPoint + "movie/\(movieID)/videos"
         return URL(string:url)!
     }
 
@@ -110,13 +110,14 @@ struct NetworkManager {
     
     func getMovieCast(movieId: String)async throws -> [CastMember]?{
         let enpoint = APIEndPoint.getCast(movieID: movieId)
-        let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber: 1)
+        print(enpoint)
+        let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber:    1)
      
         let (data, _) = try await URLSession.shared.data(for: request)
-
+        print(data)
         do {
             let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
-    
+            print(castResponse)
             return castResponse.cast
         }catch{
             

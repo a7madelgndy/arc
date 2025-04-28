@@ -21,8 +21,8 @@ class MovieHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
-        configureButton()
+        configureHeaderTitle()
+        configureFavoriteButton()
     }
     
     
@@ -30,15 +30,15 @@ class MovieHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    private func configureUI() {
+    private func configureHeaderTitle() {
         addSubview(headerTitle)
-        addSubview(favoriteButton)
         headerTitle.setCenterY(inView: self)
-        headerTitle.setConstrains(leading: leadingAnchor,paddingLeft: 20 )
+        headerTitle.setConstrains(leading: leadingAnchor,paddingLeft: 20, width: UIScreen.main.bounds.width*0.7)
     }
     
-    private func configureButton() {
+    private func configureFavoriteButton() {
+        addSubview(favoriteButton)
+
         NSLayoutConstraint.activate([
             favoriteButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             favoriteButton.widthAnchor.constraint(equalToConstant: 40),
@@ -49,7 +49,6 @@ class MovieHeaderView: UIView {
         favoriteButton.setConstrains(trailing:trailingAnchor , paddingLeft: 30)
         
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-        
     }
     
     
@@ -58,9 +57,8 @@ class MovieHeaderView: UIView {
         headerTitle.text =  movie.title
     }
     
-    
+    //MARK: Selectors
     @objc private func favoriteButtonTapped() {
         delegage?.didtapedFavoriteButton(for: movie)
     }
-    
 }

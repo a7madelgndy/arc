@@ -8,26 +8,17 @@
 import UIKit
 
 class DiscoverViewController: DataLoadingVC {
-    var movies: [Movie] = []
+    internal var movies: [Movie] = []
 
-    var page :Int = 1
+    internal var page :Int = 1
     
-    lazy var collectionView : UICollectionView = {
-        var cv  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
-        cv.delegate = self
-        cv.dataSource = self
-        cv.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.cellIdentifier)
-        
-        cv.register(SeactionHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: SeactionHeaderView.cellIdentifier)
-     
-        return cv
-    }()
+    private  let networkManager = NetworkManager.shared
     
+    private var collectionView:UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         configureUI()
-         configureConstrains()
+         configureCollectionView()
          configureCompoitionalLayout()
     }
     
@@ -42,7 +33,7 @@ class DiscoverViewController: DataLoadingVC {
         showLoadingView()
          Task{
              do {
-                 let movies  =  try await NetworkManager.shared.getMovies(pageNumber: page)
+                 let movies  =  try await networkManager.getMovies(pageNumber: page)
                  updateUI(with:movies)
              }catch {
                  if let error = error  as? ErrorMassages {
@@ -56,21 +47,25 @@ class DiscoverViewController: DataLoadingVC {
     }
     
     
-    func updateUI(with movies :[Movie]) {
+    private func updateUI(with movies :[Movie]) {
         self.movies.append(contentsOf: movies)
         collectionView.reloadData()
     }
     
     
-    private func configureUI(){
-        view.addSubview(collectionView)
-    }
-    
-    
-    private func configureConstrains() {
+    private func configureCollectionView() {
+        collectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
+        
         view.addSubview(collectionView)
         collectionView.pinToEages(to: view)
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.cellIdentifier)
+        collectionView.register(SeactionHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: SeactionHeaderView.cellIdentifier)
     }
+    
 
     
     private func configureCompoitionalLayout() {
@@ -88,5 +83,4 @@ class DiscoverViewController: DataLoadingVC {
         
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
-
 }

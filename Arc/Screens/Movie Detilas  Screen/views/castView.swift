@@ -14,8 +14,9 @@ class MovieCastView: UIView, UICollectionViewDelegate {
             configuerChevronSF()
         }
     }
-    private var rightchevronSF : SFSymbolImageView!
+    
     private var collectionView:UICollectionView!
+    private var rightchevronSF : SFSymbolImageView!
     
     private var framewidth : CGFloat = UIScreen.main.bounds.width
     private var didNotScrolled = true

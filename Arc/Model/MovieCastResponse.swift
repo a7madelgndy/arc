@@ -8,8 +8,7 @@
 import Foundation
 
 struct MovieCastResponse: Codable{
-    let id : Int
-   let  cast: [CastMember]
+    let  cast: [CastMember]
 }
 
 struct CastMember: Codable {

@@ -30,10 +30,9 @@ class FavoriteCell: UITableViewCell {
         movieImage.setHeight(height: 100*(3/2))
         
         
-        movieDetilesView.setConstrains(leading: movieImage.trailingAnchor, trailing: trailingAnchor ,paddingLeft: 10)
+        movieDetilesView.setConstrains(leading: movieImage.trailingAnchor, trailing: trailingAnchor ,paddingLeft: 10,paddingRight: 20)
         
         movieDetilesView.setCenterY(inView: self)
-        
     }
     
     

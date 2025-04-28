@@ -8,8 +8,16 @@
 import UIKit
 
 extension DiscoverViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        default :
+            let movie =  movies[indexPath.row]
+            let movieVc = MovieDetilasVC()
 
-
+            movieVc.set(with: movie)
+            present(movieVc, animated: true)
+        }
+    }
 }
 
 
@@ -51,17 +59,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
         }
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.section {
-        default :
-            let movie =  movies[indexPath.row]
-            let movieVc = MovieDetilasVC()
-
-            movieVc.set(with: movie)
-            present(movieVc, animated: true)
-        }
-    }
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

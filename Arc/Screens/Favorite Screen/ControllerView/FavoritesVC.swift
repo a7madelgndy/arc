@@ -9,14 +9,14 @@ import UIKit
 
 class FavoritesVC: DataLoadingVC {
     private var tableView = UITableView()
+    
     private var coreData = CoredataManager.shared
     
     private var favoriteMovies: [FavoriteMovieModel]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        
     }
     
     
@@ -24,7 +24,7 @@ class FavoritesVC: DataLoadingVC {
         do {
             favoriteMovies = try coreData.getAllMovies()
         }catch {
-            print("erro")
+            presentDefaultError()
         }
         
         setNeedsUpdateContentUnavailableConfiguration()
@@ -34,13 +34,14 @@ class FavoritesVC: DataLoadingVC {
     
     func configureTableView() {
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reusableidentifier)
+        
         view.addSubview(tableView)
+        tableView.pinToEages(to: view)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.separatorStyle = .none
-        tableView.pinToEages(to: view)
-
     }
     
     
@@ -58,7 +59,7 @@ class FavoritesVC: DataLoadingVC {
 extension FavoritesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
-
+        
         do {
             try coreData.deleteMovie(withID: favoriteMovies?[indexPath.row].id ?? 3)
         }catch{
@@ -66,7 +67,7 @@ extension FavoritesVC: UITableViewDelegate {
                 presentAler(title: .defualtOne , message: error.rawValue)
             }
         }
-   
+        
         favoriteMovies?.remove(at: indexPath.row)
         setNeedsUpdateContentUnavailableConfiguration()
         tableView.reloadData()
@@ -86,12 +87,12 @@ extension FavoritesVC : UITableViewDataSource {
         }
         
         guard let movie = favoriteMovies?[indexPath.row] else {fatalError("unable to guard the Movie ")}
-    
+        
         cell.configure(with: movie)
         
-       return cell
+        return cell
         
-    }  
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let FavoriteMovie = favoriteMovies?[indexPath.row] else {fatalError("Counden't guard the favorite movie")}
@@ -109,9 +110,4 @@ extension FavoritesVC : UITableViewDataSource {
         favoriteMovieVC.posterView.movieBooster.image = FavoriteMovie.posterImage
         present(favoriteMovieVC, animated: true)
     }
-}
-
-#Preview
-{
-    FavoritesVC()
 }

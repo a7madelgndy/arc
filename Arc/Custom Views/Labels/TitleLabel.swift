@@ -31,11 +31,10 @@ class TitleLabel: UILabel {
     private func configure() {
         textColor                                 = .label
         adjustsFontSizeToFitWidth                 = true
-        minimumScaleFactor                        = 0.9
+        minimumScaleFactor                        = 0.5
         lineBreakMode                             = .byWordWrapping
         adjustsFontForContentSizeCategory         = true
         adjustsFontSizeToFitWidth                 = true
-        minimumScaleFactor                        = 0.75
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

@@ -213,8 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				154285E12DBA826500457B9C /* Favorite Screen */,
-				154285E02DBA825000457B9C /* Discover Screen */,
 				157AC0F22DB7E462007409D4 /* Movie Detilas  Screen */,
+				154285E02DBA825000457B9C /* Discover Screen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

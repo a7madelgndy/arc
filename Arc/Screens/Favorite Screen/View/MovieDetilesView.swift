@@ -51,42 +51,34 @@ class MovieDetilesView: UIView {
         stackView.spacing = 10
         
         stackView.pinToEages(to: self)
+        
+        for stackView in [titleStackView, voteStackView, releaseDataStackView] {
+            stackView.axis = .horizontal
+            stackView.distribution = .fillProportionally
+            stackView.spacing = 5
+        }
     }
     
     
     private func configureTitleStackView () {
-        titleStackView.axis = .horizontal
-        titleStackView.distribution = .fill
-        titleStackView.spacing = 5
-        
         titleStackView.addArrangedSubview(titleSF)
         titleStackView.addArrangedSubview(title)
         titleStackView.addArrangedSubview(emptyView)
 
-        
-        titleStackView.setDimensions(height: 20, width: 20)
+        //title.setConstrains(leading: titleSF.trailingAnchor , trailing: trailingAnchor)
+        titleSF.setWidth(width: 20)
         
     }
     
     private func configureVoteStackView() {
-        voteStackView.axis = .horizontal
-        voteStackView.distribution = .fillProportionally
-        voteStackView.spacing = 5
-        
         voteStackView.addArrangedSubview(voteSF)
         voteStackView.addArrangedSubview(vote)
-        
-        
+        voteStackView.addArrangedSubview(emptyView)
+
         voteSF.setDimensions(height: 20, width: 20)
-        
     }
     
     private func configureRealseDataStackView() {
-        
-        releaseDataStackView.axis = .horizontal
-        releaseDataStackView.distribution = .fillProportionally
-        releaseDataStackView.spacing = 5
-        
         releaseDataStackView.addArrangedSubview(releaseDataSF)
         releaseDataStackView.addArrangedSubview(releaseData)
         releaseDataStackView.addArrangedSubview(emptyView)
