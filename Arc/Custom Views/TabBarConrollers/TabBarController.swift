@@ -13,7 +13,8 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewControllers = [createDiscoverNC(), CreateFavoritesNC()]
-        tabBar.tintColor = .systemPurple
+        tabBar.tintColor = .systemPurple.withAlphaComponent(1.1)
+        tabBar.unselectedItemTintColor = .systemPurple.withAlphaComponent(0.5)
     }
     
     

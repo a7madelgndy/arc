@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: API End Point
 enum APIEndPoint {
     static let endPoint = "https://api.themoviedb.org/3/"
     
@@ -46,6 +47,7 @@ struct APIComponet {
     }
 }
 
+//MARK: Network Manager
 struct NetworkManager {
     private let cache = NSCache<NSString, UIImage>()
     static let shared = NetworkManager()
