@@ -23,4 +23,8 @@ enum ErrorMassages: String, Error {
     case unabletoSaveMovie = "Unable to save to Favorite Movies"
     case unableToCheckForAMovie = "unable to Check for a Movie"
     case unableToDeleteMovie = "unable to delete Movie"
+    
+    //Get trailer Vedio Massages
+    case unableToFindThisLink = "Unable to find the movie Trailer Link"
+    case unableToDecodeVideoData = "unable to decode Video link data"
 }

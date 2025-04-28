@@ -11,11 +11,15 @@ enum APIEndPoint {
     static func getCast(movieId : String) -> String {
         return "https://api.themoviedb.org/3/movie/\(movieId)/credits"
     }
+    
+    static func movieDetails(movieID : Int)-> String {
+        return  "https://api.themoviedb.org/3/movie/\(movieID)/videos"
+    }
 }
 
 struct APIComponet {
 
-    static func makeRequest(withUrl : URL ,pageNumber:Int) -> URLRequest {
+    static func makeRequest(withUrl : URL ,pageNumber:Int=1) -> URLRequest {
         var components = URLComponents(url: withUrl, resolvingAgainstBaseURL: true)!
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "language", value: "en-US"),
@@ -37,9 +41,11 @@ struct APIComponet {
 struct NetworkManager {
     let cache = NSCache<NSString, UIImage>()
     static let shared = NetworkManager()
+    
     private init() {}
     
-    
+    let decoder = JSONDecoder()
+
     func getMovies(pageNumber: Int) async throws -> [Movie]{
         
         guard let url = URL(string:APIEndPoint.pupuler) else {
@@ -52,8 +58,7 @@ struct NetworkManager {
         guard let response =  response as? HTTPURLResponse , response.statusCode == 200 else {
             throw ErrorMassages.invalidResponse
         }
-        
-        let decoder = JSONDecoder()
+
         do {
             let movieResponse = try decoder.decode(MovieResponse.self, from: data)
             return movieResponse.results
@@ -61,6 +66,29 @@ struct NetworkManager {
             throw ErrorMassages.invalidDate
         }
     }
+    
+    
+    func getMovieTrailerURL(movieID : Int) async throws -> URL?{
+        guard let url = URL(string:APIEndPoint.movieDetails(movieID: movieID)) else {
+            throw ErrorMassages.unableToFindThisLink
+        }
+
+        let request = APIComponet.makeRequest(withUrl: url)
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+    
+        do {
+            let vediosRespons = try decoder.decode(videosResponse.self, from: data)
+            let youtubeKey = vediosRespons.results[0].key
+            print(vediosRespons.results[0].key)
+            guard let youtubeUrl  = URL(string: "https://www.youtube.com/watch?v=\(youtubeKey)")  else {return nil}
+            return youtubeUrl
+        }catch {
+            throw ErrorMassages.unableToDecodeVideoData
+        }
+        return nil
+    }
+    
     
     func downloadImage(from urlString: String) async -> UIImage? {
         let cachekey = NSString(string: urlString)
@@ -86,7 +114,7 @@ struct NetworkManager {
         let request =  APIComponet.makeRequest(withUrl: url, pageNumber: 1)
      
         let (data, _) = try await URLSession.shared.data(for: request)
-        let decoder = JSONDecoder()
+
         do {
             let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
     

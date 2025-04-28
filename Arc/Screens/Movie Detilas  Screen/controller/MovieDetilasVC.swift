@@ -90,6 +90,7 @@ class MovieDetilasVC: DataLoadingVC {
         
         playTailerView.setConstrains(top:categroiesView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 , height: 40)
         playTailerView.delegate = self
+        playTailerView.set(movieID: movie?.id ?? 0)
         
         movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20 , height: 100)
         
@@ -158,19 +159,26 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
 
 
 extension MovieDetilasVC:playTrailerDelegte {
-    func didTappedPlayButton() {
-        guard let movieId = movie?.id else {return}
-        
-        let entpoint = "https://api.themoviedb.org/3/movie/\(movieId)/videos"
-        
-        guard let url = URL(string: entpoint) else {
-            presentAler(
-                title:.defualtOne, message: "No trailer For this movie")
-            return
+    func didTappedPlayButton(movieID: Int) {
+        print("in the delegate")
+        Task {
+            do{
+                
+                guard let youtubeLink = try await NetworkManager.shared.getMovieTrailerURL(movieID: movieID) else {return }
+                print(youtubeLink)
+                print("here")
+                pressenSafrieVC(with: youtubeLink)
+
+            }catch {
+                print("error")
+            }
         }
-        pressenSafrieVC(with: url)
+    
+   
         
     }
-}
+    }
+    
+    
 
 

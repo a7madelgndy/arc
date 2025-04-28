@@ -8,7 +8,7 @@
 import UIKit
 
 protocol playTrailerDelegte:AnyObject {
-    func didTappedPlayButton()
+    func didTappedPlayButton(movieID: Int)
 }
 
 class TrailerPlayerView: UIView {
@@ -16,6 +16,7 @@ class TrailerPlayerView: UIView {
     
     weak var delegate : playTrailerDelegte?
     
+    private var movieID: Int?
     override init(frame: CGRect) {
         super.init(frame: frame)
          configurPlayButon()
@@ -31,7 +32,11 @@ class TrailerPlayerView: UIView {
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
     }
     
+    func set(movieID : Int){
+        self.movieID = movieID
+    }
      @objc private func playButtonTapped() {
-        delegate?.didTappedPlayButton()
+         guard let movieID else {return}
+         delegate?.didTappedPlayButton(movieID: movieID)
     }
 }
