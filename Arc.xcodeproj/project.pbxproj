@@ -55,6 +55,7 @@
 		157AC10C2DB929CF007409D4 /* MovieCastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC10B2DB929CF007409D4 /* MovieCastResponse.swift */; };
 		157AC10E2DB933C2007409D4 /* ActorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC10D2DB933C2007409D4 /* ActorImageView.swift */; };
 		157AC1112DB937DD007409D4 /* UiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC1102DB937DD007409D4 /* UiHelper.swift */; };
+		15A8B6412DC30269004F8520 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6402DC30269004F8520 /* ImageCacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		157AC10B2DB929CF007409D4 /* MovieCastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCastResponse.swift; sourceTree = "<group>"; };
 		157AC10D2DB933C2007409D4 /* ActorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorImageView.swift; sourceTree = "<group>"; };
 		157AC1102DB937DD007409D4 /* UiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiHelper.swift; sourceTree = "<group>"; };
+		15A8B6402DC30269004F8520 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		154285E02DBA825000457B9C /* Discover Screen */ = {
 			isa = PBXGroup;
 			children = (
+				154376B12DB3DDD100A2B39B /* Cells */,
 				154376922DB3D1A100A2B39B /* DiscoverViewController.swift */,
 				154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */,
 			);
@@ -169,7 +172,6 @@
 		154376822DB3D1A100A2B39B = {
 			isa = PBXGroup;
 			children = (
-				15024A542DBE6346009D0760 /* ImageAttributeTransformer.swift */,
 				1543768D2DB3D1A100A2B39B /* Arc */,
 				1543768C2DB3D1A100A2B39B /* Products */,
 			);
@@ -195,8 +197,6 @@
 				154285DF2DBA81D100457B9C /* Support */,
 				1543769C2DB3D1A300A2B39B /* Info.plist */,
 				154285E92DBAEB9600457B9C /* arc.xcdatamodeld */,
-				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
-				154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */,
 			);
 			path = Arc;
 			sourceTree = "<group>";
@@ -239,7 +239,6 @@
 				157AC0D82DB69F43007409D4 /* Labels */,
 				154376C62DB434A800A2B39B /* ViewControllers */,
 				154376BA2DB3FB3900A2B39B /* Supplementary Views */,
-				154376B12DB3DDD100A2B39B /* Cells */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -255,6 +254,8 @@
 		154376B42DB3E2A200A2B39B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */,
+				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
 				154376B82DB3E95000A2B39B /* AppLayouts.swift */,
 				154376C42DB4264100A2B39B /* Movie.swift */,
 				157AC10B2DB929CF007409D4 /* MovieCastResponse.swift */,
@@ -277,6 +278,7 @@
 			children = (
 				154376C12DB424E400A2B39B /* NetworkManager.swift */,
 				154285F02DBAED1700457B9C /* CoreDataManager.swift */,
+				15A8B6402DC30269004F8520 /* ImageCacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -337,6 +339,7 @@
 		157AC0E32DB6A38F007409D4 /* UItilities */ = {
 			isa = PBXGroup;
 			children = (
+				15A8B63E2DC19330004F8520 /* Transformers */,
 				157AC10F2DB937C4007409D4 /* Helper */,
 				157AC0D32DB69117007409D4 /* Enums */,
 				15024A4E2DBC37EC009D0760 /* Constants.swift */,
@@ -391,6 +394,14 @@
 				157AC1102DB937DD007409D4 /* UiHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		15A8B63E2DC19330004F8520 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				15024A542DBE6346009D0760 /* ImageAttributeTransformer.swift */,
+			);
+			path = Transformers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,6 +493,7 @@
 				154376A82DB3D82B00A2B39B /* FavoritesVC.swift in Sources */,
 				154376BE2DB3FBE500A2B39B /* SeactionHeaderView.swift in Sources */,
 				154285EB2DBAEB9600457B9C /* arc.xcdatamodeld in Sources */,
+				15A8B6412DC30269004F8520 /* ImageCacheManager.swift in Sources */,
 				157AC1082DB927EF007409D4 /* castView.swift in Sources */,
 				157AC10A2DB928F4007409D4 /* ActorCell.swift in Sources */,
 				1549C44B2DBF174B005B07EF /* Videos.swift in Sources */,

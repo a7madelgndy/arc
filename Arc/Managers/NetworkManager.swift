@@ -7,13 +7,14 @@
 
 import UIKit
 
+
 //MARK: API End Point
 fileprivate enum APIEndPoint {
     static let endPoint = "https://api.themoviedb.org/3/"
     
     static let populerMovies = URL(string:endPoint + "movie/popular")!
     
-
+    
     static func getCast(movieID:String) -> URL {
         return URL(string: endPoint + "movie/\(movieID)/credits")!
     }
@@ -48,9 +49,11 @@ fileprivate struct APIComponet {
 }
 
 //MARK: Network Manager
-struct NetworkManager {
-    private let cache = NSCache<NSString, UIImage>()
+actor NetworkManager {
+    //private let cache = NSCache<NSString, UIImage>()
     static let shared = NetworkManager()
+    
+    //private let semaphor = Semphore(count: 1)
     
     private init() {}
     
@@ -91,16 +94,14 @@ struct NetworkManager {
     
     
     func downloadImage(from urlString: String) async -> UIImage? {
-        let cachekey = NSString(string: urlString)
-        if let image = self.cache.object(forKey: cachekey){return image}
         
         guard let url = URL(string: urlString) else {return nil}
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            let (data, _) = try await  URLSession.shared.data(from: url)
+            
             guard let image = UIImage(data: data) else {return nil}
-            
-            self.cache.setObject(image, forKey: cachekey)
-            
+                        
             return image
         }catch {
             return nil
@@ -110,11 +111,12 @@ struct NetworkManager {
     
     func getMovieCast(movieId: String)async throws -> [CastMember]?{
         let enpoint = APIEndPoint.getCast(movieID: movieId)
-        print(enpoint)
+
         let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber:    1)
         
+
         let (data, _) = try await URLSession.shared.data(for: request)
-        print(data)
+    
         do {
             let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
             print(castResponse)
@@ -124,5 +126,31 @@ struct NetworkManager {
             return []
         }
         
+    }
+}
+
+actor Semphore {
+    private var count : Int
+    private var waiters:[CheckedContinuation<Void,Never>] = []
+    
+    init(count: Int = 0) {
+            self.count = count
+        }
+    
+    func wait() async {
+        count -= 1
+        if count>=0 {return}
+        await withCheckedContinuation {
+            waiters.append($0)
+        }
+    }
+    
+    func signal(count: Int = 1){
+        assert(count>=1)
+        self.count += count
+        for _ in 0..<count {
+            if waiters.isEmpty {return}
+            waiters.removeFirst().resume()
+        }
     }
 }

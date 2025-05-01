@@ -131,7 +131,7 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
     func shareSheetTaped() {
         //sharSheet.copy()
 
-]        present(sharSheet , animated: true)
+      present(sharSheet , animated: true)
     }
     
     func didtapedFavoriteButton(for movie: Movie?) {

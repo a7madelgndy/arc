@@ -9,19 +9,23 @@ import UIKit
 
 class DiscoverViewController: DataLoadingVC {
     internal var movies: [Movie] = []
-
+   // var moviesToshow:[Movie] = []
     internal var page :Int = 1
     
     private  let networkManager = NetworkManager.shared
     
     private var collectionView:UICollectionView!
     
+    let semaphore = DispatchSemaphore(value: 1)
+    
+    let myDispatch = DispatchQueue(label: "my dispatch")
     override func viewDidLoad() {
         super.viewDidLoad()
          configureCollectionView()
          configureCompoitionalLayout()
     }
     
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,7 +51,7 @@ class DiscoverViewController: DataLoadingVC {
     }
     
     
-    private func updateUI(with movies :[Movie]) {
+     func updateUI(with movies :[Movie]) {
         self.movies.append(contentsOf: movies)
         collectionView.reloadData()
     }
@@ -61,6 +65,8 @@ class DiscoverViewController: DataLoadingVC {
 
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView?.performBatchUpdates(nil, completion: nil)
+
         
         collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.cellIdentifier)
         collectionView.register(SeactionHeaderView.self, forSupplementaryViewOfKind: "Header", withReuseIdentifier: SeactionHeaderView.cellIdentifier)
@@ -84,3 +90,4 @@ class DiscoverViewController: DataLoadingVC {
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
 }
+
