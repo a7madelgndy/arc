@@ -7,13 +7,26 @@
 
 import UIKit
 
+enum Category {
+    case populer
+    case upcomming
+    case TopRated
+}
 
 //MARK: API End Point
 fileprivate enum APIEndPoint {
     static let endPoint = "https://api.themoviedb.org/3/"
     
-    static let populerMovies = URL(string:endPoint + "movie/popular")!
-    
+    //static func  populerMovies = URL(string:endPoint + "movie/popular")!
+    static func geturlWithCategory(with category: Category)->URL {
+        switch category {
+            
+        case .populer: return URL(string:endPoint + "movie/popular")!
+            
+        case .upcomming: return URL(string:endPoint + "movie/upcoming")!
+        case .TopRated: return URL(string:endPoint + "movie/top_rated")!
+        }
+    }
     
     static func getCast(movieID:String) -> URL {
         return URL(string: endPoint + "movie/\(movieID)/credits")!
@@ -59,8 +72,8 @@ actor NetworkManager {
     
     private let decoder = JSONDecoder()
     
-    func getMovies(pageNumber: Int) async throws -> [Movie]{
-        let request = APIComponet.makeRequest(withUrl: APIEndPoint.populerMovies , pageNumber: pageNumber)
+    func getMovies(category: Category, pageNumber: Int) async throws -> [Movie]{
+        let request = APIComponet.makeRequest(withUrl: APIEndPoint.geturlWithCategory(with: category) , pageNumber: pageNumber)
         
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response =  response as? HTTPURLResponse , response.statusCode == 200 else {
@@ -154,3 +167,4 @@ actor Semphore {
         }
     }
 }
+

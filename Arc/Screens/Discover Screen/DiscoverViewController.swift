@@ -8,8 +8,12 @@
 import UIKit
 
 class DiscoverViewController: DataLoadingVC {
-    internal var movies: [Movie] = []
-   // var moviesToshow:[Movie] = []
+    
+    var populerMovies:[Movie] = []
+    var upcommingMovies:[Movie] = []
+    var topRatedMovies:[Movie] = []
+     //var movies:[Movie] = []
+    
     internal var page :Int = 1
     
     private  let networkManager = NetworkManager.shared
@@ -37,8 +41,10 @@ class DiscoverViewController: DataLoadingVC {
         showLoadingView()
          Task{
              do {
-                 let movies  =  try await networkManager.getMovies(pageNumber: page)
-                 updateUI(with:movies)
+                 let populerMovies  =  try await networkManager.getMovies(category: .populer , pageNumber: page)
+                 let upcomingMovies = try await networkManager.getMovies(category: .upcomming , pageNumber: page)
+                 let topRatedMovies = try await networkManager.getMovies(category: .TopRated , pageNumber: page)
+                 updateUI(with:populerMovies, upcomingMovies, topRatedMovies)
              }catch {
                  if let error = error  as? ErrorMassages {
                      presentAler(title: .defualtOne , message: error.rawValue)
@@ -51,11 +57,12 @@ class DiscoverViewController: DataLoadingVC {
     }
     
     
-     func updateUI(with movies :[Movie]) {
-        self.movies.append(contentsOf: movies)
+    func updateUI(with movies :[Movie]...) {
+        self.populerMovies.append(contentsOf: movies[0])
+        self.upcommingMovies.append(contentsOf: movies[1])
+        self.topRatedMovies.append(contentsOf: movies[2])
         collectionView.reloadData()
     }
-    
     
     private func configureCollectionView() {
         collectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())

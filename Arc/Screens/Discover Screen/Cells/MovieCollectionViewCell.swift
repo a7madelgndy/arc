@@ -10,7 +10,7 @@ import UIKit
 class MovieCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "PopularCollectionViewCell"
     
-    private var imageTask: Task<Void, Never>?
+    private var imageTask: Task<(), Never>?
 
     lazy var movieBannerView: UIImageView = {
         let image =  UIImageView()
@@ -45,11 +45,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     func configuer(posterImagePath: String ) {
         //w185 //w342 //w500//w780
-        movieBannerView.image = nil
         let fullImageURL:String = "https://image.tmdb.org/t/p/w500\(posterImagePath)"
         
         guard  let url = URL(string: fullImageURL) else {return}
-        
         if let image = ImageCacheManager.shared.image(for: posterImagePath) {
             movieBannerView.image = image
 
@@ -70,11 +68,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
 
     }
     
-    
+    //Reste before implement to solve Flickerying 
     override func prepareForReuse() {
         super.prepareForReuse()
         movieBannerView.image = nil
-        
         imageTask?.cancel()
         imageTask = nil
     }
