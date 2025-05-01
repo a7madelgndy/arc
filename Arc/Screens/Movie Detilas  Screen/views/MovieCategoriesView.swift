@@ -30,8 +30,7 @@ class MovieCategoriesView: UIView {
         configurerStackView()
     }
     
-    convenience init(rating:Float , language :  String , releadeData: String , isAdult: Bool) {
-        self.init(frame:.zero)
+    func configuer(rating:Float , language:String ,releadeData:String , isAdult:Bool) {
         ratingTitle.text = String(rating)
         releaseDate.text = String(releadeData.prefix(4))
         languageTitle.text = language
@@ -42,9 +41,7 @@ class MovieCategoriesView: UIView {
             allowedAge.text = "+18"
         }
     }
-    
-    
-    func configurerStackView() {
+    private func configurerStackView() {
         let views = [ratingSFsymbolImage, ratingTitle, arrowSFsymbolImage, releaseDate, languageTitle, allowedAge, emptyView]
         for view in views {
             stackView.addArrangedSubview(view)

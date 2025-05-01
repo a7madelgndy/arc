@@ -25,9 +25,8 @@ class ActorImageView: UIImageView {
     }
     
     func downloadImage(fromUrl url : String) {
-        let endPoint = "https://image.tmdb.org/t/p/w92\(url)"
         Task {
-            image  = await NetworkManager.shared.downloadImage(from: endPoint)
+            image  = await NetworkManager.shared.downloadImage(from: url)
         }
       
     }

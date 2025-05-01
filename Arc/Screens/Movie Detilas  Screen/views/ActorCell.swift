@@ -13,6 +13,7 @@ class ActorCell: UICollectionViewCell {
     lazy private var actorImageView = ActorImageView(frame: .zero)
     
     
+    
     private var actorNameLable : UILabel = {
        let l = UILabel()
        l.font = UIFont.systemFont(ofSize: 10, weight: .medium)

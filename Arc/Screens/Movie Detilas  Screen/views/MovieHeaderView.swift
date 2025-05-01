@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteButtonDelegate:AnyObject {
-    func didtapedFavoriteButton(for movie : Movie? )
+    func didtapedFavoriteButton(for movie : MovieDetails? )
     func shareSheetTaped()
 }
 
@@ -21,7 +21,7 @@ class MovieHeaderView: UIView {
 
     weak  var delegage : FavoriteButtonDelegate?
     
-    private var movie :Movie?
+    private var movie :MovieDetails?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,9 +62,10 @@ class MovieHeaderView: UIView {
     }
     
     
-    func setheaderVeiw(with movie : Movie){
+    func setheaderVeiw(with movie : MovieDetails){
         self.movie = movie
-        headerTitle.text =  movie.title
+        print(movie.original_title)
+        headerTitle.text =  movie.original_title
 
     }
     
@@ -75,6 +76,6 @@ class MovieHeaderView: UIView {
     
     
     @objc private func favoriteButtonTapped() {
-        delegage?.didtapedFavoriteButton(for: movie)
+        //delegage?.didtapedFavoriteButton(for: self.movieDetails)
     }
 }

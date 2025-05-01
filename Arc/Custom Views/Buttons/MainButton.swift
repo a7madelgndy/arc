@@ -34,7 +34,7 @@ final class MainButton: UIButton {
     
     
     private func configure(color : UIColor , title: String, systemNameImage: String) {
-        configuration?.baseBackgroundColor = color
+        configuration?.baseBackgroundColor = .clear
         configuration?.baseForegroundColor = color
         configuration?.title = title
         

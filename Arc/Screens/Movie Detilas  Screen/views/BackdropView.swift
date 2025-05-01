@@ -7,23 +7,11 @@
 
 import UIKit
 
-class BoosterView: UIView {
+class BackdropView: UIView {
     var movieBooster =  UIImageView()
     var layerbalckView =  UIView()
     
-    var cellData: String? {
-        didSet{
-            if movieBooster.image == nil {
-                guard let cellData else {return}
-                Task {
-                    let fullImageURL = "https://image.tmdb.org/t/p/w500\(cellData)"
-                    let image = await NetworkManager.shared.downloadImage(from: fullImageURL)
-                    movieBooster.image = image
-                }
-            }
-        }
-    }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()

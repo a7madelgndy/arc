@@ -12,7 +12,6 @@ class DiscoverViewController: DataLoadingVC {
     var populerMovies:[Movie] = []
     var upcommingMovies:[Movie] = []
     var topRatedMovies:[Movie] = []
-     //var movies:[Movie] = []
     
     internal var page :Int = 1
     
@@ -20,9 +19,6 @@ class DiscoverViewController: DataLoadingVC {
     
     private var collectionView:UICollectionView!
     
-    let semaphore = DispatchSemaphore(value: 1)
-    
-    let myDispatch = DispatchQueue(label: "my dispatch")
     override func viewDidLoad() {
         super.viewDidLoad()
          configureCollectionView()

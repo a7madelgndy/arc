@@ -42,6 +42,8 @@ class FavoritesVC: DataLoadingVC {
         tableView.delegate = self
         
         tableView.separatorStyle = .none
+        
+
     }
     
     
@@ -89,6 +91,7 @@ extension FavoritesVC : UITableViewDataSource {
         guard let movie = favoriteMovies?[indexPath.row] else {fatalError("unable to guard the Movie ")}
         
         cell.configure(with: movie)
+        cell.selectionStyle = .none
         
         return cell
         
@@ -106,8 +109,8 @@ extension FavoritesVC : UITableViewDataSource {
                           , overview: FavoriteMovie.overview)
         
         let favoriteMovieVC = MovieDetilasVC()
-        favoriteMovieVC.movie = movie
-        favoriteMovieVC.posterView.movieBooster.image = FavoriteMovie.posterImage
+        //favoriteMovieVC.movie = movie
+        favoriteMovieVC.backdropView.movieBooster.image = FavoriteMovie.posterImage
         present(favoriteMovieVC, animated: true)
     }
 }

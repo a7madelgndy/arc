@@ -17,12 +17,10 @@ enum Category {
 fileprivate enum APIEndPoint {
     static let endPoint = "https://api.themoviedb.org/3/"
     
-    //static func  populerMovies = URL(string:endPoint + "movie/popular")!
     static func geturlWithCategory(with category: Category)->URL {
         switch category {
             
         case .populer: return URL(string:endPoint + "movie/popular")!
-            
         case .upcomming: return URL(string:endPoint + "movie/upcoming")!
         case .TopRated: return URL(string:endPoint + "movie/top_rated")!
         }
@@ -35,6 +33,11 @@ fileprivate enum APIEndPoint {
     static func movieVedios(movieID: Int)-> URL {
         let url = endPoint + "movie/\(movieID)/videos"
         return URL(string:url)!
+    }
+    
+    static func movieDetials(movieID: Int)-> URL {
+        let url = endPoint + "movie/\(movieID)"
+        return URL(string: url)!
     }
 
 }
@@ -97,7 +100,6 @@ actor NetworkManager {
         do {
             let vediosRespons = try decoder.decode(videosResponse.self, from: data)
             let youtubeKey = vediosRespons.results[0].key
-            print(vediosRespons.results[0].key)
             guard let youtubeUrl  = URL(string: "https://www.youtube.com/watch?v=\(youtubeKey)")  else {return nil}
             return youtubeUrl
         }catch {
@@ -105,10 +107,21 @@ actor NetworkManager {
         }
     }
     
-    
-    func downloadImage(from urlString: String) async -> UIImage? {
+    func getMovieDetails(with id : Int) async throws -> MovieDetails {
+        let request = APIComponet.makeRequest(withUrl: APIEndPoint.movieDetials(movieID: id))
+        let (data, _) = try await URLSession.shared.data(for: request)
         
-        guard let url = URL(string: urlString) else {return nil}
+        do {
+            let movieDetails = try decoder.decode(MovieDetails.self, from: data)
+            return movieDetails
+        }catch {
+            throw ErrorMassages.unableToDecodeVideoData
+        }
+    }
+    
+    func downloadImage(from urlPath: String ) async -> UIImage? {
+        let url = "https://image.tmdb.org/t/p/w500\(urlPath)"
+        guard let url = URL(string: url) else {return nil}
         do {
             
             let (data, _) = try await  URLSession.shared.data(from: url)
@@ -132,7 +145,6 @@ actor NetworkManager {
     
         do {
             let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
-            print(castResponse)
             return castResponse.cast
         }catch{
             

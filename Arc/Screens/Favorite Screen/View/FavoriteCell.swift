@@ -19,6 +19,10 @@ class FavoriteCell: UITableViewCell {
         configureUI()
     }
     
+    override func didMoveToSuperview() {
+        selectedBackgroundView?.isHidden = false
+    }
+    
     
     private func configureUI() {
         addSubViews(movieImage, movieDetilesView)

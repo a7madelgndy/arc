@@ -7,21 +7,29 @@
 
 import UIKit
 
-
 extension DiscoverViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieVc = MovieDetilasVC()
-        var movie:Movie?
+        var movieId:Int?
         
         switch indexPath.section {
-        case 0  : movie =  populerMovies[indexPath.row]
-        case 1 :  movie =  upcommingMovies[indexPath.row]
-        default : movie =  topRatedMovies[indexPath.row]
+        case 0  : movieId =  populerMovies[indexPath.row].id
+        case 1 :  movieId =  upcommingMovies[indexPath.row].id
+        default : movieId =  topRatedMovies[indexPath.row].id
         }
         
-        guard let movie else {return}
-        movieVc.set(with: movie)
-        present(movieVc, animated: true)
+        showLoadingView()
+        Task{
+            do{
+                guard let movieId else {return}
+                movieVc.movieDetails = try  await NetworkManager.shared.getMovieDetails(with: movieId)
+                present(movieVc, animated: true)
+            }catch {
+                presentDefaultError()
+            }
+          dismissLoadingView()
+        }
+      
     }
 }
 
@@ -55,9 +63,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
         case 0 :
             imagePath = populerMovies[indexPath.row].poster_path
             cell.configuer(posterImagePath: imagePath)
-            if indexPath.row == populerMovies.count {
-                getMovies(page: 1)
-            }
             
         case 1:
             imagePath = upcommingMovies[indexPath.row].poster_path
