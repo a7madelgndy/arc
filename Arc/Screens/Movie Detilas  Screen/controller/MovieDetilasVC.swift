@@ -31,9 +31,11 @@ class MovieDetilasVC: DataLoadingVC {
         getBackdropImage(with: movieDetails.backdrop_path!)
         assignDataToViews()
         getCastMemberData(with: movieDetails.id)
-        //configuerButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        configuerButton()
+    }
     
     private func getBackdropImage(with path: String)  {
         Task {
@@ -65,9 +67,8 @@ class MovieDetilasVC: DataLoadingVC {
             headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
         }else {
             headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart")
-            
         }
-    }
+}
     
     
      private func checkIsMovieIncordate(movieId : Int)-> Bool? {
@@ -153,8 +154,9 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
                         presentAler(title: .defualtOne, message: error.rawValue)
                     }
                 }
-                
-            }
+        }
+            configuerButton()
+
         }catch {
             if let error = error as? ErrorMassages {
                 presentAler(title: .defualtOne, message: error.rawValue)

@@ -142,9 +142,8 @@
 		154285E02DBA825000457B9C /* Discover Screen */ = {
 			isa = PBXGroup;
 			children = (
+				15A8B64B2DC4942F004F8520 /* Controller */,
 				154376B12DB3DDD100A2B39B /* Cells */,
-				154376922DB3D1A100A2B39B /* DiscoverViewController.swift */,
-				154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */,
 			);
 			path = "Discover Screen";
 			sourceTree = "<group>";
@@ -427,6 +426,15 @@
 				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		15A8B64B2DC4942F004F8520 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				154376922DB3D1A100A2B39B /* DiscoverViewController.swift */,
+				154376A92DB3DB9F00A2B39B /* DiscoverViewController+EXT.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
