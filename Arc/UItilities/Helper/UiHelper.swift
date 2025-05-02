@@ -27,6 +27,7 @@ struct UIHelper {
         return flowlayout
     }
     
+    
     static func createEmptyStateView()-> UIContentUnavailableConfiguration {
         var config = UIContentUnavailableConfiguration.empty()
         config.image = .init(systemName: "heart.slash")

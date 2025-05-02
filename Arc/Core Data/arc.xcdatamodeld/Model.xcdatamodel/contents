@@ -2,11 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="FavoriteMovie" representedClassName="FavoriteMovie" syncable="YES">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="backdropImage" optional="YES" attributeType="Transformable" valueTransformerName="ImageAttributeTransformer" customClassName="UIImage"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalCountry" optional="YES" attributeType="String"/>
         <attribute name="originalLanguage" optional="YES" attributeType="String"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
         <attribute name="posterImage" optional="YES" attributeType="Transformable" valueTransformerName="ImageAttributeTransformer" customClassName="UIImage"/>
         <attribute name="releaseData" optional="YES" attributeType="String"/>
+        <attribute name="runtime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="voteAverage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>

@@ -88,8 +88,8 @@ class MovieDetilesView: UIView {
     
     func configureData(with movie: FavoriteMovieModel) {
         title.text = movie.title
-        vote.text = String(format: "%.1f",movie.vote_average)
-        releaseData.text = String(movie.release_date.prefix(4))
+        vote.text = String(format: "%.1f",movie.voteAverage)
+        releaseData.text = String(movie.releaseDate.prefix(4))
         
     }
     

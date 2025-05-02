@@ -43,7 +43,8 @@ class FavoritesVC: DataLoadingVC {
         
         tableView.separatorStyle = .none
         
-
+        tableView.sectionIndexBackgroundColor = .clear
+        
     }
     
     
@@ -88,7 +89,7 @@ extension FavoritesVC : UITableViewDataSource {
             fatalError("unable to deque")
         }
         
-        guard let movie = favoriteMovies?[indexPath.row] else {fatalError("unable to guard the Movie ")}
+        guard let movie = favoriteMovies?[indexPath.row] else {fatalError("unable to guard the Movie")}
         
         cell.configure(with: movie)
         cell.selectionStyle = .none
@@ -101,16 +102,16 @@ extension FavoritesVC : UITableViewDataSource {
         guard let FavoriteMovie = favoriteMovies?[indexPath.row] else {fatalError("Counden't guard the favorite movie")}
         let movie = Movie(poster_path: " ",
                           title: FavoriteMovie.title,
-                          release_date: FavoriteMovie.release_date,
-                          vote_average: FavoriteMovie.vote_average,
-                          original_language: FavoriteMovie.original_language,
+                          release_date: FavoriteMovie.releaseDate,
+                          vote_average: FavoriteMovie.voteAverage,
+                          original_language: FavoriteMovie.originalLanguage,
                           adult: FavoriteMovie.adult,
                           id: FavoriteMovie.id
                           , overview: FavoriteMovie.overview)
         
         let favoriteMovieVC = MovieDetilasVC()
-        //favoriteMovieVC.movie = movie
-        favoriteMovieVC.backdropView.movieBooster.image = FavoriteMovie.posterImage
-        present(favoriteMovieVC, animated: true)
+        //favoriteMovieVC.movieDetails = movie
+        //favoriteMovieVC.posterView.movieBooster.image = FavoriteMovie.posterImage
+        //present(favoriteMovieVC, animated: true)
     }
 }

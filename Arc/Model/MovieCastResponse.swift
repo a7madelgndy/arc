@@ -9,7 +9,6 @@ import Foundation
 
 struct MovieCastResponse: Codable{
     let  cast: [CastMember]
-    let  backdrop_path: String
 }
 
 struct CastMember: Codable {

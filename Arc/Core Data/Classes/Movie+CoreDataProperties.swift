@@ -19,10 +19,13 @@ extension FavoriteMovie {
     @NSManaged public var id: Int32   
     @NSManaged public var adult: Bool
     @NSManaged public var originalLanguage: String
+    @NSManaged public var originalCountry: String
     @NSManaged public var overview: String
     @NSManaged public var posterImage: UIImage
     @NSManaged public var releaseData: String
-    @NSManaged public var voteAverage: Float
+    @NSManaged public var voteAverage: Float  
+    @NSManaged public var backdropImage: UIImage
+    @NSManaged public var runtime: Int16
 }
 
 extension FavoriteMovie : Identifiable {

@@ -8,7 +8,7 @@
 import UIKit
 
 class BackdropView: UIView {
-    var movieBooster =  UIImageView()
+    var BackdropImageView =  UIImageView()
     var layerbalckView =  UIView()
     
 
@@ -23,13 +23,13 @@ class BackdropView: UIView {
     
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        addSubview(movieBooster)
-        movieBooster.pinToEages(to: self)
+        addSubview(BackdropImageView)
+        BackdropImageView.pinToEages(to: self)
 
-        movieBooster.contentMode = .scaleAspectFill
-        movieBooster.clipsToBounds = true
+        BackdropImageView.contentMode = .scaleAspectFill
+        BackdropImageView.clipsToBounds = true
         
-        movieBooster.addSubview(layerbalckView)
+        BackdropImageView.addSubview(layerbalckView)
         layerbalckView.backgroundColor = .black.withAlphaComponent(0.1)
         layerbalckView.pinToEages(to: self)
     }

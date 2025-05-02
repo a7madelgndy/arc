@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteButtonDelegate:AnyObject {
-    func didtapedFavoriteButton(for movie : MovieDetails? )
+    func didtapedFavoriteButton()
     func shareSheetTaped()
 }
 
@@ -16,8 +16,8 @@ protocol FavoriteButtonDelegate:AnyObject {
 class MovieHeaderView: UIView {
     private var headerTitle = TitleLabel(textAlignment: .left, fontsize: 20)
     
-    var favoriteButton = MainButton(color: .systemPurple, title: "", systemNameImage: "heart")
-    var shareSheetButton = MainButton(color: .systemRed, title: "", systemNameImage: "square.and.arrow.up")
+    var favoriteButton = MainButton(systemNameImage: "heart", foregroundcolor: .systemPurple)
+    var shareSheetButton = MainButton(systemNameImage: "square.and.arrow.up", foregroundcolor: .systemPink)
 
     weak  var delegage : FavoriteButtonDelegate?
     
@@ -62,7 +62,7 @@ class MovieHeaderView: UIView {
     }
     
     
-    func setheaderVeiw(with movie : MovieDetails){
+    func configureheaderVeiw(with movie : MovieDetails){
         self.movie = movie
         print(movie.original_title)
         headerTitle.text =  movie.original_title
@@ -76,6 +76,6 @@ class MovieHeaderView: UIView {
     
     
     @objc private func favoriteButtonTapped() {
-        //delegage?.didtapedFavoriteButton(for: self.movieDetails)
+        delegage?.didtapedFavoriteButton()
     }
 }

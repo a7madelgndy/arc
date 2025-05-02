@@ -58,6 +58,7 @@
 		15A8B6412DC30269004F8520 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6402DC30269004F8520 /* ImageCacheManager.swift */; };
 		15A8B6432DC376A3004F8520 /* MovieDetails .swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6422DC376A3004F8520 /* MovieDetails .swift */; };
 		15A8B6452DC39B7A004F8520 /* imageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6442DC39B7A004F8520 /* imageQuality.swift */; };
+		15A8B64A2DC3E0C7004F8520 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6492DC3E0C7004F8520 /* Converter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		15A8B6402DC30269004F8520 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		15A8B6422DC376A3004F8520 /* MovieDetails .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetails .swift"; sourceTree = "<group>"; };
 		15A8B6442DC39B7A004F8520 /* imageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageQuality.swift; sourceTree = "<group>"; };
+		15A8B6492DC3E0C7004F8520 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,8 +201,8 @@
 				154376AF2DB3DDC400A2B39B /* Custom Views */,
 				154376A62DB3D81300A2B39B /* Screens */,
 				154285DF2DBA81D100457B9C /* Support */,
+				15A8B6472DC3DE4F004F8520 /* Core Data */,
 				1543769C2DB3D1A300A2B39B /* Info.plist */,
-				154285E92DBAEB9600457B9C /* arc.xcdatamodeld */,
 			);
 			path = Arc;
 			sourceTree = "<group>";
@@ -258,8 +260,6 @@
 		154376B42DB3E2A200A2B39B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */,
-				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
 				154376B82DB3E95000A2B39B /* AppLayouts.swift */,
 				154376C42DB4264100A2B39B /* Movie.swift */,
 				157AC10B2DB929CF007409D4 /* MovieCastResponse.swift */,
@@ -308,6 +308,7 @@
 		157AC0D32DB69117007409D4 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				15024A4E2DBC37EC009D0760 /* Constants.swift */,
 				157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */,
 				157AC0D42DB69141007409D4 /* MovieBannerSize.swift */,
 				15024A522DBC47A4009D0760 /* AllertTitles.swift */,
@@ -345,10 +346,8 @@
 		157AC0E32DB6A38F007409D4 /* UItilities */ = {
 			isa = PBXGroup;
 			children = (
-				15A8B63E2DC19330004F8520 /* Transformers */,
 				157AC10F2DB937C4007409D4 /* Helper */,
 				157AC0D32DB69117007409D4 /* Enums */,
-				15024A4E2DBC37EC009D0760 /* Constants.swift */,
 			);
 			path = UItilities;
 			sourceTree = "<group>";
@@ -398,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				157AC1102DB937DD007409D4 /* UiHelper.swift */,
+				15A8B6492DC3E0C7004F8520 /* Converter.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -408,6 +408,25 @@
 				15024A542DBE6346009D0760 /* ImageAttributeTransformer.swift */,
 			);
 			path = Transformers;
+			sourceTree = "<group>";
+		};
+		15A8B6472DC3DE4F004F8520 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				154285E92DBAEB9600457B9C /* arc.xcdatamodeld */,
+				15A8B6482DC3DE61004F8520 /* Classes */,
+				15A8B63E2DC19330004F8520 /* Transformers */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		15A8B6482DC3DE61004F8520 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */,
+				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +520,7 @@
 				154285EB2DBAEB9600457B9C /* arc.xcdatamodeld in Sources */,
 				15A8B6412DC30269004F8520 /* ImageCacheManager.swift in Sources */,
 				157AC1082DB927EF007409D4 /* castView.swift in Sources */,
+				15A8B64A2DC3E0C7004F8520 /* Converter.swift in Sources */,
 				157AC10A2DB928F4007409D4 /* ActorCell.swift in Sources */,
 				1549C44B2DBF174B005B07EF /* Videos.swift in Sources */,
 				157AC0F62DB7E59D007409D4 /* MovieHeaderView.swift in Sources */,
