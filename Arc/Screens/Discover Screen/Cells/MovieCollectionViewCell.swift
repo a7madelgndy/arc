@@ -58,7 +58,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
                     if Task.isCancelled {return}
                     if let image = UIImage(data: data){
                         movieBannerView.image = image
-                        ImageCacheManager.shared.cache(image, forkey: "posterImagePath")
+                        ImageCacheManager.shared.cache(image, forkey: posterImagePath)
                     }
                 }catch {
                     print("failed to download The image")
