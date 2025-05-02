@@ -1,8 +1,12 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/2703401f-91a9-40f3-9173-be8aaafbeb11" width="30%" />
   <img src="https://github.com/user-attachments/assets/26353a3a-b2d9-4977-bf02-b939da1345a7" width="30%" />
-  <img src="URL_OF_THIRD_SCREENSHOT" width="30%" />
 </p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d3563112-2952-4d10-979c-fbec7fd4e6ce" width="30%" />
+  <img src="https://github.com/user-attachments/assets/65f2b936-f954-4335-8014-92bb7d0f54d4" width="30%" />
+</p>
+
 
 # ARC 🎬
 
