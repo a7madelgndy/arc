@@ -10,6 +10,9 @@ import UIKit
 
 class MovieDetilasVC: DataLoadingVC {
     //MARK: Properties
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
     var backdropView = BackdropView()
     var headerView = HeaderView()
     var categroiesView = MovieCategoriesView()
@@ -45,6 +48,7 @@ class MovieDetilasVC: DataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        configureScrollView()
         configureConstrains()
     }
     
@@ -121,6 +125,7 @@ class MovieDetilasVC: DataLoadingVC {
         categroiesView.configuer(rating: Float(movieDetails.vote_average), language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
     
         //getCastMemberData(with: movieDetails.id)
+        
         movieOverview.text = movieDetails.overview
     }
     
@@ -131,25 +136,37 @@ class MovieDetilasVC: DataLoadingVC {
         movieOverview.text = favoriteMovie.overview
         
     }
+    private func configureScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 800)
+        ])
+        scrollView.showsVerticalScrollIndicator = false
+    }
     
     private func configureConstrains() {
-        view.addSubViews(backdropView, headerView, playTailerView, movieOverview, movieCastView,categroiesView)
+        contentView.addSubViews(backdropView, headerView, playTailerView, movieOverview, movieCastView,categroiesView)
 
-        backdropView.setConstrains(top: view.topAnchor , leading: view.leadingAnchor, trailing:  view.trailingAnchor , height: UIScreen.main.bounds.width*1/2)
+        backdropView.setConstrains(top: contentView.topAnchor , leading: contentView.leadingAnchor, trailing:  contentView.trailingAnchor , height: UIScreen.main.bounds.width*1/2)
         
-        headerView.setConstrains(top: backdropView.bottomAnchor , leading:  view.leadingAnchor , trailing: view.trailingAnchor ,paddingTop: 10, height: 50)
+        headerView.setConstrains(top: backdropView.bottomAnchor , leading:  contentView.leadingAnchor , trailing: contentView.trailingAnchor ,paddingTop: 10, height: 50)
         
         
-        categroiesView.setConstrains(top:headerView.bottomAnchor , leading: view.leadingAnchor,trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
+        categroiesView.setConstrains(top:headerView.bottomAnchor , leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor , paddingTop: 10 , paddingLeft: 20,paddingRight: 20 , height: 40)
         
-        playTailerView.setConstrains(top:categroiesView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 , height: 40)
+        playTailerView.setConstrains(top:categroiesView.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 , height: 40)
         playTailerView.delegate = self
         playTailerView.set(movieID: movieDetails?.id ?? 0)
         
-        movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20 )
+        movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20  )
         movieOverview.autoresizingMask = .flexibleHeight
         
-        movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 200)
+        movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 200)
     }
 }
 

@@ -50,7 +50,7 @@ class MovieDetilesView: UIView {
         stackView.distribution = .equalCentering
         stackView.spacing = 10
         
-        stackView.pinToEages(to: self)
+        stackView.pinToEdges(of: self)
         
         for stackView in [titleStackView, voteStackView, releaseDataStackView] {
             stackView.axis = .horizontal

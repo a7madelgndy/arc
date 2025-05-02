@@ -47,7 +47,7 @@ class MovieCategoriesView: UIView {
             stackView.addArrangedSubview(view)
         }
         addSubview(stackView)
-        stackView.pinToEages(to: self)
+        stackView.pinToEdges(of: self)
     }
     
     required init?(coder: NSCoder) {

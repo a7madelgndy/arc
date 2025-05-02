@@ -36,7 +36,7 @@ class FavoritesVC: DataLoadingVC {
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reusableidentifier)
         
         view.addSubview(tableView)
-        tableView.pinToEages(to: view)
+        tableView.pinToEdges(of: view)
         
         tableView.dataSource = self
         tableView.delegate = self

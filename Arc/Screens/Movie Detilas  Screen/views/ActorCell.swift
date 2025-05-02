@@ -16,7 +16,7 @@ class ActorCell: UICollectionViewCell {
     
     private var actorNameLable : UILabel = {
        let l = UILabel()
-       l.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        l.font = UIFont.systemFont(ofSize: 15, weight: .ultraLight, width: .standard)
        l.numberOfLines = 2
         l.textAlignment = .center
        l.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class ActorCell: UICollectionViewCell {
         actorImageView.setCenterY(inView: self)
         actorImageView.setDimensions(height: 130, width: 130)
         
-        actorNameLable.setConstrains(top:  actorImageView.bottomAnchor ,leading: leadingAnchor , trailing:  trailingAnchor , paddingBottom:  10)
+        actorNameLable.setConstrains(top:  actorImageView.bottomAnchor ,leading: leadingAnchor , trailing:  trailingAnchor , paddingTop: 5,paddingBottom:  10 )
    
         actorNameLable.setCenterX(inView: self)
 

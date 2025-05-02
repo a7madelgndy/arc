@@ -32,7 +32,7 @@ class SeactionHeaderView: UICollectionReusableView {
     
     private func confgure(){        
         addSubview(headerTitle)
-        headerTitle.pinToEages(to: self)
+        headerTitle.pinToEdges(of: self)
     }
     
     

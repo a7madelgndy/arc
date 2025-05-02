@@ -32,7 +32,7 @@ class BodyLabel: UILabel {
         adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth         = true
         minimumScaleFactor                = 0.75
-        numberOfLines                      = 9
+        numberOfLines                      = 20
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

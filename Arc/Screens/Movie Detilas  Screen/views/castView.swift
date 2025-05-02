@@ -44,7 +44,7 @@ class MovieCastView: UIView, UICollectionViewDelegate {
         
         collectionView.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom: bottomAnchor)
         collectionView.setWidth(width: framewidth * 0.9)
-        collectionView.pinToEages(to: self)
+        collectionView.pinToEdges(of: self)
     }
     
     

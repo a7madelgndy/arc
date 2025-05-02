@@ -28,7 +28,7 @@ class TrailerPlayerView: UIView {
     
     private func configurPlayButon() {
         addSubview(playButton)
-        playButton.pinToEages(to: self)
+        playButton.pinToEdges(of: self)
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
     }
     

@@ -64,7 +64,7 @@ class DiscoverViewController: DataLoadingVC {
         collectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         
         view.addSubview(collectionView)
-        collectionView.pinToEages(to: view)
+        collectionView.pinToEdges(of: view)
 
         collectionView.delegate = self
         collectionView.dataSource = self

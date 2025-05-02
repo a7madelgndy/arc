@@ -12,7 +12,7 @@ extension UIView {
         for view in Views {addSubview(view)}
     }
     
-    func pinToEages(to superView: UIView) {
+    func pinToEdges(of superView: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
         leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive = true

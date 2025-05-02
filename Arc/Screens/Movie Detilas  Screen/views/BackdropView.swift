@@ -24,14 +24,14 @@ class BackdropView: UIView {
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(BackdropImageView)
-        BackdropImageView.pinToEages(to: self)
+        BackdropImageView.pinToEdges(of: self)
 
         BackdropImageView.contentMode = .scaleAspectFill
         BackdropImageView.clipsToBounds = true
         
         BackdropImageView.addSubview(layerbalckView)
         layerbalckView.backgroundColor = .black.withAlphaComponent(0.1)
-        layerbalckView.pinToEages(to: self)
+        layerbalckView.pinToEdges(of: self)
     }
     
 
