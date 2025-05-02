@@ -9,9 +9,9 @@ import UIKit
 
 
 class MovieDetilasVC: DataLoadingVC {
-    //backdrop_path
+    //MARK: Properties
     var backdropView = BackdropView()
-    var headerView = MovieHeaderView()
+    var headerView = HeaderView()
     var categroiesView = MovieCategoriesView()
     var playTailerView = TrailerPlayerView()
     var movieOverview = BodyLabel()
@@ -21,20 +21,75 @@ class MovieDetilasVC: DataLoadingVC {
     
     var backdropImage:UIImage?
   
-    var movieDetails : MovieDetails?
+    var movieDetails : MovieDetails? {
+        didSet {
+            guard let movieDetails else {return}
+            getdataForApi()
+            assignDataToViews()
+            configuerButton(with: movieDetails.id)
+        }
+    }
+    
+    var movieFavoriteDetails : FavoriteMovieModel? {
+        didSet{
+            guard let movieFavoriteDetails else {return}
+            convertToMovieDettails(favoriteMovie: movieFavoriteDetails)
+            configuerButton(with: movieFavoriteDetails.id)
+
+        }
+    }
+    
+    var posterImage:UIImage?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureConstrains()
-        guard let movieDetails else {return}
-        getBackdropImage(with: movieDetails.backdrop_path!)
-        assignDataToViews()
-        getCastMemberData(with: movieDetails.id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        configuerButton()
+       
+    }
+    
+ 
+    
+   
+    func setWithFavoriteMovie(favoriteMovie: FavoriteMovieModel ){
+        backdropView.BackdropImageView.image = favoriteMovie.backdropImage        
+    }
+    
+    let moviUrl = URL(string: "MovieUrl")
+    lazy var sharSheet = UIActivityViewController(activityItems: [moviUrl!],applicationActivities:  nil)
+     //MARK: Dealing With CoreData
+    private func checkIsMovieIncordate(movieId : Int)-> Bool? {
+       do{
+           let  isInCoreData = try CoredataManager.shared.checkForMovie(with: movieId )
+           return isInCoreData
+       }catch {
+           presentAler(title: .defualtOne , message: error.localizedDescription )
+       }
+       
+       return nil
+   }
+    private func configuerButton(with movieId : Int) {
+        guard let isMovieINcoreData = checkIsMovieIncordate(movieId: movieId)  else {return}
+        
+        if isMovieINcoreData {
+            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
+        }else {
+            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart")
+        }
+}
+    
+    
+   
+    //MARK: Get from  api
+    
+    func getdataForApi() {
+        guard let movieDetails else {return}
+        getBackdropImage(with: movieDetails.backdrop_path!)
+        getCastMemberData(with: movieDetails.id)
     }
     
     private func getBackdropImage(with path: String)  {
@@ -43,8 +98,8 @@ class MovieDetilasVC: DataLoadingVC {
             guard let backdropImage else {return}
             backdropView.BackdropImageView.image = backdropImage
         }
-           
     }
+    
     private func getCastMemberData(with movieID : Int) {
         Task{
             do {
@@ -56,32 +111,26 @@ class MovieDetilasVC: DataLoadingVC {
         }
     }
     
-    func setWithFavoriteMovie(favoriteMovie: FavoriteMovieModel ){
-        backdropView.BackdropImageView.image = favoriteMovie.backdropImage        
+    //MARK: configuration methouds
+    
+    private func assignDataToViews() {
+        guard let movieDetails else {return}
+        headerView.configureheaderVeiw(with: movieDetails)
+        headerView.delegage = self
+     
+        categroiesView.configuer(rating: Float(movieDetails.vote_average), language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
+    
+        //getCastMemberData(with: movieDetails.id)
+        movieOverview.text = movieDetails.overview
     }
     
-    private func configuerButton() {
-        guard let movieDetails ,  let isMovieINcoreData = checkIsMovieIncordate(movieId: movieDetails.id)  else {return}
+    private func convertToMovieDettails(favoriteMovie : FavoriteMovieModel) {
+        backdropView.BackdropImageView.image = favoriteMovie.backdropImage
+        headerView.title.text = favoriteMovie.title
+        categroiesView.configuer(rating: favoriteMovie.voteAverage, language: favoriteMovie.originalLanguage, releadeData: favoriteMovie.releaseDate, isAdult: favoriteMovie.adult)
+        movieOverview.text = favoriteMovie.overview
         
-        if isMovieINcoreData {
-            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
-        }else {
-            headerView.favoriteButton.configuration?.image = UIImage(systemName: "heart")
-        }
-}
-    
-    
-     private func checkIsMovieIncordate(movieId : Int)-> Bool? {
-        do{
-            let  isInCoreData = try CoredataManager.shared.checkForMovie(with: movieId )
-            return isInCoreData
-        }catch {
-            presentAler(title: .defualtOne , message: error.localizedDescription )
-        }
-        
-        return nil
     }
-    
     
     private func configureConstrains() {
         view.addSubViews(backdropView, headerView, playTailerView, movieOverview, movieCastView,categroiesView)
@@ -97,31 +146,11 @@ class MovieDetilasVC: DataLoadingVC {
         playTailerView.delegate = self
         playTailerView.set(movieID: movieDetails?.id ?? 0)
         
-        movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20 , height: 100)
-        
+        movieOverview.setConstrains(top: playTailerView.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor , paddingTop:  10 , paddingLeft:  20 , paddingRight: 20 )
+        movieOverview.autoresizingMask = .flexibleHeight
         
         movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: view.leadingAnchor , trailing: view.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 60)
     }
-    
-    
-    private func assignDataToViews() {
-        guard let movieDetails else {return}
-        headerView.configureheaderVeiw(with: movieDetails)
-        headerView.delegage = self
-     
-        categroiesView.configuer(rating: Float(movieDetails.vote_average), language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
-        
-    
-        //getCastMemberData(with: movieDetails.id)
-        
-        movieOverview.text = movieDetails.overview
-    }
-    
-    let moviUrl = URL(string: "MovieUrl")
-    lazy var sharSheet = UIActivityViewController(activityItems: [moviUrl!],applicationActivities:  nil)
-
-
-    
 }
 
 
@@ -140,7 +169,7 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
             if !isInCoreData {
                 do {
                     guard let backdropImage else{return}
-                    try CoredataManager.shared.save(withMovie: movieDetails, posterImage: backdropImage )
+                    try CoredataManager.shared.save(withMovie: movieDetails, backdropImage: backdropImage )
                 }catch {
                     if let error = error as? ErrorMassages {
                         presentAler(title: .defualtOne, message: error.rawValue)
@@ -155,7 +184,7 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
                     }
                 }
         }
-            configuerButton()
+            configuerButton(with: movieDetails.id)
 
         }catch {
             if let error = error as? ErrorMassages {

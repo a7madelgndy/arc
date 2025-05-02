@@ -99,19 +99,23 @@ extension FavoritesVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let FavoriteMovie = favoriteMovies?[indexPath.row] else {fatalError("Counden't guard the favorite movie")}
-        let movie = Movie(poster_path: " ",
-                          title: FavoriteMovie.title,
-                          release_date: FavoriteMovie.releaseDate,
-                          vote_average: FavoriteMovie.voteAverage,
-                          original_language: FavoriteMovie.originalLanguage,
-                          adult: FavoriteMovie.adult,
-                          id: FavoriteMovie.id
-                          , overview: FavoriteMovie.overview)
-        
+        guard let movie = favoriteMovies?[indexPath.row] else {fatalError("Counden't guard the favorite movie")}
+        let favoritemovie = FavoriteMovieModel(title: movie.title,
+                                       id: movie.id,
+                                       adult: movie.adult,
+                                       originalLanguage: movie.originalLanguage,
+                                       originalCountry: movie.originalCountry,
+                                       overview: movie.overview,
+                                       posterImage: movie.posterImage,
+                                       releaseDate: movie.releaseDate,
+                                       voteAverage:  movie.voteAverage,
+                                       backdropImage: movie.backdropImage,
+                                       runtime: movie.runtime)
+        guard let f = favoritemovie.backdropImage else {
+            
+            return }
         let favoriteMovieVC = MovieDetilasVC()
-        //favoriteMovieVC.movieDetails = movie
-        //favoriteMovieVC.posterView.movieBooster.image = FavoriteMovie.posterImage
-        //present(favoriteMovieVC, animated: true)
+         favoriteMovieVC.movieFavoriteDetails = favoritemovie
+        present(favoriteMovieVC, animated: true)
     }
 }

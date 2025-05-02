@@ -12,7 +12,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private var imageTask: Task<(), Never>?
 
-    lazy var movieBannerView: UIImageView = {
+    lazy var moviePosterView: UIImageView = {
         let image =  UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .systemBackground
@@ -32,15 +32,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
-        addSubview(movieBannerView)
+        addSubview(moviePosterView)
         
-        movieBannerView.setConstrains(top: topAnchor ,
+        moviePosterView.setConstrains(top: topAnchor ,
                                       leading: leadingAnchor ,
                                       bottom : bottomAnchor,
                                       trailing: trailingAnchor ,
                                       width: BannerSize.width,
                                       height: BannerSize.height)
-        movieBannerView.backgroundColor = .systemGray3
+        moviePosterView.backgroundColor = .systemGray3
     }
     
     func configuer(posterImagePath: String ) {
@@ -49,7 +49,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         guard  let url = URL(string: fullImageURL) else {return}
         if let image = ImageCacheManager.shared.image(for: posterImagePath) {
-            movieBannerView.image = image
+            moviePosterView.image = image
 
         }else {
             imageTask = Task {
@@ -57,7 +57,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
                     let (data, _ ) = try await URLSession.shared.data(from: url)
                     if Task.isCancelled {return}
                     if let image = UIImage(data: data){
-                        movieBannerView.image = image
+                        moviePosterView.image = image
                         ImageCacheManager.shared.cache(image, forkey: posterImagePath)
                     }
                 }catch {
@@ -71,7 +71,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     //Reste before implement to solve Flickerying 
     override func prepareForReuse() {
         super.prepareForReuse()
-        movieBannerView.image = nil
+        moviePosterView.image = nil
         imageTask?.cancel()
         imageTask = nil
     }

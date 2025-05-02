@@ -25,7 +25,7 @@ class CoredataManager{
     }
     
     
-    func save(withMovie favoritemovie : MovieDetails ,posterImage : UIImage ) throws{
+    func save(withMovie favoritemovie : MovieDetails ,backdropImage : UIImage ) throws{
         let movie = FavoriteMovie(context: context)
         
         movie.title = favoritemovie.title
@@ -34,14 +34,18 @@ class CoredataManager{
         movie.originalLanguage = favoritemovie.original_language
         movie.releaseData = favoritemovie.release_date
         movie.voteAverage = Float(favoritemovie.vote_average)
-        movie.posterImage = posterImage
         movie.overview = favoritemovie.overview
         movie.runtime = Int16(favoritemovie.runtime ?? 0)
         movie.originalCountry = favoritemovie.origin_country[0]
         
+        if  let imagePosterchache = ImageCacheManager.shared.image(for: favoritemovie.poster_path ?? " ")  {
+            movie.posterImage = imagePosterchache
+        }
+        movie.backdropImage = backdropImage
+        
         do {
             try context.save()
-            print("sav")
+        
         }catch {
            throw ErrorMassages.unabletoSaveMovie
         }

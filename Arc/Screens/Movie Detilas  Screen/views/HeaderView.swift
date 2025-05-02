@@ -13,8 +13,8 @@ protocol FavoriteButtonDelegate:AnyObject {
 }
 
 
-class MovieHeaderView: UIView {
-    private var headerTitle = TitleLabel(textAlignment: .left, fontsize: 20)
+class HeaderView: UIView {
+    var title = TitleLabel(textAlignment: .left, fontsize: 20)
     
     var favoriteButton = MainButton(systemNameImage: "heart", foregroundcolor: .systemPurple)
     var shareSheetButton = MainButton(systemNameImage: "square.and.arrow.up", foregroundcolor: .systemPink)
@@ -35,9 +35,9 @@ class MovieHeaderView: UIView {
     }
     
     private func configureHeaderTitle() {
-        addSubview(headerTitle)
-        headerTitle.setCenterY(inView: self)
-        headerTitle.setConstrains(leading: leadingAnchor,paddingLeft: 20, width: UIScreen.main.bounds.width*0.7)
+        addSubview(title)
+        title.setCenterY(inView: self)
+        title.setConstrains(leading: leadingAnchor,paddingLeft: 20, width: UIScreen.main.bounds.width*0.7)
     }
     
     private func configureFavoriteButton() {
@@ -64,8 +64,7 @@ class MovieHeaderView: UIView {
     
     func configureheaderVeiw(with movie : MovieDetails){
         self.movie = movie
-        print(movie.original_title)
-        headerTitle.text =  movie.original_title
+        title.text =  movie.original_title
 
     }
     

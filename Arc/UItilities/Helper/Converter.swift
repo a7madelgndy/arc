@@ -31,7 +31,7 @@ struct Converter {
             
             
             guard let runtime = movie.value(forKey: "runtime") as? Int else {fatalError("No found in CoreData")}
-            //guard let backdropImage = movie.value(forKey: "backdropImage") as? UIImage else {fatalError("No found in CoreData")}
+            guard let backdropImage = movie.value(forKey: "backdropImage") as? UIImage else {fatalError("No found in CoreData")}
             guard let originalCountry = movie.value(forKey: "originalCountry") as? String else {fatalError("No found in CoreData")}
             
              let convertedMovie = FavoriteMovieModel(title: title,
@@ -43,7 +43,7 @@ struct Converter {
                                                 posterImage: posterImage,
                                                 releaseDate: releaseDate,
                                                 voteAverage: voteAverage,
-                                                backdropImage: nil,
+                                                backdropImage: backdropImage,
                                                 runtime: Int16(runtime))
             
             

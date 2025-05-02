@@ -139,13 +139,12 @@ actor NetworkManager {
         let enpoint = APIEndPoint.getCast(movieID: movieId)
 
         let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber: 1)
-        
-        print(request)
+      
         let (data, _) = try await URLSession.shared.data(for: request)
     
         do {
             let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
-            print(castResponse)
+          
             return castResponse.cast
         }catch{
             
