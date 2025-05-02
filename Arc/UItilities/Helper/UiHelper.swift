@@ -16,7 +16,7 @@ struct UIHelper {
         let padding: CGFloat = 0
         let minimumItemSpacing: CGFloat = 10
         
-        let itemCountPerRow: CGFloat = 3
+        let itemCountPerRow: CGFloat = 2.8
         let totalSpacing = (padding * 2) + (minimumItemSpacing * (itemCountPerRow - 1))
         let itemWidth = (width - totalSpacing) / itemCountPerRow
         

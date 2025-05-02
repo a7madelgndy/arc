@@ -11,7 +11,6 @@ class MovieCastView: UIView, UICollectionViewDelegate {
     var actors :[CastMember]? {
         didSet {
             collectionView.reloadData()
-            configuerChevronSF()
         }
     }
     
@@ -42,25 +41,14 @@ class MovieCastView: UIView, UICollectionViewDelegate {
         collectionView.register(ActorCell.self , forCellWithReuseIdentifier: ActorCell.reuseIdentifier)
         
         addSubview(collectionView)
+        
+        collectionView.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom: bottomAnchor)
+        collectionView.setWidth(width: framewidth * 0.9)
+        collectionView.pinToEages(to: self)
     }
     
-    func configuerChevronSF() {
- 
-        if actors?.count ?? 0 >= 3 {
-            rightchevronSF = SFSymbolImageView(systemImage: "chevron.right", tintColor: .systemPurple.withAlphaComponent(0.4))
-            
-            addSubview(rightchevronSF)
-            collectionView.setConstrains(top: topAnchor , leading:  leadingAnchor , bottom: bottomAnchor)
-            collectionView.setWidth(width: framewidth * 0.85)
-            
-            rightchevronSF.setConstrains(top: topAnchor , leading:  collectionView.trailingAnchor , bottom: bottomAnchor, trailing: trailingAnchor)
-        }else {
-            collectionView.pinToEages(to: self)
-        }
-   
-    }
+    
 }
-
 
 extension MovieCastView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -83,13 +71,6 @@ extension MovieCastView: UICollectionViewDataSource {
     }
     
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if didNotScrolled {
-            rightchevronSF.removeFromSuperview()
-            let width:Float = Float(UIScreen.main.bounds.width )
-            collectionView.setWidth(width: CGFloat(width))
-            didNotScrolled.toggle()
-        }
-    }
+   
 
 }
