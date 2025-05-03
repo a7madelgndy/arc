@@ -40,7 +40,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
                                       trailing: trailingAnchor ,
                                       width: BannerSize.width,
                                       height: BannerSize.height)
-        moviePosterView.backgroundColor = .systemGray3
+        moviePosterView.backgroundColor = .systemGray6
     }
     
     func configuer(posterImagePath: String ) {

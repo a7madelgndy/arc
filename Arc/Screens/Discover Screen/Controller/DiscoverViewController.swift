@@ -23,33 +23,44 @@ class DiscoverViewController: DataLoadingVC {
         super.viewDidLoad()
          configureCollectionView()
          configureCompoitionalLayout()
+         
     }
     
 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showSkeleton()
         getMovies(page: 1)
     }
     
     
      func getMovies(page:Int){
-        showLoadingView()
-         Task{
-             do {
-                 let populerMovies  =  try await networkManager.getMovies(category: .populer , pageNumber: page)
-                 let upcomingMovies = try await networkManager.getMovies(category: .upcomming , pageNumber: page)
-                 let topRatedMovies = try await networkManager.getMovies(category: .TopRated , pageNumber: page)
-                 updateUI(with:populerMovies, upcomingMovies, topRatedMovies)
-             }catch {
-                 if let error = error  as? ErrorMassages {
-                     presentAler(title: .defualtOne , message: error.rawValue)
-                 }else {
-                     presentDefaultError()
+         showLoadingView()
+        
+         DispatchQueue.global().asyncAfter(deadline: .now() + 3 , execute: { [weak self] in
+             
+             guard let self = self else {return }
+             Task{
+                 do {
+                     let populerMovies  =  try await self.networkManager.getMovies(category: .populer , pageNumber: page)
+                     let upcomingMovies = try await self.networkManager.getMovies(category: .upcomming , pageNumber: page)
+                     let topRatedMovies = try await self.networkManager.getMovies(category: .TopRated , pageNumber: page)
+                     self.hideSkeleton()
+                     self.updateUI(with:populerMovies, upcomingMovies, topRatedMovies)
+                 }catch {
+                     if let error = error  as? ErrorMassages {
+                         self.presentAler(title: .defualtOne , message: error.rawValue)
+                     }else {
+                         self.presentDefaultError()
+                     }
                  }
+                 self.dismissLoadingView()
              }
-             dismissLoadingView()
          }
+         
+         )
+        
     }
     
     

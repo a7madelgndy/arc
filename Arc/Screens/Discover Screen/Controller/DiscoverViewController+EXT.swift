@@ -40,9 +40,9 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch section {
-        case 0  : return populerMovies.count
-        case 1 :  return upcommingMovies.count
-        default :  return topRatedMovies.count
+        case 0  : return populerMovies.isEmpty ? 4 : populerMovies.count
+        case 1 :  return upcommingMovies.isEmpty ? 4 : upcommingMovies.count
+        default :  return topRatedMovies.isEmpty ? 4 :  topRatedMovies.count
         }
     }
     
@@ -61,16 +61,31 @@ extension DiscoverViewController: UICollectionViewDataSource {
 
         switch indexPath.section {
         case 0 :
-            imagePath = populerMovies[indexPath.row].poster_path
-            cell.configuer(posterImagePath: imagePath)
+            if populerMovies.isEmpty  {
+                return cell
+            }else {
+                imagePath = populerMovies[indexPath.row].poster_path
+                cell.configuer(posterImagePath: imagePath)
+            }
+       
             
         case 1:
-            imagePath = upcommingMovies[indexPath.row].poster_path
-            cell.configuer(posterImagePath: imagePath)
+            if upcommingMovies.isEmpty  {
+                return cell
+            }else {
+                imagePath = upcommingMovies[indexPath.row].poster_path
+                cell.configuer(posterImagePath: imagePath)
+            }
+           
             
         default :
-            imagePath = topRatedMovies[indexPath.row].poster_path
-            cell.configuer(posterImagePath: imagePath)
+            if  topRatedMovies.isEmpty  {
+                return cell
+            }else  {
+                imagePath = topRatedMovies[indexPath.row].poster_path
+                cell.configuer(posterImagePath: imagePath)
+            }
+           
             
         }
         
