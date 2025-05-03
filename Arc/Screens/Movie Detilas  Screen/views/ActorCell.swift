@@ -53,19 +53,22 @@ class ActorCell: UICollectionViewCell {
     func set(with actor : CastMember) {
         //actor has no image
         guard let path = actor.profile_path else {
-            actorImageView.image = UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")?.withTintColor(.gray)
+            actorImageView.image = UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")?.withTintColor(.red)
+            actorImageView.tintColor = .systemPurple.withAlphaComponent(0.5)
             return
         }
-        
         //image is in Cache
         if let image = ImageCacheManager.shared.image(for: path ) {
             actorImageView.image = image
         }
         else {
+            DispatchQueue.main.async {
+                self.actorImageView.showSkeleton()
+            }
             imageTask = Task {
-                if Task.isCancelled{return}
                 actorImageView.downloadImage(fromUrl: path)
                 actorNameLable.text = actor.name
+        
             }
         }
       

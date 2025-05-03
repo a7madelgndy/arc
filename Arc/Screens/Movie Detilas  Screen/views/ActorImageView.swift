@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ActorImageView: UIImageView {
+class ActorImageView: DataLoadingImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -26,7 +26,9 @@ class ActorImageView: UIImageView {
     
     func downloadImage(fromUrl url : String) {
         Task {
+            showSkeleton()
             image  = await NetworkManager.shared.downloadImage(from: url)
+            hideSkeleton()
         }
       
     }
