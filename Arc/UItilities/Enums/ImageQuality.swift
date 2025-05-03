@@ -6,7 +6,9 @@
 //
 
 import Foundation
-// The movie database images Sizing
+
+
+//movie database API images Sizing
 enum ImageQualities{
     
     enum poster:String {
@@ -17,6 +19,8 @@ enum ImageQualities{
         case original = "original"
  
     }
+    
+    
     enum backdrop: String {
         case w300 = "w300"
         case w780 = "w780"

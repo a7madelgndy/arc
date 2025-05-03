@@ -6,25 +6,45 @@
 //
 
 import UIKit
+protocol CancelButtonProtocol:AnyObject {
+    func didTappedCancelButton()
+    func didTappedOkButton(withIndexpath: Int)
+}
 
 class AlertVC: UIViewController {
+    
+    let actionStackView = UIStackView()
     
     let containerView = ContainerView()
     let titleLabel    = TitleLabel(textAlignment: .center, fontsize: 20)
     let messageLabel  = BodyLabel(textAlignment: .center)
-    let actionButton  = MainButton(systemNameImage: "checkmark.circle", title : "ok", foregroundcolor: .systemPurple)
+    let okActionButton  = MainButton(systemNameImage: "checkmark.circle", title : "delete", foregroundcolor: .systemPurple)
+    lazy var cancelActionButton = MainButton(systemNameImage: "xmark.circle", title : "cancel", foregroundcolor: .systemRed)
     
     var alerTitle : String?
     var message: String?
-    var buttonTitle : String?
+    var okButtonTitle : String?
+    
+    var didAddCancelButton = false
+    
+    var didTappedCancelButton = false
+    
+    weak var delegate: CancelButtonProtocol?
+    var indexPath: Int?
     
     let padding : CGFloat = 20
     
-    init(title: String? = nil, message: String? = nil, buttonTitle: String? = nil) {
+    init(title: String? = nil, message: String? = nil, okButtonTitle: String? = nil, addCancelButton: Bool = false ) {
         super.init(nibName: nil, bundle: nil)
         self.alerTitle = title
         self.message = message
-        self.buttonTitle = buttonTitle
+        self.okButtonTitle = okButtonTitle
+        
+        if addCancelButton {
+            didAddCancelButton = true
+        }
+
+    
     }
     
     
@@ -35,18 +55,17 @@ class AlertVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        view.addSubViews(containerView ,titleLabel ,actionButton,messageLabel)
+        view.addSubViews(containerView ,titleLabel ,actionStackView ,messageLabel)
         
         configerContainerView()
         configerTitleLable()
-        configerActionButton()
+        configerActionStackView()
         configerMessageLabel()
         
     }
     
 
     func configerContainerView(){
-    
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -68,16 +87,27 @@ class AlertVC: UIViewController {
     }
     
     
-    func configerActionButton() {
-        actionButton.setTitle(buttonTitle ?? "ok", for: .normal)
-        actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+    func configerActionStackView() {
+        actionStackView.axis = .horizontal
+        actionStackView.distribution = .equalSpacing
+        actionStackView.translatesAutoresizingMaskIntoConstraints = false
+        actionStackView.addArrangedSubview(okActionButton)
+        NSLayoutConstraint.activate([
+            okActionButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        if didAddCancelButton {
+            actionStackView.spacing = 10
+            actionStackView.addArrangedSubview(cancelActionButton)
+            cancelActionButton.addTarget(self, action: #selector(dismissVCWithCancelButton), for: .touchUpInside)
+        }
+        okActionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate(
         [
-            actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
-            actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
-            actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor , constant: -padding),
-            actionButton.heightAnchor.constraint(equalToConstant: 30)
+            actionStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
+            actionStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
+            actionStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor , constant: -padding),
+            actionStackView.heightAnchor.constraint(equalToConstant: 30)
         ]
         )
     }
@@ -97,7 +127,13 @@ class AlertVC: UIViewController {
     
     
     @objc func dismissVC() {
+        guard let indexPath else {return}
+        delegate?.didTappedOkButton(withIndexpath: indexPath)
         dismiss(animated: true )
+    }
+    @objc func dismissVCWithCancelButton() {
+           delegate?.didTappedCancelButton()
+            dismiss(animated: true )
     }
 }
 

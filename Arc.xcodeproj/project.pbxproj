@@ -57,7 +57,7 @@
 		157AC1112DB937DD007409D4 /* UiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC1102DB937DD007409D4 /* UiHelper.swift */; };
 		15A8B6412DC30269004F8520 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6402DC30269004F8520 /* ImageCacheManager.swift */; };
 		15A8B6432DC376A3004F8520 /* MovieDetails .swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6422DC376A3004F8520 /* MovieDetails .swift */; };
-		15A8B6452DC39B7A004F8520 /* imageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6442DC39B7A004F8520 /* imageQuality.swift */; };
+		15A8B6452DC39B7A004F8520 /* ImageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6442DC39B7A004F8520 /* ImageQuality.swift */; };
 		15A8B64A2DC3E0C7004F8520 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6492DC3E0C7004F8520 /* Converter.swift */; };
 		15BCFA232DC607E1000E5EDA /* DataLoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFA222DC607E1000E5EDA /* DataLoadingImageView.swift */; };
 /* End PBXBuildFile section */
@@ -115,7 +115,7 @@
 		157AC1102DB937DD007409D4 /* UiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiHelper.swift; sourceTree = "<group>"; };
 		15A8B6402DC30269004F8520 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		15A8B6422DC376A3004F8520 /* MovieDetails .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetails .swift"; sourceTree = "<group>"; };
-		15A8B6442DC39B7A004F8520 /* imageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageQuality.swift; sourceTree = "<group>"; };
+		15A8B6442DC39B7A004F8520 /* ImageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageQuality.swift; sourceTree = "<group>"; };
 		15A8B6492DC3E0C7004F8520 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		15BCFA222DC607E1000E5EDA /* DataLoadingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -313,7 +313,7 @@
 				157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */,
 				157AC0D42DB69141007409D4 /* MovieBannerSize.swift */,
 				15024A522DBC47A4009D0760 /* AllertTitles.swift */,
-				15A8B6442DC39B7A004F8520 /* imageQuality.swift */,
+				15A8B6442DC39B7A004F8520 /* ImageQuality.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -556,7 +556,7 @@
 				15024A572DBE6D9D009D0760 /* FavoriteMovieModel.swift in Sources */,
 				157AC0F82DB7F121007409D4 /* MovieCategoriesView.swift in Sources */,
 				157AC0ED2DB7CB43007409D4 /* MovieDetilasVC.swift in Sources */,
-				15A8B6452DC39B7A004F8520 /* imageQuality.swift in Sources */,
+				15A8B6452DC39B7A004F8520 /* ImageQuality.swift in Sources */,
 				157AC10E2DB933C2007409D4 /* ActorImageView.swift in Sources */,
 				15024A532DBC47A4009D0760 /* AllertTitles.swift in Sources */,
 				154376B92DB3E95000A2B39B /* AppLayouts.swift in Sources */,

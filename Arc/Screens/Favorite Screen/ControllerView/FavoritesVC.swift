@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesVC: DataLoadingVC {
+class FavoritesVC: UIViewController {
     private var tableView = UITableView()
     
     private var coreData = CoredataManager.shared
@@ -19,6 +19,7 @@ class FavoritesVC: DataLoadingVC {
         configureTableView()
     }
     
+    private var didtappedCancelButton:Bool?
     
     override func viewWillAppear(_ animated: Bool) {
         do {
@@ -63,20 +64,18 @@ extension FavoritesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
         
-        do {
-            try coreData.deleteMovie(withID: favoriteMovies?[indexPath.row].id ?? 3)
-        }catch{
-            if let error = error as? ErrorMassages {
-                presentAler(title: .defualtOne , message: error.rawValue)
-            }
-        }
+        let alertVC = AlertVC(title: "Delete The  movie" , message: "do you want to delete the movie " , okButtonTitle: "Delete",addCancelButton: true)
+        alertVC.delegate = self
+        alertVC.indexPath = indexPath.row
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .crossDissolve
+        present(alertVC , animated: true)
         
-        favoriteMovies?.remove(at: indexPath.row)
-        setNeedsUpdateContentUnavailableConfiguration()
-        tableView.reloadData()
+        
+        
+        
     }
 }
-
 
 extension FavoritesVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,11 +110,35 @@ extension FavoritesVC : UITableViewDataSource {
                                        voteAverage:  movie.voteAverage,
                                        backdropImage: movie.backdropImage,
                                        runtime: movie.runtime)
-        guard let f = favoritemovie.backdropImage else {
-            
-            return }
+     
         let favoriteMovieVC = MovieDetilasVC()
          favoriteMovieVC.movieFavoriteDetails = favoritemovie
         present(favoriteMovieVC, animated: true)
     }
 }
+
+extension FavoritesVC: CancelButtonProtocol {
+    func didTappedCancelButton() {
+        print("ok")
+    }
+    
+    func didTappedOkButton(withIndexpath: Int) {
+        do {
+            try self.coreData.deleteMovie(withID: self.favoriteMovies?[withIndexpath].id ?? 3)
+        }catch{
+            if let error = error as? ErrorMassages {
+                self.presentAler(title: .defualtOne , message: error.rawValue)
+            }
+        }
+        
+        self.favoriteMovies?.remove(at: withIndexpath)
+        self.setNeedsUpdateContentUnavailableConfiguration()
+        tableView.reloadData()
+    }
+    }
+    
+
+
+       
+    
+
