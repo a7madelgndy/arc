@@ -8,7 +8,7 @@
 import UIKit
 
 class BackdropView: UIView {
-    var BackdropImageView =  UIImageView()
+    var BackdropImageView =  DataLoadingImageView()
     var layerbalckView =  UIView()
     
 
@@ -25,13 +25,16 @@ class BackdropView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(BackdropImageView)
         BackdropImageView.pinToEdges(of: self)
-
+        
         BackdropImageView.contentMode = .scaleAspectFill
         BackdropImageView.clipsToBounds = true
         
         BackdropImageView.addSubview(layerbalckView)
         layerbalckView.backgroundColor = .black.withAlphaComponent(0.1)
         layerbalckView.pinToEdges(of: self)
+        
+
+        
     }
     
 

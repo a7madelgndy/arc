@@ -59,6 +59,7 @@
 		15A8B6432DC376A3004F8520 /* MovieDetails .swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6422DC376A3004F8520 /* MovieDetails .swift */; };
 		15A8B6452DC39B7A004F8520 /* imageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6442DC39B7A004F8520 /* imageQuality.swift */; };
 		15A8B64A2DC3E0C7004F8520 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8B6492DC3E0C7004F8520 /* Converter.swift */; };
+		15BCFA232DC607E1000E5EDA /* DataLoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFA222DC607E1000E5EDA /* DataLoadingImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		15A8B6422DC376A3004F8520 /* MovieDetails .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetails .swift"; sourceTree = "<group>"; };
 		15A8B6442DC39B7A004F8520 /* imageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageQuality.swift; sourceTree = "<group>"; };
 		15A8B6492DC3E0C7004F8520 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		15BCFA222DC607E1000E5EDA /* DataLoadingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +390,7 @@
 			children = (
 				157AC0FD2DB849E6007409D4 /* SFSymbolImageView.swift */,
 				1549C4442DBE7ADD005B07EF /* CornerImageView.swift */,
+				15BCFA222DC607E1000E5EDA /* DataLoadingImageView.swift */,
 			);
 			path = imageViews;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				154285EF2DBAEBE200457B9C /* Movie+CoreDataProperties.swift in Sources */,
 				157AC0D52DB69141007409D4 /* MovieBannerSize.swift in Sources */,
 				157AC1112DB937DD007409D4 /* UiHelper.swift in Sources */,
+				15BCFA232DC607E1000E5EDA /* DataLoadingImageView.swift in Sources */,
 				154376932DB3D1A100A2B39B /* DiscoverViewController.swift in Sources */,
 				1543768F2DB3D1A100A2B39B /* AppDelegate.swift in Sources */,
 				154376C02DB4020800A2B39B /* SectionDecorationView.swift in Sources */,

@@ -97,10 +97,16 @@ class MovieDetilasVC: DataLoadingVC {
     }
     
     private func getBackdropImage(with path: String)  {
-        Task {
+        DispatchQueue.main.async {
+            self.backdropView.BackdropImageView.showSkeleton()
+        }
+
+        Task { @MainActor in
             backdropImage = await NetworkManager.shared.downloadImage(from: path)
             guard let backdropImage else {return}
             backdropView.BackdropImageView.image = backdropImage
+            backdropView.BackdropImageView.hideSkeleton()
+
         }
     }
     
@@ -167,6 +173,7 @@ class MovieDetilasVC: DataLoadingVC {
         movieOverview.autoresizingMask = .flexibleHeight
         
         movieCastView.setConstrains(top: movieOverview.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor, paddingTop: 10 , paddingLeft: 20 , paddingRight: 20 ,height: 200)
+
     }
 }
 

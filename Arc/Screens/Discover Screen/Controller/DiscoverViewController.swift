@@ -13,8 +13,8 @@ class DiscoverViewController: DataLoadingVC {
     var upcommingMovies:[Movie] = []
     var topRatedMovies:[Movie] = []
     
-    internal var page :Int = 1
-    
+    var page :Int = 1
+    var ishiteApi:Bool = false
     private  let networkManager = NetworkManager.shared
     
     private var collectionView:UICollectionView!
@@ -23,15 +23,19 @@ class DiscoverViewController: DataLoadingVC {
         super.viewDidLoad()
          configureCollectionView()
          configureCompoitionalLayout()
-         
+        
     }
     
 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showSkeleton()
-        getMovies(page: 1)
+        if !ishiteApi {
+            showSkeleton()
+            getMovies(page: 1)
+            ishiteApi.toggle()
+        }
+    
     }
     
     
