@@ -416,19 +416,19 @@
 			isa = PBXGroup;
 			children = (
 				154285E92DBAEB9600457B9C /* arc.xcdatamodeld */,
-				15A8B6482DC3DE61004F8520 /* Classes */,
+				15A8B6482DC3DE61004F8520 /* models */,
 				15A8B63E2DC19330004F8520 /* Transformers */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
-		15A8B6482DC3DE61004F8520 /* Classes */ = {
+		15A8B6482DC3DE61004F8520 /* models */ = {
 			isa = PBXGroup;
 			children = (
 				154285EC2DBAEBE200457B9C /* Movie+CoreDataClass.swift */,
 				154285ED2DBAEBE200457B9C /* Movie+CoreDataProperties.swift */,
 			);
-			path = Classes;
+			path = models;
 			sourceTree = "<group>";
 		};
 		15A8B64B2DC4942F004F8520 /* Controller */ = {

@@ -10,6 +10,7 @@ import UIKit
 class ActorCell: UICollectionViewCell {
     static  let reuseIdentifier = "CastCell"
     
+    private var imageTask: Task<(),Never>?
     lazy private var actorImageView = ActorImageView(frame: .zero)
     
     
@@ -50,10 +51,31 @@ class ActorCell: UICollectionViewCell {
     }
     
     func set(with actor : CastMember) {
-        guard let path = actor.profile_path else {return}
-        actorImageView.downloadImage(fromUrl: path)
-        actorNameLable.text = actor.name
+        //actor has no image
+        guard let path = actor.profile_path else {
+            actorImageView.image = UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")?.withTintColor(.gray)
+            return
+        }
+        
+        //image is in Cache
+        if let image = ImageCacheManager.shared.image(for: path ) {
+            actorImageView.image = image
+        }
+        else {
+            imageTask = Task {
+                if Task.isCancelled{return}
+                actorImageView.downloadImage(fromUrl: path)
+                actorNameLable.text = actor.name
+            }
+        }
+      
     }
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        actorImageView.image = nil
+        imageTask?.cancel()
+        imageTask = nil
+    }
 
 }
+
