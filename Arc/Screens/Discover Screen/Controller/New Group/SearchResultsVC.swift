@@ -7,48 +7,51 @@
 
 import UIKit
 
-class SearchResultsVC: UIViewController {
+class SearchResultsVC: UIViewController{
+
     
     enum Section {case main}
     
-    var movies :[MovieDetails]? {
+    var movies :[Movie]? {
         didSet{
             guard let movies else {return}
             updataData(on: movies)
         }
     }
     
-    private var tableView: UITableView!
-    private var dataSource: UITableViewDiffableDataSource<Section, MovieDetails>!
+    
+    private var collectionView: UICollectionView!
+    
+    private var dataSource:  UICollectionViewDiffableDataSource<Section, Movie>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .yellow   
-        configureTableView()
+        configureCollectionView()
         ConfigureDataSouce()
     }
 
-    func configureTableView() {
-        tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        tableView.pinToEdges(of: view)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    func configureCollectionView() {
+        collectionView =   UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view) )
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
+        collectionView.register(movieCollectionViewCell.self, forCellWithReuseIdentifier: movieCollectionViewCell.reuseIdentifier)
 
        
     }
     func ConfigureDataSouce() {
         
-        dataSource = UITableViewDiffableDataSource<Section, MovieDetails> (tableView: tableView) { tableView, indexPath, movie in
-            let  cell = tableView.dequeueReusableCell(withIdentifier:"Cell", for: indexPath) as UITableViewCell
+        dataSource = UICollectionViewDiffableDataSource<Section, Movie> (collectionView: collectionView) { collectionView, indexPath, movie in
+            let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionViewCell.reuseIdentifier, for: indexPath) as! movieCollectionViewCell
+            cell.set(with: movie)
             return cell
         }
     }
     
-    func updataData(on movies:[MovieDetails]){
-      var snapshot = NSDiffableDataSourceSnapshot<Section, MovieDetails>()
+    
+    func updataData(on movies:[Movie]){
+      var snapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
       snapshot.appendSections([.main])
       snapshot.appendItems(movies)
       DispatchQueue.main.async {
@@ -59,21 +62,22 @@ class SearchResultsVC: UIViewController {
     func updateWithText(searchFor : String) {
         print(searchFor)
         Task{
-          try  await NetworkManager.shared.searchForaMovie(with: searchFor)
+            movies = try  await NetworkManager.shared.searchForAMovie(with:searchFor)
         }
     }
 }
-extension SearchResultsVC:  UITableViewDelegate , UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+
+extension SearchResultsVC: UICollectionViewDataSource , UICollectionViewDelegate{
+   
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        movies?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
-        //cell.textLabel = "work"
-        cell.imageView?.image = UIImage(systemName: "heart")
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionViewCell.reuseIdentifier, for: indexPath) as? movieCollectionViewCell else {fatalError("cant")}
+        guard let movies else {fatalError("cant")}
+        cell.set(with: movies[indexPath.row])
         return cell
     }
-    
     
 }

@@ -13,7 +13,7 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text , (text != ""  && text.count > 2 )else {return}
         
-        self.vc?.updateWithText(searchFor: text)
+        self.vc?.updateWithText(searchFor: text.lowercased())
         
     }
     

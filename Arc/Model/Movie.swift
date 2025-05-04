@@ -8,13 +8,13 @@
 import Foundation
 
 
-struct MovieResponse: Codable{
+struct MovieResponse: Codable, Hashable{
    let  results:[Movie]
 }
 
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
     
-    let poster_path:String
+    let poster_path:String?
     let id : Int
 
 }

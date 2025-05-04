@@ -49,7 +49,8 @@ actor NetworkManager {
         }
     }
     func searchForAMovie(with text: String)async throws -> [Movie]?{
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?certification=\(text)")!
+        let encodeQuery = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(encodeQuery)")!
         let request = APIComponet.makeRequest(withUrl: url)
         let (data, _) = try await URLSession.shared.data(for: request)
         print(data)
@@ -58,6 +59,7 @@ actor NetworkManager {
             print(moviesResponse.results)
             return moviesResponse.results
         }catch {
+            
           print("error")
         }
        return []

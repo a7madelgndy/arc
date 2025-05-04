@@ -64,7 +64,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             if populerMovies.isEmpty  {
                 return cell
             }else {
-                imagePath = populerMovies[indexPath.row].poster_path
+                imagePath = populerMovies[indexPath.row].poster_path!
                 cell.configuer(posterImagePath: imagePath)
             }
        
@@ -73,7 +73,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             if upcommingMovies.isEmpty  {
                 return cell
             }else {
-                imagePath = upcommingMovies[indexPath.row].poster_path
+                imagePath = upcommingMovies[indexPath.row].poster_path ?? " " 
                 cell.configuer(posterImagePath: imagePath)
             }
            
@@ -82,7 +82,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             if  topRatedMovies.isEmpty  {
                 return cell
             }else  {
-                imagePath = topRatedMovies[indexPath.row].poster_path
+                imagePath = topRatedMovies[indexPath.row].poster_path ?? " "
                 cell.configuer(posterImagePath: imagePath)
             }
            
