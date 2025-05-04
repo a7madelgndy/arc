@@ -14,7 +14,6 @@ class SearchResultsVC: DataLoadingVC{
     var movies :[Movie]? {
         didSet{
             guard let movies else {return}
-            self.movies = movies.filter({$0.poster_path != nil})
             updataData(on: movies)
         }
     }
@@ -66,6 +65,8 @@ class SearchResultsVC: DataLoadingVC{
         
         Task {
             let movies  = try  await NetworkManager.shared.searchForAMovie(with:searchFor)
+            self.movies = movies?.filter({$0.poster_path != nil})
+
         }
         
     }

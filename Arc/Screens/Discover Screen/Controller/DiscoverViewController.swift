@@ -43,7 +43,7 @@ class DiscoverViewController: DataLoadingVC {
     
     func configerSearchController() {
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search For a username"
+        searchController.searchBar.placeholder = "Search For A Movie"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
