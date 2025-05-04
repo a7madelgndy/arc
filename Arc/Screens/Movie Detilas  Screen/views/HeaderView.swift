@@ -16,8 +16,8 @@ protocol FavoriteButtonDelegate:AnyObject {
 class HeaderView: UIView {
     var title = TitleLabel(textAlignment: .left, fontsize: 20)
     
-    var favoriteButton = MainButton(systemNameImage: "heart", foregroundcolor: .systemPurple)
-    var shareSheetButton = MainButton(systemNameImage: "square.and.arrow.up", foregroundcolor: .systemPink)
+    var favoriteButton = MainButton(systemNameImage: SFSymbols.heart, foregroundcolor: Colors.main)
+    var shareSheetButton = MainButton(systemNameImage: SFSymbols.squareAndArrowUp, foregroundcolor: .systemPink)
 
     weak  var delegage : FavoriteButtonDelegate?
     

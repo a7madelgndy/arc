@@ -18,8 +18,8 @@ class MovieCategoriesView: UIView {
         return sv
     }()
     
-    var ratingSFsymbolImage  =  SFSymbolImageView(systemImage: "star.fill", tintColor: .systemPurple)
-    var arrowSFsymbolImage = SFSymbolImageView(systemImage: "arrow.right", tintColor: .systemPurple)
+    var ratingSFsymbolImage  =  SFSymbolImageView(systemImage: SFSymbols.star, tintColor: Colors.main)
+    var arrowSFsymbolImage = SFSymbolImageView(systemImage: SFSymbols.arrowRight, tintColor: Colors.main)
     var ratingTitle = BodyLabel()
     var releaseDate = BodyLabel()
     var languageTitle = borderTitleLabel()

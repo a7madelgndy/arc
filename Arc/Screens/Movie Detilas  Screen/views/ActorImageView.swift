@@ -27,7 +27,7 @@ class ActorImageView: DataLoadingImageView {
     func downloadImage(fromUrl url : String) {
         Task {
             showSkeleton()
-            image  = await NetworkManager.shared.downloadImage(from: url)
+            image  = await NetworkManager.shared.downloadImage(from: url, imageQuality: .ActorImageWidth300)
             hideSkeleton()
         }
       

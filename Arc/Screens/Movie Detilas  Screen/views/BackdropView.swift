@@ -17,9 +17,11 @@ class BackdropView: UIView {
         configureUI()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
@@ -32,11 +34,6 @@ class BackdropView: UIView {
         BackdropImageView.addSubview(layerbalckView)
         layerbalckView.backgroundColor = .black.withAlphaComponent(0.1)
         layerbalckView.pinToEdges(of: self)
-        
-
-        
     }
-    
-
 }
 

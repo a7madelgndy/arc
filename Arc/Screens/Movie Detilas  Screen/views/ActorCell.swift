@@ -53,7 +53,7 @@ class ActorCell: UICollectionViewCell {
     func set(with actor : CastMember) {
         //actor has no image
         guard let path = actor.profile_path else {
-            actorImageView.image = UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill")?.withTintColor(.red)
+            actorImageView.image = SFSymbols.presonWithExclamationmark.withTintColor(.red)
             actorImageView.tintColor = .systemPurple.withAlphaComponent(0.5)
             return
         }

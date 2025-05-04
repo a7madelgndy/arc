@@ -20,7 +20,7 @@ final class MainButton: UIButton {
     }
     
     
-    convenience init(  systemNameImage: String , title: String = "" , foregroundcolor: UIColor , backgroundColor : UIColor = .clear){
+    convenience init( systemNameImage: UIImage , title: String = "" , foregroundcolor: UIColor , backgroundColor : UIColor = .clear){
         self.init(frame: .zero)
         self.configure( title: title,  systemNameImage: systemNameImage ,backgroundColor :backgroundColor, foregroundcolor : foregroundcolor )
     }
@@ -33,12 +33,12 @@ final class MainButton: UIButton {
     }
     
     
-    private func configure( title: String, systemNameImage: String , backgroundColor : UIColor ,foregroundcolor: UIColor) {
+    private func configure( title: String, systemNameImage: UIImage , backgroundColor : UIColor ,foregroundcolor: UIColor) {
         configuration?.baseBackgroundColor = backgroundColor
         configuration?.baseForegroundColor = foregroundcolor
         configuration?.title = title
         
-        configuration?.image = UIImage(systemName: systemNameImage)
+        configuration?.image = systemNameImage
         configuration?.imagePadding = 6
         configuration?.imagePlacement = .leading
         

@@ -69,8 +69,4 @@ extension MovieCastView: UICollectionViewDataSource {
         cell.set(with: actors[indexPath.row] )
         return cell
     }
-    
-    
-   
-
 }

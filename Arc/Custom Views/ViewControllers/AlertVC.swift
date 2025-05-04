@@ -6,20 +6,21 @@
 //
 
 import UIKit
+
 protocol CancelButtonProtocol:AnyObject {
-    func didTappedCancelButton()
     func didTappedOkButton(withIndexpath: Int)
 }
 
+
 class AlertVC: UIViewController {
-    
+    //MARK: Properties
     let actionStackView = UIStackView()
     
     let containerView = ContainerView()
     let titleLabel    = TitleLabel(textAlignment: .center, fontsize: 20)
     let messageLabel  = BodyLabel(textAlignment: .center)
-    let okActionButton  = MainButton(systemNameImage: "checkmark.circle", title : "delete", foregroundcolor: .systemPurple)
-    lazy var cancelActionButton = MainButton(systemNameImage: "xmark.circle", title : "cancel", foregroundcolor: .systemRed)
+    let okActionButton  = MainButton(systemNameImage: SFSymbols.checkmarkCircle, title : "ok", foregroundcolor: Colors.main)
+    lazy var cancelActionButton = MainButton(systemNameImage: SFSymbols.xmarkCircle, title : "cancel", foregroundcolor: .systemRed)
     
     var alerTitle : String?
     var message: String?
@@ -52,8 +53,14 @@ class AlertVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuerUI()
+    }
+    
+    //MARK: Configuertion
+    func configuerUI() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         view.addSubViews(containerView ,titleLabel ,actionStackView ,messageLabel)
         
@@ -61,10 +68,9 @@ class AlertVC: UIViewController {
         configerTitleLable()
         configerActionStackView()
         configerMessageLabel()
-        
     }
-    
 
+    
     func configerContainerView(){
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -74,7 +80,7 @@ class AlertVC: UIViewController {
         ])
     }
     
-    
+
     func configerTitleLable() {
         titleLabel.text = alerTitle ?? "someting Went Wrong"
         
@@ -95,11 +101,15 @@ class AlertVC: UIViewController {
         NSLayoutConstraint.activate([
             okActionButton.heightAnchor.constraint(equalToConstant: 30)
         ])
+        
         if didAddCancelButton {
             actionStackView.spacing = 10
             actionStackView.addArrangedSubview(cancelActionButton)
             cancelActionButton.addTarget(self, action: #selector(dismissVCWithCancelButton), for: .touchUpInside)
+            
+            okActionButton.configuration?.title = "Delete"
         }
+        
         okActionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate(
@@ -131,8 +141,9 @@ class AlertVC: UIViewController {
         delegate?.didTappedOkButton(withIndexpath: indexPath)
         dismiss(animated: true )
     }
+    
+    
     @objc func dismissVCWithCancelButton() {
-           delegate?.didTappedCancelButton()
             dismiss(animated: true )
     }
 }

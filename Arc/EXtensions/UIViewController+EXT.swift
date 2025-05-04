@@ -25,18 +25,6 @@ extension UIViewController {
         present(alertVC , animated: true)
     }
     
-    func presentAlertWithCancelButton(completion :(@escaping (Bool)->())) {
-        let alertVC = AlertVC(title: "Delete The Movie Action" ,
-                                message: "Do you want to Delete the Movie For your Favorite  List ? " ,
-                              okButtonTitle: "ok" ,addCancelButton: true)
 
-        alertVC.modalPresentationStyle = .overFullScreen
-        alertVC.modalTransitionStyle = .crossDissolve
-        print("here in the ")
-        present(alertVC , animated: true)
-        print(alertVC.didTappedCancelButton)
-        completion(alertVC.didTappedCancelButton)
-        
-    }
     
 }

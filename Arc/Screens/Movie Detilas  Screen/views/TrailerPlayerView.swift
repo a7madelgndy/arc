@@ -12,7 +12,7 @@ protocol playTrailerDelegte:AnyObject {
 }
 
 class TrailerPlayerView: UIView {
-    private var playButton = MainButton(systemNameImage: "play.circle.fill", title: "Play", foregroundcolor: .systemPurple, backgroundColor: .systemPurple)
+    private var playButton = MainButton(systemNameImage: SFSymbols.playCircleFill, title: "Play", foregroundcolor: Colors.main, backgroundColor: Colors.main)
     
     weak var delegate : playTrailerDelegte?
     

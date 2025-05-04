@@ -64,18 +64,18 @@ extension FavoritesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
         
-        let alertVC = AlertVC(title: "Delete The  movie" , message: "do you want to delete the movie " , okButtonTitle: "Delete",addCancelButton: true)
+        let alertVC = AlertVC(title: "Delete The  movie" , message: "Do you want to delete the movie?" , okButtonTitle: "Delete",addCancelButton: true)
+        
         alertVC.delegate = self
         alertVC.indexPath = indexPath.row
+        
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .crossDissolve
         present(alertVC , animated: true)
-        
-        
-        
-        
+
     }
 }
+
 
 extension FavoritesVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,9 +84,7 @@ extension FavoritesVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reusableidentifier) as! FavoriteCell? else {
-            fatalError("unable to deque")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reusableidentifier) as! FavoriteCell? else {fatalError("unable to deque")}
         
         guard let movie = favoriteMovies?[indexPath.row] else {fatalError("unable to guard the Movie")}
         
@@ -97,19 +95,11 @@ extension FavoritesVC : UITableViewDataSource {
         
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movie = favoriteMovies?[indexPath.row] else {fatalError("Counden't guard the favorite movie")}
-        let favoritemovie = FavoriteMovieModel(title: movie.title,
-                                       id: movie.id,
-                                       adult: movie.adult,
-                                       originalLanguage: movie.originalLanguage,
-                                       originalCountry: movie.originalCountry,
-                                       overview: movie.overview,
-                                       posterImage: movie.posterImage,
-                                       releaseDate: movie.releaseDate,
-                                       voteAverage:  movie.voteAverage,
-                                       backdropImage: movie.backdropImage,
-                                       runtime: movie.runtime)
+        
+        let favoritemovie = FavoriteMovieModel.getfavoritMovie(movie: movie)
      
         let favoriteMovieVC = MovieDetilasVC()
          favoriteMovieVC.movieFavoriteDetails = favoritemovie
@@ -118,9 +108,6 @@ extension FavoritesVC : UITableViewDataSource {
 }
 
 extension FavoritesVC: CancelButtonProtocol {
-    func didTappedCancelButton() {
-        print("ok")
-    }
     
     func didTappedOkButton(withIndexpath: Int) {
         do {
@@ -135,7 +122,7 @@ extension FavoritesVC: CancelButtonProtocol {
         self.setNeedsUpdateContentUnavailableConfiguration()
         tableView.reloadData()
     }
-    }
+}
     
 
 

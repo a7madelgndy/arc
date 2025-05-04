@@ -7,6 +7,8 @@
 
 import UIKit
 import SafariServices
+
+//To activity Indector / skeleton view when the data is loading
 class DataLoadingVC: UIViewController {
     
     private var containerView : UIView!
@@ -47,7 +49,7 @@ class DataLoadingVC: UIViewController {
     
     func pressenSafrieVC(with url : URL){
         let safariVc = SFSafariViewController(url: url)
-        safariVc.preferredControlTintColor = .systemPurple
+        safariVc.preferredControlTintColor = Colors.main
         present(safariVc, animated: true)
     }
     

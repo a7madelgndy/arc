@@ -19,4 +19,20 @@ struct FavoriteMovieModel {
     let voteAverage:Float
     let backdropImage: UIImage?
     let runtime: Int16
+    
+    
+    static func getfavoritMovie(movie: FavoriteMovieModel)-> FavoriteMovieModel{
+        return FavoriteMovieModel(title: movie.title,
+                                  id: movie.id,
+                                  adult: movie.adult,
+                                  originalLanguage: movie.originalLanguage,
+                                  originalCountry: movie.originalCountry,
+                                  overview: movie.overview,
+                                  posterImage: movie.posterImage,
+                                  releaseDate: movie.releaseDate,
+                                  voteAverage:  movie.voteAverage,
+                                  backdropImage: movie.backdropImage,
+                                  runtime: movie.runtime)
+    }
+    
 }

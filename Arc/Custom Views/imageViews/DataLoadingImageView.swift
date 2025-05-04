@@ -8,6 +8,7 @@
 import UIKit
 import Dispatch
 
+//To manage Skeleton View
 class DataLoadingImageView: UIImageView {
     
     private var skeletonLayerName: String {
@@ -17,6 +18,7 @@ class DataLoadingImageView: UIImageView {
     private var skeletonGradientName: String {
         return "skeletonGradientName"
     }
+    
     
     func showSkeleton() {
         let backgroundColor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 210.0/255.0, alpha: 1.0).cgColor
@@ -52,13 +54,12 @@ class DataLoadingImageView: UIImageView {
         
     }
     
-    // 6
+ 
+    
     func hideSkeleton() {
         layer.sublayers?.removeAll {
             $0.name == skeletonLayerName || $0.name == skeletonGradientName
         }
     }
-    
-    
-    
+  
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class borderTitleLabel: UILabel {
     
-    var  borderColor : UIColor = .systemPurple
+    var  borderColor : UIColor = Colors.main
     var textInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
     
     
@@ -46,7 +46,7 @@ class borderTitleLabel: UILabel {
     
     
     private func configure() {
-        textColor                         = .systemPurple
+        textColor                         = Colors.main
         font                              = UIFont.systemFont(ofSize: 16, weight: .medium)
         adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth         = true

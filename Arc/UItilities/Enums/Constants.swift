@@ -5,18 +5,27 @@
 //  Created by Ahmed El Gndy on 26/04/2025.
 //
 
-import Foundation
 
 import UIKit
 
-enum SFSymbols {
-    static let location                  = UIImage(systemName: "mappin.and.ellipse")
-    static let repos                     = UIImage(systemName: "folder")
-    static let gists                     = UIImage(systemName: "text.alignleft" )
-    static let followers                 = UIImage(systemName: "heart" )
-    static let following                 = UIImage(systemName: "person.2" )
+enum Colors{
+    static let main:UIColor = .systemPurple
 }
-
+enum SFSymbols {
+    static let star =  UIImage(systemName: "star.fill")!
+    static let clock = UIImage(systemName: "clock")!
+    static let movieclapper  = UIImage(systemName: "movieclapper" )!
+    static let arrowRight = UIImage(systemName: "arrow.right" )!
+    static let heart  = UIImage(systemName: "heart" )!
+    static let heartFill =  UIImage(systemName: "heart.fill" )!
+    static let presonWithExclamationmark =  UIImage(systemName: "person.crop.circle.badge.exclamationmark.fill" )!
+    static let home =  UIImage(systemName: "house" )!
+    static let homeFill =  UIImage(systemName: "house.fill")!
+    static let squareAndArrowUp =  UIImage(systemName: "square.and.arrow.up")!   
+    static let checkmarkCircle =  UIImage(systemName: "checkmark.circle")!
+    static let xmarkCircle =  UIImage(systemName: "xmark.circle")!    
+    static let playCircleFill =  UIImage(systemName: "play.circle.fill")!
+}
 
 enum ScreenSize {
     static let width                    = UIScreen.main.bounds.size.width
