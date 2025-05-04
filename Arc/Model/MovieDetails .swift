@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct MovieDetails: Codable {
+struct MovieDetails: Codable,Hashable {
+
+    
     let adult: Bool
     let backdrop_path: String?
     let genres: [Genre]
@@ -31,12 +33,12 @@ struct MovieDetails: Codable {
 
 }
 
-struct Genre: Codable {
+struct Genre: Codable,Hashable  {
     let id: Int
     let name: String
 }
 
-struct ProductionCompany: Codable {
+struct ProductionCompany: Codable,Hashable  {
     let id: Int
     let logoPath: String?
     let name: String
@@ -50,7 +52,7 @@ struct ProductionCompany: Codable {
     }
 }
 
-struct ProductionCountry: Codable {
+struct ProductionCountry: Codable,Hashable  {
     let iso3166_1: String
     let name: String
 
@@ -60,7 +62,7 @@ struct ProductionCountry: Codable {
     }
 }
 
-struct SpokenLanguage: Codable {
+struct SpokenLanguage: Codable,Hashable  {
     let englishName: String
     let iso639_1: String
     let name: String
