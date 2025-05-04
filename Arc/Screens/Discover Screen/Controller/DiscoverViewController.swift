@@ -8,17 +8,16 @@
 import UIKit
 
 class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
-    
+   
+
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {return}
-        print(text)
-                
-        let vc = searchController.searchResultsController as? SearchResultsVC
+        guard let text = searchController.searchBar.text , (text != ""  && text.count > 2 )else {return}
+        
+        self.vc?.updateWithText(searchFor: text)
         
     }
     
     func configerSearchController() {
-        let searchController = UISearchController(searchResultsController: SearchResultsVC())
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search For a username"
         searchController.obscuresBackgroundDuringPresentation = false
@@ -36,7 +35,8 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
     
     private var collectionView:UICollectionView!
     
-    private var searchTableview:UIView!
+    lazy var searchController = UISearchController(searchResultsController: SearchResultsVC())
+    lazy var vc = searchController.searchResultsController as? SearchResultsVC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,13 +57,7 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
         }
     
     }
-    func configureSearchTableview() {
-        collectionView.isHidden = true
-        searchTableview = UIView()
-        searchTableview.pinToEdges(of: view)
-        searchTableview.backgroundColor = .red
-    }
-    
+
 
     
      func getMovies(page:Int){

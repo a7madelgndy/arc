@@ -48,7 +48,20 @@ actor NetworkManager {
             throw ErrorMassages.unableToDecodeVideoData
         }
     }
-    
+    func searchForAMovie(with text: String)async throws -> [Movie]?{
+        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?certification=\(text)")!
+        let request = APIComponet.makeRequest(withUrl: url)
+        let (data, _) = try await URLSession.shared.data(for: request)
+        print(data)
+        do {
+            let moviesResponse = try decoder.decode(MovieResponse.self, from: data)
+            print(moviesResponse.results)
+            return moviesResponse.results
+        }catch {
+          print("error")
+        }
+       return []
+    }
     
     func getMovieDetails(with id : Int) async throws -> MovieDetails {
         let request = APIComponet.makeRequest(withUrl: APIEndPoint.movieDetials(movieID: id))
@@ -56,6 +69,7 @@ actor NetworkManager {
         
         do {
             let movieDetails = try decoder.decode(MovieDetails.self, from: data)
+            print(movieDetails)
             return movieDetails
         }catch {
             throw ErrorMassages.unableToDecodeVideoData

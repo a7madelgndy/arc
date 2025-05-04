@@ -10,7 +10,14 @@ import UIKit
 class SearchResultsVC: UIViewController {
     
     enum Section {case main}
-
+    
+    var movies :[MovieDetails]? {
+        didSet{
+            guard let movies else {return}
+            updataData(on: movies)
+        }
+    }
+    
     private var tableView: UITableView!
     private var dataSource: UITableViewDiffableDataSource<Section, MovieDetails>!
     
@@ -19,6 +26,7 @@ class SearchResultsVC: UIViewController {
 
         view.backgroundColor = .yellow   
         configureTableView()
+        ConfigureDataSouce()
     }
 
     func configureTableView() {
@@ -30,6 +38,29 @@ class SearchResultsVC: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
        
+    }
+    func ConfigureDataSouce() {
+        
+        dataSource = UITableViewDiffableDataSource<Section, MovieDetails> (tableView: tableView) { tableView, indexPath, movie in
+            let  cell = tableView.dequeueReusableCell(withIdentifier:"Cell", for: indexPath) as UITableViewCell
+            return cell
+        }
+    }
+    
+    func updataData(on movies:[MovieDetails]){
+      var snapshot = NSDiffableDataSourceSnapshot<Section, MovieDetails>()
+      snapshot.appendSections([.main])
+      snapshot.appendItems(movies)
+      DispatchQueue.main.async {
+          self.dataSource.apply(snapshot ,animatingDifferences: true)
+        }
+    }
+    
+    func updateWithText(searchFor : String) {
+        print(searchFor)
+        Task{
+          try  await NetworkManager.shared.searchForaMovie(with: searchFor)
+        }
     }
 }
 extension SearchResultsVC:  UITableViewDelegate , UITableViewDataSource {
