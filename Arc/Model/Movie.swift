@@ -16,6 +16,7 @@ struct Movie: Codable, Hashable {
     
     let poster_path:String?
     let id : Int
+    let title: String
 
 }
 

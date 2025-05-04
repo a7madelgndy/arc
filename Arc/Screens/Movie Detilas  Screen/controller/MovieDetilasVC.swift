@@ -88,7 +88,7 @@ class MovieDetilasVC: DataLoadingVC {
     //MARK: Get from  api
     func getdataForApi() {
         guard let movieDetails else {return}
-        getBackdropImage(with: movieDetails.backdrop_path!)
+        getBackdropImage(with: movieDetails.backdrop_path ?? " ")
         getCastMemberData(with: movieDetails.id)
     }
     

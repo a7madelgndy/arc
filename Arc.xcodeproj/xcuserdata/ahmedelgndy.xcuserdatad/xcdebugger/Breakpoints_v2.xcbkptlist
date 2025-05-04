@@ -718,8 +718,8 @@
             filePath = "Arc/Screens/Discover Screen/Controller/DiscoverViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "DiscoverViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -830,8 +830,8 @@
             filePath = "Arc/Screens/Discover Screen/Controller/New Group/SearchResultsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "ConfigureDataSouce()"
             landmarkType = "7">
          </BreakpointContent>
@@ -846,8 +846,8 @@
             filePath = "Arc/Screens/Discover Screen/Controller/New Group/SearchResultsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "updataData(on:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -862,9 +862,9 @@
             filePath = "Arc/Screens/Discover Screen/Controller/New Group/SearchResultsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "updateWithText(searchFor:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "updateWithUserQuery(searchFor:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -910,8 +910,8 @@
             filePath = "Arc/Screens/Discover Screen/Controller/New Group/SearchResultsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "movies"
             landmarkType = "24">
          </BreakpointContent>

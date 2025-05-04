@@ -25,13 +25,13 @@ class movieCollectionViewCell: UICollectionViewCell {
     func configureUI() {
         contentView.addSubview(imageView)
         imageView.pinToEdges(of: contentView)
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
     }
     
     func set(with  movie: Movie) {
         Task {
-            let image = await NetworkManager.shared.downloadImage(from: movie.poster_path ?? "", imageQuality: .posterWidth92)
+            let image = await NetworkManager.shared.downloadImage(from: movie.poster_path ?? "", imageQuality: .posterWidth342)
             imageView.image = image
         }
        

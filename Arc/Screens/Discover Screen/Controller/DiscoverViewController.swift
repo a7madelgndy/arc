@@ -7,23 +7,7 @@
 
 import UIKit
 
-class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
-   
-
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text , (text != ""  && text.count > 2 )else {return}
-        
-        self.vc?.updateWithText(searchFor: text.lowercased())
-        
-    }
-    
-    func configerSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search For a username"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-    }
-    
+class DiscoverViewController: DataLoadingVC {
     
     var populerMovies:[Movie] = []
     var upcommingMovies:[Movie] = []
@@ -31,6 +15,7 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
     
     var page :Int = 1
     var ishiteApi:Bool = false
+    
     private  let networkManager = NetworkManager.shared
     
     private var collectionView:UICollectionView!
@@ -43,11 +28,9 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
          configureCollectionView()
          configureCompoitionalLayout()
          configerSearchController()
-        
     }
     
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !ishiteApi {
@@ -55,10 +38,15 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
             getMovies(page: 1)
             ishiteApi.toggle()
         }
-    
     }
 
-
+    
+    func configerSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search For a username"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
     
      func getMovies(page:Int){
          showLoadingView()
@@ -85,7 +73,6 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
          }
          
          )
-        
     }
     
     
@@ -95,6 +82,7 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
         self.topRatedMovies.append(contentsOf: movies[2])
         collectionView.reloadData()
     }
+    
     
     private func configureCollectionView() {
         collectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
@@ -131,3 +119,12 @@ class DiscoverViewController: DataLoadingVC, UISearchResultsUpdating {
 }
 
 
+extension DiscoverViewController:UISearchResultsUpdating {
+
+     func updateSearchResults(for searchController: UISearchController) {
+         guard let text = searchController.searchBar.text , (text != ""  && text.count > 1 )else {return}
+         
+         self.vc?.updateWithUserQuery(searchFor: text.lowercased())
+         
+     }
+}
