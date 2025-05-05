@@ -20,16 +20,21 @@ class DiscoverViewController: DataLoadingVC {
     
     private var collectionView:UICollectionView!
     
-    lazy var searchController = UISearchController(searchResultsController: SearchResultsVC())
-    lazy var vc = searchController.searchResultsController as? SearchResultsVC
+    lazy var searchResultVc = SearchResultsVC()
+    
+    lazy var searchController: UISearchController = {
+        let navControler = UINavigationController(rootViewController: searchResultVc)
+        return UISearchController(searchResultsController: navControler)
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
          configureCollectionView()
          configureCompoitionalLayout()
          configerSearchController()
+ 
     }
-    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -123,8 +128,10 @@ extension DiscoverViewController:UISearchResultsUpdating {
 
      func updateSearchResults(for searchController: UISearchController) {
          guard let text = searchController.searchBar.text , (text != ""  && text.count > 1 )else {return}
-         
-         self.vc?.updateWithUserQuery(searchFor: text.lowercased())
+
+         self.searchResultVc.updateWithUserQuery(searchFor: text.lowercased())
          
      }
+    
+    
 }

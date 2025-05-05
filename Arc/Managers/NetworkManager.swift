@@ -53,10 +53,9 @@ actor NetworkManager {
         let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(encodeQuery)")!
         let request = APIComponet.makeRequest(withUrl: url)
         let (data, _) = try await URLSession.shared.data(for: request)
-        print(data)
+
         do {
             let moviesResponse = try decoder.decode(MovieResponse.self, from: data)
-            print(moviesResponse.results)
             return moviesResponse.results
         }catch {
             
@@ -71,7 +70,6 @@ actor NetworkManager {
         
         do {
             let movieDetails = try decoder.decode(MovieDetails.self, from: data)
-            print(movieDetails)
             return movieDetails
         }catch {
             throw ErrorMassages.unableToDecodeVideoData
@@ -81,8 +79,8 @@ actor NetworkManager {
     func downloadImage(from urlPath: String , imageQuality: ImageQualities ) async -> UIImage? {
         let url = "https://image.tmdb.org/t/p/\(imageQuality.rawValue)\(urlPath)"
         guard let url = URL(string: url) else {return nil}
+        
         do {
-            
             let (data, _) = try await  URLSession.shared.data(from: url)
             
             guard let image = UIImage(data: data) else {return nil}
@@ -106,7 +104,6 @@ actor NetworkManager {
           
             return castResponse.cast
         }catch{
-            
             return []
         }
         

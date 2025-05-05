@@ -97,12 +97,15 @@ extension SearchResultsVC: UICollectionViewDataSource , UICollectionViewDelegate
         showLoadingView()
         Task{
             do{
-                movieVc.movieDetails = try  await NetworkManager.shared.getMovieDetails(with: movieId)
+                let movieDetails = try  await NetworkManager.shared.getMovieDetails(with: movieId)
+                movieVc.movieDetails = movieDetails
                 present(movieVc, animated: true)
+                
+              
             }catch {
                 presentDefaultError()
             }
-          dismissLoadingView()
+            dismissLoadingView()
         }
     }
 }

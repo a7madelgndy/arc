@@ -18,11 +18,12 @@ extension DiscoverViewController : UICollectionViewDelegate {
         default : movieId =  topRatedMovies[indexPath.row].id
         }
         
+        guard let movieId else {return}
         showLoadingView()
         Task{
             do{
-                guard let movieId else {return}
                 movieVc.movieDetails = try  await NetworkManager.shared.getMovieDetails(with: movieId)
+                let movieVc = movieVc
                 present(movieVc, animated: true)
             }catch {
                 presentDefaultError()

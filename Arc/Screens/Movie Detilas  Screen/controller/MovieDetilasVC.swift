@@ -24,6 +24,7 @@ class MovieDetilasVC: DataLoadingVC {
     
     var backdropImage:UIImage?
     
+    //deal with it if you make api call
     var movieDetails : MovieDetails? {
         didSet {
             guard let movieDetails else {return}
@@ -33,7 +34,7 @@ class MovieDetilasVC: DataLoadingVC {
         }
     }
     
-    
+    //deal with it if you deal with coredate
     var movieFavoriteDetails : FavoriteMovieModel? {
         didSet{
             guard let movieFavoriteDetails else {return}
@@ -61,8 +62,6 @@ class MovieDetilasVC: DataLoadingVC {
         backdropView.BackdropImageView.image = favoriteMovie.backdropImage
     }
     
-    
-    
     //MARK: Dealing With CoreData
     private func checkIsMovieIncordate(movieId : Int)-> Bool? {
         do{
@@ -74,6 +73,8 @@ class MovieDetilasVC: DataLoadingVC {
         
         return nil
     }
+    
+    
     private func configuerButton(with movieId : Int) {
         guard let isMovieINcoreData = checkIsMovieIncordate(movieId: movieId)  else {return}
         
@@ -94,16 +95,11 @@ class MovieDetilasVC: DataLoadingVC {
     
     
     private func getBackdropImage(with path: String)  {
-        DispatchQueue.main.async {
-            self.backdropView.BackdropImageView.showSkeleton()
-        }
-        
-        Task { @MainActor in
+        Task {
             backdropImage = await NetworkManager.shared.downloadImage(from: path, imageQuality: .ActorImageWidthw1280)
             guard let backdropImage else {return}
             backdropView.BackdropImageView.image = backdropImage
-            backdropView.BackdropImageView.hideSkeleton()
-            
+
         }
     }
     
