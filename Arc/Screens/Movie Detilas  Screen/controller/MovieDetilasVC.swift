@@ -24,7 +24,7 @@ class MovieDetilasVC: DataLoadingVC {
     
     var backdropImage:UIImage?
     
-    //deal with it if you make api call
+    //Us it if you make api call
     var movieDetails : MovieDetails? {
         didSet {
             guard let movieDetails else {return}
@@ -34,13 +34,12 @@ class MovieDetilasVC: DataLoadingVC {
         }
     }
     
-    //deal with it if you deal with coredate
+    //Use it if you deal with coredate
     var movieFavoriteDetails : FavoriteMovieModel? {
         didSet{
             guard let movieFavoriteDetails else {return}
             convertToMovieDettails(favoriteMovie: movieFavoriteDetails)
             configuerButton(with: movieFavoriteDetails.id)
-            
         }
     }
     
@@ -124,7 +123,7 @@ class MovieDetilasVC: DataLoadingVC {
         
         categroiesView.configuer(rating: Float(movieDetails.vote_average), language: movieDetails.original_language, releadeData: movieDetails.release_date, isAdult: movieDetails.adult)
         
-        //getCastMemberData(with: movieDetails.id)
+        getCastMemberData(with: movieDetails.id)
         
         movieOverview.text = movieDetails.overview
     }
@@ -135,7 +134,7 @@ class MovieDetilasVC: DataLoadingVC {
         headerView.title.text = favoriteMovie.title
         categroiesView.configuer(rating: favoriteMovie.voteAverage, language: favoriteMovie.originalLanguage, releadeData: favoriteMovie.releaseDate, isAdult: favoriteMovie.adult)
         movieOverview.text = favoriteMovie.overview
-        
+        getCastMemberData(with: favoriteMovie.id)
     }
     
     
@@ -192,6 +191,7 @@ extension MovieDetilasVC:FavoriteButtonDelegate {
                 do {
                     guard let backdropImage else{return}
                     try CoredataManager.shared.save(withMovie: movieDetails, backdropImage: backdropImage )
+                    presentAler(title: .success, message: "You have Successfuly add this Movie to Your Favoite list 😁", buttonTitle: "Horray🎉🎉")
                 }catch {
                     if let error = error as? ErrorMassages {
                         presentAler(title: .defualtOne, message: error.rawValue)

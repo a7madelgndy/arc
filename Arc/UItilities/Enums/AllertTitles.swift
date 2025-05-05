@@ -9,4 +9,5 @@ import Foundation
 
 enum AllertTitles:String{
     case  defualtOne = "Something Went Wrong"
+    case  success = "Success!"
 }

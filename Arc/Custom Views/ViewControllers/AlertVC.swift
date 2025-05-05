@@ -19,7 +19,7 @@ class AlertVC: UIViewController {
     let containerView = ContainerView()
     let titleLabel    = TitleLabel(textAlignment: .center, fontsize: 20)
     let messageLabel  = BodyLabel(textAlignment: .center)
-    let okActionButton  = MainButton(systemNameImage: SFSymbols.checkmarkCircle, title : "ok", foregroundcolor: Colors.main)
+    let okActionButton  = MainButton(systemNameImage: SFSymbols.checkmarkCircle, foregroundcolor: Colors.main)
     lazy var cancelActionButton = MainButton(systemNameImage: SFSymbols.xmarkCircle, title : "cancel", foregroundcolor: .systemRed)
     
     var alerTitle : String?
@@ -39,7 +39,7 @@ class AlertVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.alerTitle = title
         self.message = message
-        self.okButtonTitle = okButtonTitle
+        self.okActionButton.configuration?.title = okButtonTitle
         
         if addCancelButton {
             didAddCancelButton = true
@@ -137,14 +137,15 @@ class AlertVC: UIViewController {
     
     
     @objc func dismissVC() {
+        dismiss(animated: true )
         guard let indexPath else {return}
         delegate?.didTappedOkButton(withIndexpath: indexPath)
-        dismiss(animated: true )
+      
     }
     
     
     @objc func dismissVCWithCancelButton() {
-            dismiss(animated: true )
+       dismiss(animated: true )
     }
 }
 
