@@ -2,7 +2,8 @@
 
 ARC is an iOS app built with Swift that showcases popular, top-rated, and upcoming movies using The Movie Database (TMDb) API. The app features a modern, clean design powered by `UICollectionViewCompositionalLayout` to display movie sections in a unified, elegant view.
 ##ShowCast
-
+<p align="center">
+<p>
 ## Screenshots
 <p align="center">
   <img src="https://github.com/user-attachments/assets/2703401f-91a9-40f3-9173-be8aaafbeb11" width="45%" />
