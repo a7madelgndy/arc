@@ -14,17 +14,19 @@ protocol FavoriteButtonDelegate:AnyObject {
 
 
 class HeaderView: UIView {
-    var title = TitleLabel(textAlignment: .left, fontsize: 20)
     
+    // MARK: - UI Elements
+    var titleLabel = TitleLabel(textAlignment: .left, fontsize: 20)
     var favoriteButton = MainButton(systemNameImage: SFSymbols.heart, foregroundcolor: Colors.main)
-    var shareSheetButton = MainButton(systemNameImage: SFSymbols.squareAndArrowUp, foregroundcolor: .systemPink)
+    var shareButton = MainButton(systemNameImage: SFSymbols.squareAndArrowUp, foregroundcolor: .systemPink)
 
-    weak  var delegage : FavoriteButtonDelegate?
-    
+    weak  var delegate : FavoriteButtonDelegate?
     private var movie :MovieDetails?
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupViews()
         configureHeaderTitle()
         configureFavoriteButton()
     }
@@ -34,15 +36,17 @@ class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup
+    func setupViews() {
+        addSubViews(titleLabel , favoriteButton , shareButton)
+    }
+    
     private func configureHeaderTitle() {
-        addSubview(title)
-        title.setCenterY(inView: self)
-        title.setConstrains(leading: leadingAnchor,paddingLeft: 20, width: UIScreen.main.bounds.width*0.7)
+        titleLabel.setCenterY(inView: self)
+        titleLabel.setConstrains(leading: leadingAnchor,paddingLeft: 20, width: UIScreen.main.bounds.width*0.7)
     }
     
     private func configureFavoriteButton() {
-        addSubview(favoriteButton)
-        addSubview(shareSheetButton)
         
         NSLayoutConstraint.activate([
             favoriteButton.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -53,28 +57,28 @@ class HeaderView: UIView {
         
         favoriteButton.setConstrains(trailing:trailingAnchor , paddingLeft: 30)
         
-        shareSheetButton.setCenterY(inView: self)
-        shareSheetButton.setConstrains(trailing: favoriteButton.leadingAnchor)
-        shareSheetButton.setDimensions(height: 40, width: 40)
+        shareButton.setCenterY(inView: self)
+        shareButton.setConstrains(trailing: favoriteButton.leadingAnchor)
+        shareButton.setDimensions(height: 40, width: 40)
         
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-        shareSheetButton.addTarget(self, action: #selector(showActivityViewController), for:.touchUpInside)
+        shareButton.addTarget(self, action: #selector(showActivityViewController), for:.touchUpInside)
     }
     
     
-    func configureheaderVeiw(with movie : MovieDetails){
+    func configureHeaderView(with movie : MovieDetails){
         self.movie = movie
-        title.text =  movie.original_title
+        titleLabel.text =  movie.original_title
 
     }
     
     //MARK: Selectors
     @objc private func showActivityViewController() {
-        delegage?.shareSheetTaped()
+        delegate?.shareSheetTaped()
     }
     
     
     @objc private func favoriteButtonTapped() {
-        delegage?.didtapedFavoriteButton()
+        delegate?.didtapedFavoriteButton()
     }
 }

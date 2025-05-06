@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15024A4F2DBC37EC009D0760 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A4E2DBC37EC009D0760 /* Constants.swift */; };
-		15024A532DBC47A4009D0760 /* AllertTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A522DBC47A4009D0760 /* AllertTitles.swift */; };
+		15024A532DBC47A4009D0760 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A522DBC47A4009D0760 /* Alerts.swift */; };
 		15024A552DBE6346009D0760 /* ImageAttributeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A542DBE6346009D0760 /* ImageAttributeTransformer.swift */; };
 		15024A572DBE6D9D009D0760 /* FavoriteMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024A562DBE6D9D009D0760 /* FavoriteMovieModel.swift */; };
 		154285E42DBA9F9D00457B9C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154285E32DBA9F9D00457B9C /* FavoriteCell.swift */; };
@@ -42,7 +42,7 @@
 		157AC0E22DB6A0B0007409D4 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E12DB6A0AF007409D4 /* MainButton.swift */; };
 		157AC0E52DB6A3C1007409D4 /* ErrorMassages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */; };
 		157AC0E72DB6A47A007409D4 /* UIViewController+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */; };
-		157AC0ED2DB7CB43007409D4 /* MovieDetilasVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0EC2DB7CB43007409D4 /* MovieDetilasVC.swift */; };
+		157AC0ED2DB7CB43007409D4 /* MovieDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0EC2DB7CB43007409D4 /* MovieDetailsVC.swift */; };
 		157AC0EF2DB7CD36007409D4 /* BackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0EE2DB7CD36007409D4 /* BackdropView.swift */; };
 		157AC0F62DB7E59D007409D4 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0F52DB7E59D007409D4 /* HeaderView.swift */; };
 		157AC0F82DB7F121007409D4 /* MovieCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC0F72DB7F121007409D4 /* MovieCategoriesView.swift */; };
@@ -68,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		15024A4E2DBC37EC009D0760 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		15024A522DBC47A4009D0760 /* AllertTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllertTitles.swift; sourceTree = "<group>"; };
+		15024A522DBC47A4009D0760 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		15024A542DBE6346009D0760 /* ImageAttributeTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttributeTransformer.swift; sourceTree = "<group>"; };
 		15024A562DBE6D9D009D0760 /* FavoriteMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieModel.swift; sourceTree = "<group>"; };
 		154285E32DBA9F9D00457B9C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		157AC0E12DB6A0AF007409D4 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMassages.swift; sourceTree = "<group>"; };
 		157AC0E62DB6A47A007409D4 /* UIViewController+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+EXT.swift"; sourceTree = "<group>"; };
-		157AC0EC2DB7CB43007409D4 /* MovieDetilasVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetilasVC.swift; sourceTree = "<group>"; };
+		157AC0EC2DB7CB43007409D4 /* MovieDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsVC.swift; sourceTree = "<group>"; };
 		157AC0EE2DB7CD36007409D4 /* BackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackdropView.swift; sourceTree = "<group>"; };
 		157AC0F52DB7E59D007409D4 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		157AC0F72DB7F121007409D4 /* MovieCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategoriesView.swift; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 				15024A4E2DBC37EC009D0760 /* Constants.swift */,
 				157AC0E42DB6A3C1007409D4 /* ErrorMassages.swift */,
 				157AC0D42DB69141007409D4 /* MovieBannerSize.swift */,
-				15024A522DBC47A4009D0760 /* AllertTitles.swift */,
+				15024A522DBC47A4009D0760 /* Alerts.swift */,
 				15BCFA242DC6E6AC000E5EDA /* ImageQualities.swift */,
 				15813C3C2DC73486001FCA38 /* Category.swift */,
 				15813C3E2DC734A4001FCA38 /* EndPoints.swift */,
@@ -376,7 +376,7 @@
 		157AC0F32DB7E470007409D4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				157AC0EC2DB7CB43007409D4 /* MovieDetilasVC.swift */,
+				157AC0EC2DB7CB43007409D4 /* MovieDetailsVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -580,9 +580,9 @@
 				154376912DB3D1A100A2B39B /* SceneDelegate.swift in Sources */,
 				15024A572DBE6D9D009D0760 /* FavoriteMovieModel.swift in Sources */,
 				157AC0F82DB7F121007409D4 /* MovieCategoriesView.swift in Sources */,
-				157AC0ED2DB7CB43007409D4 /* MovieDetilasVC.swift in Sources */,
+				157AC0ED2DB7CB43007409D4 /* MovieDetailsVC.swift in Sources */,
 				157AC10E2DB933C2007409D4 /* ActorImageView.swift in Sources */,
-				15024A532DBC47A4009D0760 /* AllertTitles.swift in Sources */,
+				15024A532DBC47A4009D0760 /* Alerts.swift in Sources */,
 				154376B92DB3E95000A2B39B /* AppLayouts.swift in Sources */,
 				1549C4452DBE7ADD005B07EF /* CornerImageView.swift in Sources */,
 			);

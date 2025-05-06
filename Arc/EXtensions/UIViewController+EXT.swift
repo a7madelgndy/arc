@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
 
-    func presentAler(title: AllertTitles , message: String , buttonTitle : String = "ok") {
+    func presentAler(title: AlertTitles , message: String , buttonTitle : String = "ok") {
         let alertVC = AlertVC(title: title.rawValue, message: message , okButtonTitle: buttonTitle)
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .crossDissolve

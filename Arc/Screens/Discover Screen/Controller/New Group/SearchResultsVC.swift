@@ -119,7 +119,7 @@ extension SearchResultsVC: UICollectionViewDataSource , UICollectionViewDelegate
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieVc = MovieDetilasVC()
+        let movieVc = MovieDetailsVC()
 
         guard let movieId =  movies?[indexPath.row].id else {return}
 

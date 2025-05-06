@@ -8,26 +8,30 @@
 import UIKit
 
 class MovieDetilesView: UIView {
+    
+    // MARK: - UI Components
+    
     private var emptyView = UIView()
     
     private var titleStackView = UIStackView()
-    private var titleSF = SFSymbolImageView(systemImage: SFSymbols.movieclapper , tintColor: .systemBlue.withAlphaComponent(0.5))
-    private var title  = TitleLabel(textAlignment: .left, fontsize: 20)
+    private var titleIcon = SFSymbolImageView(systemImage: SFSymbols.movieclapper , tintColor: .systemBlue.withAlphaComponent(0.5))
+    private var titleLabel  = TitleLabel(textAlignment: .left, fontsize: 20)
 
-    
     private var voteStackView = UIStackView()
-    private var vote = UILabel()
-    private var voteSF = SFSymbolImageView(systemImage: SFSymbols.star , tintColor: .systemYellow.withAlphaComponent(0.5))
+    private var voteLabel = UILabel()
+    private var voteIcon = SFSymbolImageView(systemImage: SFSymbols.star , tintColor: .systemYellow.withAlphaComponent(0.5))
     
-    private var releaseDataStackView = UIStackView()
-    private var releaseDataSF = SFSymbolImageView(systemImage: SFSymbols.clock, tintColor: .systemRed.withAlphaComponent(0.5))
-    private var releaseData = UILabel()
+    private var releaseDateStackView = UIStackView()
+    private var releaseDateIcon = SFSymbolImageView(systemImage: SFSymbols.clock, tintColor: .systemRed.withAlphaComponent(0.5))
+    private var releaseDateLabel = UILabel()
     
     private let mainStackView = UIStackView()
     
+    
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         configureUI()
     }
     
@@ -37,24 +41,42 @@ class MovieDetilesView: UIView {
     }
     
     
+    // MARK: - Configuration
     
     func configureUI(){
+        translatesAutoresizingMaskIntoConstraints = false
+        addSubview(mainStackView)
+        
+        configureStackViews()
         configureMainStackView()
+    }
+    
+    
+    private func configureStackViews() {
+        // Title Stack
+        titleStackView.addArrangedSubview(titleIcon)
+        titleStackView.addArrangedSubview(titleLabel)
+        titleStackView.addArrangedSubview(emptyView)
+        titleIcon.setWidth(width: 20)
         
-        configureTitleStackView ()
-        configureVoteStackView()
-        configureRealseDataStackView()
+        // Vote Stack
+        voteStackView.addArrangedSubview(voteIcon)
+        voteStackView.addArrangedSubview(voteLabel)
+        voteStackView.addArrangedSubview(emptyView)
+        voteIcon.setDimensions(height: 20, width: 20)
         
+        // Release Date Stack
+        releaseDateStackView.addArrangedSubview(releaseDateIcon)
+        releaseDateStackView.addArrangedSubview(releaseDateLabel)
+        releaseDateStackView.addArrangedSubview(emptyView)
+        releaseDateIcon.setDimensions(height: 20, width: 20)
     }
     
     
     private func configureMainStackView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        addSubViews(mainStackView)
-        
         mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(voteStackView)
-        mainStackView.addArrangedSubview(releaseDataStackView)
+        mainStackView.addArrangedSubview(releaseDateStackView)
                 
         mainStackView.axis = .vertical
         mainStackView.distribution = .equalCentering
@@ -62,46 +84,18 @@ class MovieDetilesView: UIView {
         
         mainStackView.pinToEdges(of: self)
         
-        for stackView in [titleStackView, voteStackView, releaseDataStackView] {
-            stackView.axis = .horizontal
-            stackView.distribution = .fillProportionally
-            stackView.spacing = 5
+        //apply same layout to all child stack views
+        [titleStackView, voteStackView, releaseDateStackView].forEach{
+            $0.axis = .horizontal
+            $0.distribution = .fillProportionally
+            $0.spacing = 5
         }
     }
     
     
-    private func configureTitleStackView () {
-        titleStackView.addArrangedSubview(titleSF)
-        titleStackView.addArrangedSubview(title)
-        titleStackView.addArrangedSubview(emptyView)
-
-        titleSF.setWidth(width: 20)
-    }
-    
-    
-    private func configureVoteStackView() {
-        voteStackView.addArrangedSubview(voteSF)
-        voteStackView.addArrangedSubview(vote)
-        voteStackView.addArrangedSubview(emptyView)
-
-        voteSF.setDimensions(height: 20, width: 20)
-    }
-    
-    
-    private func configureRealseDataStackView() {
-        releaseDataStackView.addArrangedSubview(releaseDataSF)
-        releaseDataStackView.addArrangedSubview(releaseData)
-        releaseDataStackView.addArrangedSubview(emptyView)
-        
-        releaseDataSF.setDimensions(height: 20, width: 20)
-    }
-    
-    
     func configureData(with movie: FavoriteMovieModel) {
-        title.text = movie.title
-        vote.text = String(format: "%.1f",movie.voteAverage)
-        releaseData.text = String(movie.releaseDate.prefix(4))
-        
+        titleLabel.text = movie.title
+        voteLabel.text = String(format: "%.1f",movie.voteAverage)
+        releaseDateLabel.text = String(movie.releaseDate.prefix(4))
     }
-    
 }

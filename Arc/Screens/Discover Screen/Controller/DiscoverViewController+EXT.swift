@@ -9,7 +9,7 @@ import UIKit
 
 extension DiscoverViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieVc = MovieDetilasVC()
+        let movieVc = MovieDetailsVC()
         var movieId:Int?
         
         switch indexPath.section {
