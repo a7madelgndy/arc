@@ -8,10 +8,12 @@
 import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
+    
+    //MARK: - Properties
     static let cellIdentifier = "PopularCollectionViewCell"
     
     private var imageTask: Task<(), Never>?
-
+    
     lazy var moviePosterView: UIImageView = {
         let image =  UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +24,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -31,6 +34,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    //MARK: -Configurtion
     private func configureUI() {
         addSubview(moviePosterView)
         
@@ -43,32 +48,28 @@ class MovieCollectionViewCell: UICollectionViewCell {
         moviePosterView.backgroundColor = .systemGray6
     }
     
+    
+    // MARK: - Configure Cell
     func configuer(posterImagePath: String ) {
-        //w185 //w342 //w500//w780
-        let fullImageURL:String = "https://image.tmdb.org/t/p/w500\(posterImagePath)"
         
-        guard  let url = URL(string: fullImageURL) else {return}
         if let image = ImageCacheManager.shared.image(for: posterImagePath) {
             moviePosterView.image = image
-
+            
         }else {
             imageTask = Task {
+                
                 do {
-                    let (data, _ ) = try await URLSession.shared.data(from: url)
                     if Task.isCancelled {return}
-                    if let image = UIImage(data: data){
-                        moviePosterView.image = image
-                        ImageCacheManager.shared.cache(image, forkey: posterImagePath)
-                    }
-                }catch {
-                    print("failed to download The image")
+                    let image = await NetworkManager.shared.downloadImage(from: posterImagePath, imageQuality: .posterWidth342)
+                    guard let image else {return}
+                    moviePosterView.image = image
+                    ImageCacheManager.shared.cache(image, forkey: posterImagePath)
                 }
-             }
+            }
         }
-
     }
     
-    //Reste before implement to solve Flickerying 
+    // MARK: - Reuse Handling
     override func prepareForReuse() {
         super.prepareForReuse()
         moviePosterView.image = nil

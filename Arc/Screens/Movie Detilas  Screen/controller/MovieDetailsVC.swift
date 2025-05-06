@@ -60,7 +60,6 @@ class MovieDetailsVC: DataLoadingVC {
         setupConstrains()
     }
     
-    //////////////////
     func setWithFavoriteMovie(favoriteMovie: FavoriteMovieModel ){
         backdropView.BackdropImageView.image = favoriteMovie.backdropImage
     }

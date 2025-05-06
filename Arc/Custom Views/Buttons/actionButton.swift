@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class MainButton: UIButton {
+final class actionButton: UIButton {
     
     
     override init(frame: CGRect) {

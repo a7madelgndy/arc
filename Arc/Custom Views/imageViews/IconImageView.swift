@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SFSymbolImageView: UIImageView {
+class IconImageView: UIImageView {
     private var systemImage : UIImage?
     private var  forGroundcolor : UIColor?
     

@@ -12,13 +12,12 @@ protocol FavoriteButtonDelegate:AnyObject {
     func shareSheetTaped()
 }
 
-
 class HeaderView: UIView {
     
     // MARK: - UI Elements
     var titleLabel = TitleLabel(textAlignment: .left, fontsize: 20)
-    var favoriteButton = MainButton(systemNameImage: SFSymbols.heart, foregroundcolor: Colors.main)
-    var shareButton = MainButton(systemNameImage: SFSymbols.squareAndArrowUp, foregroundcolor: .systemPink)
+    var favoriteButton = actionButton(systemNameImage: SFSymbols.heart, foregroundcolor: Colors.main)
+    var shareButton = actionButton(systemNameImage: SFSymbols.squareAndArrowUp, foregroundcolor: .systemPink)
 
     weak  var delegate : FavoriteButtonDelegate?
     private var movie :MovieDetails?

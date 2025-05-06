@@ -14,15 +14,15 @@ class MovieDetilesView: UIView {
     private var emptyView = UIView()
     
     private var titleStackView = UIStackView()
-    private var titleIcon = SFSymbolImageView(systemImage: SFSymbols.movieclapper , tintColor: .systemBlue.withAlphaComponent(0.5))
+    private var titleIcon = IconImageView(systemImage: SFSymbols.movieclapper , tintColor: .systemBlue.withAlphaComponent(0.5))
     private var titleLabel  = TitleLabel(textAlignment: .left, fontsize: 20)
 
     private var voteStackView = UIStackView()
     private var voteLabel = UILabel()
-    private var voteIcon = SFSymbolImageView(systemImage: SFSymbols.star , tintColor: .systemYellow.withAlphaComponent(0.5))
+    private var voteIcon = IconImageView(systemImage: SFSymbols.star , tintColor: .systemYellow.withAlphaComponent(0.5))
     
     private var releaseDateStackView = UIStackView()
-    private var releaseDateIcon = SFSymbolImageView(systemImage: SFSymbols.clock, tintColor: .systemRed.withAlphaComponent(0.5))
+    private var releaseDateIcon = IconImageView(systemImage: SFSymbols.clock, tintColor: .systemRed.withAlphaComponent(0.5))
     private var releaseDateLabel = UILabel()
     
     private let mainStackView = UIStackView()

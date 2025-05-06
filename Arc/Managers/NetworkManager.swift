@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-//MARK: Network Manager
 actor NetworkManager {
     static let shared = NetworkManager()
     
@@ -48,21 +45,24 @@ actor NetworkManager {
             throw ErrorMassages.unableToDecodeVideoData
         }
     }
+    
+    
     func searchForAMovie(with text: String)async throws -> [Movie]?{
         let encodeQuery = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(encodeQuery)")!
         let request = APIComponet.makeRequest(withUrl: url)
         let (data, _) = try await URLSession.shared.data(for: request)
-
+        
         do {
             let moviesResponse = try decoder.decode(MovieResponse.self, from: data)
             return moviesResponse.results
         }catch {
             
-          print("error")
+            print("error")
         }
-       return []
+        return []
     }
+    
     
     func getMovieDetails(with id : Int) async throws -> MovieDetails {
         let request = APIComponet.makeRequest(withUrl: APIEndPoint.movieDetials(movieID: id))
@@ -76,6 +76,7 @@ actor NetworkManager {
         }
     }
     
+    
     func downloadImage(from urlPath: String , imageQuality: ImageQualities ) async -> UIImage? {
         let url = "https://image.tmdb.org/t/p/\(imageQuality.rawValue)\(urlPath)"
         guard let url = URL(string: url) else {return nil}
@@ -84,7 +85,7 @@ actor NetworkManager {
             let (data, _) = try await  URLSession.shared.data(from: url)
             
             guard let image = UIImage(data: data) else {return nil}
-                        
+            
             return image
         }catch {
             return nil
@@ -94,19 +95,18 @@ actor NetworkManager {
     
     func getMovieCast(movieId: String)async throws -> [CastMember]?{
         let enpoint = APIEndPoint.getCast(movieID: movieId)
-
+        
         let request =  APIComponet.makeRequest(withUrl: enpoint , pageNumber: 1)
-      
+        
         let (data, _) = try await URLSession.shared.data(for: request)
-    
+        
         do {
             let castResponse = try decoder.decode(MovieCastResponse.self, from: data)
-          
+            
             return castResponse.cast
         }catch{
             return []
         }
-        
     }
 }
 

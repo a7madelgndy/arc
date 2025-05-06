@@ -8,6 +8,8 @@
 import UIKit
 
 class ActorImageView: DataLoadingImageView {
+    
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -17,12 +19,13 @@ class ActorImageView: DataLoadingImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: -Configurtion
     private func configure() {
         layer.cornerRadius = 10
         clipsToBounds      =  true
-        //contentMode = .scaleAspectFit
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
     
     func downloadImage(fromUrl url : String) {
         Task {
@@ -30,7 +33,5 @@ class ActorImageView: DataLoadingImageView {
             image  = await NetworkManager.shared.downloadImage(from: url, imageQuality: .ActorImageWidth300)
             hideSkeleton()
         }
-      
     }
-    
 }

@@ -13,28 +13,29 @@ protocol CancelButtonProtocol:AnyObject {
 
 
 class AlertVC: UIViewController {
-    //MARK: Properties
+    //MARK: - UI Components
     let actionStackView = UIStackView()
     
     let containerView = ContainerView()
     let titleLabel    = TitleLabel(textAlignment: .center, fontsize: 20)
     let messageLabel  = BodyLabel(textAlignment: .center)
-    let okActionButton  = MainButton(systemNameImage: SFSymbols.checkmarkCircle, foregroundcolor: Colors.main)
-    lazy var cancelActionButton = MainButton(systemNameImage: SFSymbols.xmarkCircle, title : "cancel", foregroundcolor: .systemRed)
+    let okActionButton  = actionButton(systemNameImage: SFSymbols.checkmarkCircle, foregroundcolor: Colors.main)
+    lazy var cancelActionButton = actionButton(systemNameImage: SFSymbols.xmarkCircle, title : "cancel", foregroundcolor: .systemRed)
     
+    //MARK: - Properties
     var alerTitle : String?
     var message: String?
     var okButtonTitle : String?
     
     var didAddCancelButton = false
-    
     var didTappedCancelButton = false
-    
+      
     weak var delegate: CancelButtonProtocol?
     var indexPath: Int?
-    
     let padding : CGFloat = 20
     
+    
+    //MARK: Init
     init(title: String? = nil, message: String? = nil, okButtonTitle: String? = nil, addCancelButton: Bool = false ) {
         super.init(nibName: nil, bundle: nil)
         self.alerTitle = title
@@ -44,8 +45,6 @@ class AlertVC: UIViewController {
         if addCancelButton {
             didAddCancelButton = true
         }
-
-    
     }
     
     
@@ -53,11 +52,13 @@ class AlertVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configuerUI()
     }
+    
     
     //MARK: Configuertion
     func configuerUI() {
@@ -135,12 +136,11 @@ class AlertVC: UIViewController {
         ])
     }
     
-    
+    //MARK: Selectors
     @objc func dismissVC() {
         dismiss(animated: true )
         guard let indexPath else {return}
         delegate?.didTappedOkButton(withIndexpath: indexPath)
-      
     }
     
     

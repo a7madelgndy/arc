@@ -51,4 +51,14 @@ struct UIHelper {
         config.textProperties.color = .systemRed
         return config
     }
+    
+    static func canFindThisMovie(userSearch: String)-> UIContentUnavailableConfiguration {
+        var config = UIContentUnavailableConfiguration.empty()
+        config.image = .init(systemName: "movieclapper")
+        config.imageProperties.tintColor = .systemPurple
+        config.text = "There is no Movie called"
+        config.secondaryText = "\(userSearch)"
+        config.textProperties.color = .systemPurple
+        return config
+    }
 }

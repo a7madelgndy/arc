@@ -7,18 +7,21 @@
 
 import UIKit
 
+//MARK: - extension Collection View Delegate
+
 extension DiscoverViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieVc = MovieDetailsVC()
         var movieId:Int?
         
         switch indexPath.section {
-        case 0  : movieId =  populerMovies[indexPath.row].id
+        case 0  : movieId =  popularMovies[indexPath.row].id
         case 1 :  movieId =  upcommingMovies[indexPath.row].id
         default : movieId =  topRatedMovies[indexPath.row].id
         }
         
         guard let movieId else {return}
+        
         showLoadingView()
         Task{
             do{
@@ -30,27 +33,25 @@ extension DiscoverViewController : UICollectionViewDelegate {
             }
           dismissLoadingView()
         }
-      
     }
 }
 
+//MARK: - extension Collection Data Source
 
 extension DiscoverViewController: UICollectionViewDataSource {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        //4 to manage the Skeleton View
         switch section {
-        case 0  : return populerMovies.isEmpty ? 4 : populerMovies.count
+        case 0  : return popularMovies.isEmpty ? 4 : popularMovies.count
         case 1 :  return upcommingMovies.isEmpty ? 4 : upcommingMovies.count
         default :  return topRatedMovies.isEmpty ? 4 :  topRatedMovies.count
         }
     }
     
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
-    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {3}
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)  -> UICollectionViewCell {
@@ -62,10 +63,10 @@ extension DiscoverViewController: UICollectionViewDataSource {
 
         switch indexPath.section {
         case 0 :
-            if populerMovies.isEmpty  {
+            if popularMovies.isEmpty  {
                 return cell
             }else {
-                imagePath = populerMovies[indexPath.row].poster_path!
+                imagePath = popularMovies[indexPath.row].poster_path!
                 cell.configuer(posterImagePath: imagePath)
             }
        
@@ -91,7 +92,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
         }
         
         return cell
-        
     }
     
     

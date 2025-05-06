@@ -21,6 +21,7 @@ class DataLoadingVC: UIViewController {
         return "skeletonGradientName"
     }
     
+    
     func showLoadingView() {
         containerView  = UIView(frame: view.bounds)
         view.addSubview(containerView)
@@ -72,7 +73,7 @@ class DataLoadingVC: UIViewController {
         return results
     }
 
-    // 5
+
     func showSkeleton() {
         let skeletons = skeletonViews(in: view)
         let backgroundColor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 210.0/255.0, alpha: 1.0).cgColor
@@ -111,7 +112,6 @@ class DataLoadingVC: UIViewController {
         }
     }
 
-    // 6
     func hideSkeleton() {
         skeletonViews(in: view).forEach {
             $0.layer.sublayers?.removeAll {

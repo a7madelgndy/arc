@@ -51,6 +51,7 @@ class CoredataManager{
         }
     }
     
+    
     func getAllMovies() throws->[FavoriteMovieModel]  {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Enities.FavoriteMovieEntity)
         do {
@@ -62,6 +63,7 @@ class CoredataManager{
              throw ErrorMassages.unableToGetFavortiMovies
         }
     }
+    
     
     //Check is the movie in CoreData or Note
     func checkForMovie(with id: Int ) throws -> Bool {

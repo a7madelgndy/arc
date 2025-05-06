@@ -8,10 +8,13 @@
 import UIKit
 
 class BackdropView: UIView {
+    
+    // MARK: - UI Elements
     var BackdropImageView =  DataLoadingImageView()
     var layerbalckView =  UIView()
     
-
+    
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -23,6 +26,7 @@ class BackdropView: UIView {
     }
     
     
+    //MARK: - Confiuretoin
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(BackdropImageView)
